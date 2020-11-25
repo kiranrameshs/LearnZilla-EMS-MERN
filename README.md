@@ -20,14 +20,14 @@ Mongo Atlas
  
 # Run Project Commands
 
---Server Dependencies
+--> Server Dependencies
  * npm init
  * npx express-generator sticky-server --no-view
  * npm install --save @babel/core @babel/cli @babel/preset-env nodemon rimraf npm-run-all
  * npm i --save mongoose
  * npm install -g concurrently
 
- --Client Dependencies
+ --> Client Dependencies
  * Bootstrap
  --Integration
 
