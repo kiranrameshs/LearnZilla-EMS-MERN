@@ -24,7 +24,7 @@
 *.log
 *.sql
 *.sqlite
-/.eslintcache
+.eslintcache
 
 .DS_Store
 **/npm-cache
