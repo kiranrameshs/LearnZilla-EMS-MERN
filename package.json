@@ -11,6 +11,7 @@
     "clean": "rimraf dist",
     "dev": "NODE_ENV=development npm-run-all build server",
     "proxy": "http://localhost:8080",
+    "sass": "node-sass webapp/src/styles/main.scss --output dist",
     "client": "cd webapp && npm start",
     "prod": "concurrently -n 'server,client' -c 'blue,green' \"node ./dist/bin/www.js\" \"npm run client\""
   },
