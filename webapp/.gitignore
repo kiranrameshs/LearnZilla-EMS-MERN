@@ -24,7 +24,7 @@
 *.log
 *.sql
 *.sqlite
-.eslintcache
+/.eslintcache
 
 .DS_Store
 **/npm-cache
@@ -46,6 +46,7 @@ loggedName.txt
 *.idea
 dist/
 /dist
+
 # testing
 /coverage
 
@@ -61,8 +62,4 @@ dist/
 
 npm-debug.log*
 yarn-debug.log*
-<<<<<<< HEAD
 yarn-error.log*
-=======
-yarn-error.log*
->>>>>>> 02fb7326c92f35d4c168b381628cb295f4b4b597
