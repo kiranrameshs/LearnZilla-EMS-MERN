@@ -1,0 +1,10 @@
+
+@import "Utilities/variables";//Variables and Methods
+@import "Utilities/mixins";
+@import "Utilities/functions";
+
+//Layouts
+@import "Layouts/selectors.scss";
+
+//Modules
+@import "Modules/courses.scss";
