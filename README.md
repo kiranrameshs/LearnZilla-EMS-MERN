@@ -29,6 +29,7 @@ Mongo Atlas
 
  --> Client Dependencies
  * Bootstrap
+ * npm install -g sass
  --Integration
 
 

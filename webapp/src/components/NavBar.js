@@ -23,8 +23,14 @@ class NavBar extends Component {
       render() {
         return (
           <>
-            <p>Hi</p>
-            <button onClick={this.newCounter}>demo</button>
+            <div>
+              <ul className="navBar">
+                <li><a href="#">HOME</a></li>
+                <li><a >COURSES</a></li>
+                <li><a >ACCOUNT</a></li>
+                <li><a href="#">LOGOUT</a></li>
+              </ul>
+            </div>
           </>
         );
       }
