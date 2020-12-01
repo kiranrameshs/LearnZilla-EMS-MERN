@@ -20,11 +20,12 @@ class NavBar extends Component {
       });
       }
 
+
       render() {
         return (
           <>
-            <p>Hi</p>
-            <button onClick={this.newCounter}>demo</button>
+            <p>NavBar</p>
+            <button>demo</button>
           </>
         );
       }
