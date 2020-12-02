@@ -1,20 +1,42 @@
-import authServices from "../services/auth.services";
+import authService from './../services/auth.service';
 
-const loginreq = (request, response) => {
+// Build logic for creating new record. This will be called for POST method with no id provided
+const login = (request, response) => {
+    //const newSticky = Object.assign({}, request.body);
     const email = request.body.email;
     const password = request.body.password;
-
-
-    authServices.loginreq(email, password)
-    .then(() => {
-        response.status(200);
-        response.json({
-          message: "Successfully Logged in"
-        });
-    })
-    .catch(handleError(response));
+    console.log(email);
+    console.log(password);
+    authService.login(email, password)
+        .then((err, foundUser) => {
+            if (err) {
+              console.log(err);
+            }else {
+              if (foundUser) {
+                bcrypt.compare(password, foundUser.password).then(result => {
+                  if (result === false) {
+                    return response.status(400).json({err: 'This is the wrong password'})
+                  }
+                })
+              }
+            }
+            response.status(200);
+            response.json(myJson);
+        })
+        .catch(handleError(response));
 };
 
+// Display Error message in case any error occurs
+const handleError = (response) => {
+    return (error) => {
+        response.status(500);
+        response.json({
+            message: error.message
+        })
+    };
+}
+
+// Export functions
 export default {
-    loginreq: loginreq
+    login: login
 }
