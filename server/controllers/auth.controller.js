@@ -38,5 +38,6 @@ const handleError = (response) => {
 
 // Export functions
 export default {
-    login: login
+    login: login,
+    register: register
 }

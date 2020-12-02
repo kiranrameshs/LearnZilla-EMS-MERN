@@ -13,7 +13,7 @@ const saltRounds = 10;
 const keys = require('./config/keys');
 
 //connection to local db
-mongoose.connect('mongodb://localhost:27017/todoDB', {
+mongoose.connect('mongodb://localhost:27017/demoDB', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })

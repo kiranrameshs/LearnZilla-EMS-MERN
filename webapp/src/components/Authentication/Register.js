@@ -8,13 +8,12 @@ import {
 } from 'react-bootstrap';
 import './Authentication.scss';
 
-//import { loginUser } from '../../actions/userActions';
-
-class Login extends Component {
+class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
       email: '',
+      role: '',
       password: ''
     };
     this.submitForm = this.submitForm.bind(this);
@@ -41,11 +40,12 @@ class Login extends Component {
     e.preventDefault();
     //this.props.loginUser(this.state);
     //console.log(this.state);
-    let loginUrl = '/login/';
-    fetch(loginUrl, {
+    let registerUrl = '/register/';
+    fetch(registerUrl, {
       method: 'POST',
       body: JSON.stringify( {
           "email": this.state.email,
+          "role": this.state.role,
           "password": this.state.password
         }
       ),
@@ -69,6 +69,15 @@ class Login extends Component {
             onChange={this.handleInput}
             />
         </FormGroup>
+        <FormGroup controlId="role">
+          <FormLabel>Role</FormLabel>
+          <FormControl
+            type="text"
+            value={this.state.value}
+            placeholder="Enter role"
+            onChange={this.handleInput}
+            />
+        </FormGroup>
 
         <FormGroup controlId="password">
           <FormLabel>Password</FormLabel>
@@ -81,7 +90,7 @@ class Login extends Component {
         </FormGroup>
 
         <FormGroup className="center-button">
-          <Button type="submit" >Login</Button>
+          <Button type="submit" >Register</Button>
         </FormGroup>
       </Form>
 
@@ -89,4 +98,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default Register;

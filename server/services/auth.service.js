@@ -5,6 +5,12 @@ const login = (email, password) => {
     return promise;
 }
 
+const register = (email, password) => {
+    const promise = User.findOne({email: email}).exec();
+    return promise;
+}
+
 export default {
-    login: login
+    login: login,
+    register: register
 }
