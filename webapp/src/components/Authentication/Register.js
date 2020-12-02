@@ -12,9 +12,12 @@ class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      name: '',
+      address: '',
       email: '',
-      role: '',
-      password: ''
+      university: '',
+      password: '',
+      role: ''
     };
     this.submitForm = this.submitForm.bind(this);
     this.handleInput = this.handleInput.bind(this);

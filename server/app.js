@@ -3,11 +3,8 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import mongoose from 'mongoose';
-import bcrypt from 'bcrypt';
 import model from './models';
 import routes from  './routes';
-
-const saltRounds = 10;
 
 // Connect to MongoURI exported from config
 const keys = require('./config/keys');
