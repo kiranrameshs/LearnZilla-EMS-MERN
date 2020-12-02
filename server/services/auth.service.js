@@ -5,8 +5,9 @@ const login = (email, password) => {
     return promise;
 }
 
-const register = (email, password) => {
-    const promise = User.findOne({email: email}).exec();
+const register = (newUser) => {
+    const user = new User(newUser);
+    const promise = user.save();
     return promise;
 }
 

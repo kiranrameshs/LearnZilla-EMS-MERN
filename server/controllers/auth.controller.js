@@ -26,6 +26,17 @@ const login = (request, response) => {
         .catch(handleError(response));
 };
 
+const register = (request, response) => {
+    const newUser = Object.assign({}, request.body);
+    console.log(newUser);
+    authService.register(newUser)
+    .then((user) => {
+        response.status(200);
+        response.json(user);
+    })
+    .catch(handleError(response));
+};
+
 // Display Error message in case any error occurs
 const handleError = (response) => {
     return (error) => {
