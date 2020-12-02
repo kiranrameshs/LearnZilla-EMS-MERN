@@ -8,7 +8,7 @@ import {
 } from 'react-bootstrap';
 import './Authentication.scss';
 
-// import { loginUser } from '../../actions/userActions';
+//import { loginUser } from '../../actions/userActions';
 
 class Login extends Component {
   constructor(props) {
@@ -39,7 +39,22 @@ class Login extends Component {
 
   submitForm(e){
     e.preventDefault();
-    this.props.loginUser(this.state)
+    //this.props.loginUser(this.state);
+    //console.log(this.state);
+    let loginUrl = '/login/';
+    fetch(loginUrl, {
+      method: 'POST',
+      body: JSON.stringify( {
+          "email": this.state.email,
+          "password": this.state.password
+        }
+      ),
+      headers: {"Content-Type": "application/json"}
+    })
+    .then(res => res.json())
+    .then((responseJson) => {
+      console.log(responseJson);
+    });
   }
 
   render(){

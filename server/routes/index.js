@@ -1,6 +1,7 @@
-import TodoRouter from './todo.route';
+//import TodoRouter from './todo.route';
+import AuthRouter from './auth.route';
 
 //exporting the needed routes
 export default (app) => {
-    app.use('/', TodoRouter );
+    app.use('/', AuthRouter);
 }
