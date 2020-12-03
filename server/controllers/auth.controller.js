@@ -3,9 +3,8 @@ import authService from './../services/auth.service';
 
 const saltRounds = 10;
 
-// Build logic for creating new record. This will be called for POST method with no id provided
 const login = (request, response) => {
-    //const newSticky = Object.assign({}, request.body);
+  
     const email = request.body.email;
     const password = request.body.password;
     const role = request.body.role;
@@ -48,7 +47,7 @@ const register = (request, response) => {
             request.body.password = hash;
             const newUser = Object.assign({}, request.body);
             //console.log(newUser);
-            authService.register(newUser)
+            authService.register(newUser, request.body.role)
           }).then((user) => {
             response.status(200);
             response.json({"message": "Successfully Registered"});
