@@ -1,36 +1,40 @@
 import React, { Component } from 'react';
-
+import profile from '../assets/profile.png'
+import { Navbar,Nav, NavItem } from 'react-bootstrap';
 
 class NavBar extends Component {
 
     constructor(props){
         super();
-        this.state={
-          title:"new",
-          description: "adding new item"
-        }
+        this.state=props;
     }
 
     componentDidMount() {
-      fetch('/todos/', { method: 'GET' })
-      .then(res => res.json())
-      .then(json => {
-       console.log(json);
-        
-      });
-      }
+     
+    }
 
-      render() {
+      render(props) {
+        let fname = "Ron";//this.props.fname;
         return (
           <>
-            <div>
-              <ul className="navBar">
-                <li><a href="#">HOME</a></li>
-                <li><a >COURSES</a></li>
-                <li><a >ACCOUNT</a></li>
-                <li><a href="#">LOGOUT</a></li>
-              </ul>
-            </div>
+            <nav className="navbar navbar-inverse">
+              <div className="container-fluid">
+                <div className="navbar-header">
+                  <a className="navbar-brand" href="#"> <span class="glyphicon glyphicon-education"></span> LearnZilla</a>
+                </div>
+                <ul className="nav navbar-nav">
+                  <li className="active"><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                  <li><a>Courses</a></li>
+                  <li><a>Grade</a></li>
+                </ul>
+                <ul className="nav navbar-nav navbar-right">
+                  <li><a href="#"><span className="glyphicon glyphicon-user"></span> My profile</a></li>
+                  <li><a href="#"><span className="glyphicon glyphicon-log-out"></span> LOGOUT</a></li>
+                </ul>
+              </div>
+            </nav>
+
+
           </>
         );
       }
