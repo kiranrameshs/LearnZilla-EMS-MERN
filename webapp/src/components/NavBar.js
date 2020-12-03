@@ -5,10 +5,7 @@ class NavBar extends Component {
 
     constructor(props){
         super();
-        this.state={
-          User:"User1",
-          Role: "Student"
-        }
+        this.state=props;
     }
 
     componentDidMount() {
