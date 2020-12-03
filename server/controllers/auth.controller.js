@@ -11,47 +11,48 @@ const login = (request, response) => {
     console.log(email);
     console.log(password);
     authService.login(email, password)
-        .then((err, foundUser) => {
-            if (err) {
-              console.log(err);
-            }else {
-              if (foundUser) {
-                bcrypt.compare(password, foundUser.password).then(result => {
-                  if (result === false) {
-                    return response.status(400).json({err: 'This is the wrong password'})
-                  }
-                })
-              }
+      .then((foundUser) => {
+        console.log(foundUser);
+        if (foundUser) {
+          bcrypt.compare(password, foundUser.password).then(result => {
+            if (result === false) {
+              return response.status(401).json({
+                "message": "This is the wrong password"
+              })
+            } else {
+              response.status(200);
+              response.json({
+                "message": "Successfully Logged in"
+              });
             }
-            response.status(200);
-            response.render("/");
-        })
-        .catch(handleError(response));
+          })
+        } else {
+          return response.status(401).json({
+            "message": "No user with this email"
+          })
+        }
+      })
+      .catch(handleError(response));
 };
 
 const register = (request, response) => {
-    //const newUser = Object.assign({}, request.body);
 
-
-    bcrypt.hash(request.body.password, saltRounds).then(hash => {
-      const newUser = JSON.stringify({
-        "name": request.body.name;
-        "address": request.body.address;
-        "email": request.body.email;
-        "password": hash;
-        "university": request.body.university;
-        "role": request.body.role;
+    authService.login(request.body.email, request.body.password)
+      .then((foundUser) => {
+        if (foundUser) {
+          return response.status(409).json({"message": "Email already exsists"});
+        } else {
+          bcrypt.hash(request.body.password, saltRounds).then(hash => {
+            request.body.password = hash;
+            const newUser = Object.assign({}, request.body);
+            //console.log(newUser);
+            authService.register(newUser)
+          }).then((user) => {
+            response.status(200);
+            response.json({"message": "Successfully Registered"});
+          }).catch(handleError(response));
+        }
       });
-      console.log(newUser);
-      authService.register(newUser)
-      .then((user) => {
-          response.status(200);
-          response.json(user);
-      })
-      .catch(handleError(response));
-    });
-
-
 };
 
 // Display Error message in case any error occurs

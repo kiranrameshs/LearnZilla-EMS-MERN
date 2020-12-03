@@ -46,16 +46,16 @@ class Register extends Component {
     let registerUrl = '/register/';
     fetch(registerUrl, {
       method: 'POST',
-      body: JSON.stringify( {
-          "name": this.state.name,
-          "address": this.state.address,
-          "email": this.state.email,
-          "password": this.state.password,
-          "university": this.state.university,
-          "role": this.state.role
+      body: JSON.stringify({
+          'name': this.state.name,
+          'address': this.state.address,
+          'email': this.state.email,
+          'password': this.state.password,
+          'university': this.state.university,
+          'role': this.state.role
         }
       ),
-      headers: {"Content-Type": "application/json"}
+      headers: {'Content-Type': 'application/json'}
     })
     .then(res => res.json())
     .then((responseJson) => {

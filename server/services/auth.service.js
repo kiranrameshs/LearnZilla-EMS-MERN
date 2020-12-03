@@ -1,7 +1,7 @@
 import User from './../models/userSchema';
 
 const login = (email, password) => {
-    const promise = User.findOne({email: email}).exec();
+    const promise = User.findOne({email: email});
     return promise;
 }
 
