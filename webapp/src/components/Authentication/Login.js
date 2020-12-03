@@ -74,10 +74,14 @@ class Login extends Component {
 
         <FormGroup controlId="role">
           <FormLabel>Role</FormLabel>
-          <FormControl type="text" value={this.state.value} placeholder="Enter role" onChange={this.handleInput} />
+          <FormControl as="select" value={this.state.value} onChange={this.handleInput}>
+            <option>Student</option>
+            <option>Teacher</option>
+            <option>TA</option>
+          </FormControl>
         </FormGroup>
 
-        <FormGroup className="center-button">
+        <FormGroup>
           <Button type="submit" >Login</Button>
         </FormGroup>
       </Form>

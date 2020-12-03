@@ -5,6 +5,7 @@ import {
   FormControl,
   Button,
   FormLabel,
+  Input,
 } from 'react-bootstrap';
 import './Authentication.scss';
 
@@ -88,14 +89,17 @@ class Register extends Component {
         </FormGroup>
         <FormGroup controlId="role">
           <FormLabel>Role</FormLabel>
-          <FormControl type="text" value={this.state.value} placeholder="Enter role" onChange={this.handleInput} />
+          <FormControl as="select" value={this.state.value} onChange={this.handleInput}>
+            <option>Student</option>
+            <option>Teacher</option>
+            <option>TA</option>
+          </FormControl>
         </FormGroup>
 
-        <FormGroup className="center-button">
+        <FormGroup>
           <Button type="submit" >Register</Button>
         </FormGroup>
       </Form>
-
   )
   }
 }
