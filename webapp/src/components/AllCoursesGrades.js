@@ -24,6 +24,12 @@ class AllCourseGrades extends Component {
 
     componentDidMount() {
        //Fetch Courses of User with Final Grade
+        // fetch('/todos/', { method: 'GET' })
+      // .then(res => res.json())
+      // .then(json => {
+      //  console.log(json);
+        
+      // });
        this.setState({
            courses: []
        })
@@ -35,7 +41,7 @@ class AllCourseGrades extends Component {
 
       if (event.target.classList.contains('viewCourseScores')) {
         const itemKey = event.target.id;
-        //navigate to course score component 
+        //navigate to course score component using id
       }
         switch(event.target.id){
             default:
@@ -50,6 +56,7 @@ class AllCourseGrades extends Component {
           let courses = this.state.Courses;
         return (
           <>
+          <NavBar />
          {courses.map( (c) => {
              let viewID = c.id + "-view";
              return <> <div className="courseFinalGrade">

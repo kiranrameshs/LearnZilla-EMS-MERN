@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import { Table, Button } from 'react-bootstrap';
+import NavBar from './NavBar';
 
 class CourseScores extends Component {
 
@@ -32,15 +33,33 @@ class CourseScores extends Component {
         let homeWorks = this.state.CourseHWs;
         return (
           <>
-         {homeWorks.map( (c) => {
-             let viewID = c.id + "-view";
-             return <> <div className="courseFinalGrade">
-             <h2>{c.title}</h2>
-             <span className="finalGrade">{c.FinalGrade}</span>
-             <span className="viewCourseScores" id={c.id} onClick={this.handleClick}>View More..</span>
-            </div> <br /></>
-         })}
-           
+            <NavBar />
+            <>
+              <Table responsive striped bordered condensed hover>
+                <thead>
+                  <tr>
+                    <th> </th>
+                    <th> Home Work </th>
+                    <th> Submitted On </th>
+                    <th> Score  </th>
+                    <th> Feedback</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {homeWorks.map((c) => {
+                   return <tr>
+                      <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
+                            <td> {c.Title}</td>
+                            <td> {c.SubmittedOn}</td>
+                            <td> {c.Score}</td>
+                            <td> {c.Feedback}</td>
+                    </tr>
+
+                  })}
+                </tbody>
+              </Table></>
+
+
           </>
         );
       }
