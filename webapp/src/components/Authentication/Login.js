@@ -15,7 +15,8 @@ class Login extends Component {
     super(props);
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      role: ''
     };
     this.submitForm = this.submitForm.bind(this);
     this.handleInput = this.handleInput.bind(this);
@@ -46,7 +47,8 @@ class Login extends Component {
       method: 'POST',
       body: JSON.stringify( {
           "email": this.state.email,
-          "password": this.state.password
+          "password": this.state.password,
+          "role": this.state.role
         }
       ),
       headers: {"Content-Type": "application/json"}
@@ -62,22 +64,17 @@ class Login extends Component {
       <Form horizontal={true} onSubmit={this.submitForm}>
         <FormGroup controlId="email">
           <FormLabel>Email</FormLabel>
-          <FormControl
-            type="text"
-            value={this.state.value}
-            placeholder="Enter email"
-            onChange={this.handleInput}
-            />
+          <FormControl type="text" value={this.state.value} placeholder="Enter email" onChange={this.handleInput} />
         </FormGroup>
 
         <FormGroup controlId="password">
           <FormLabel>Password</FormLabel>
-          <FormControl
-            type="password"
-            value={this.state.value}
-            placeholder="Enter password"
-            onChange={this.handleInput}
-            />
+          <FormControl type="password" value={this.state.value} placeholder="Enter password" onChange={this.handleInput} />
+        </FormGroup>
+
+        <FormGroup controlId="role">
+          <FormLabel>Role</FormLabel>
+          <FormControl type="text" value={this.state.value} placeholder="Enter role" onChange={this.handleInput} />
         </FormGroup>
 
         <FormGroup className="center-button">

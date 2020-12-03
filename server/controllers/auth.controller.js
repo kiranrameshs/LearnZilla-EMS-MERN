@@ -8,9 +8,11 @@ const login = (request, response) => {
     //const newSticky = Object.assign({}, request.body);
     const email = request.body.email;
     const password = request.body.password;
-    console.log(email);
-    console.log(password);
-    authService.login(email, password)
+    const role = request.body.role;
+    // console.log(email);
+    // console.log(password);
+    // console.log(role);
+    authService.login(email, role)
       .then((foundUser) => {
         console.log(foundUser);
         if (foundUser) {
@@ -37,7 +39,7 @@ const login = (request, response) => {
 
 const register = (request, response) => {
 
-    authService.login(request.body.email, request.body.password)
+    authService.checkuser(request.body.email)
       .then((foundUser) => {
         if (foundUser) {
           return response.status(409).json({"message": "Email already exsists"});
