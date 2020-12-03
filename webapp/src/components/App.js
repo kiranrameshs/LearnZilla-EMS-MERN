@@ -6,8 +6,6 @@ import CourseScores from './CourseScores';
 const App = () => (
   <>
     <NavBar />
-    <AllCourseGrades />
-    <CourseScores />
     
   </>
 );
