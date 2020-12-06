@@ -37,7 +37,7 @@ class Login extends Component {
   }
 
   submitForm(e){
-    alert("Login");
+    //alert("Login");
     e.preventDefault();
     this.props.loginUser(this.state);
 
@@ -62,7 +62,7 @@ class Login extends Component {
 
   render(){
     return(
-      <Form onSubmit={this.props.submitForm}>
+      <Form onSubmit={this.submitForm}>
         <FormGroup controlId="email">
           <FormLabel>Email</FormLabel>
           <FormControl type="text" value={this.state.value} placeholder="Enter email" onChange={this.handleInput} />

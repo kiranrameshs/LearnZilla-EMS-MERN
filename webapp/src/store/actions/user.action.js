@@ -9,9 +9,9 @@ export const loginUser = userData => dispatch => {
   fetch(loginUrl, {
     method: 'POST',
     body: JSON.stringify({
-      "email": this.state.email,
-      "password": this.state.password,
-      "role": this.state.role
+      "email": userData.email,
+      "password": userData.password,
+      "role": userData.role
     }),
     headers: {
       "Content-Type": "application/json"
