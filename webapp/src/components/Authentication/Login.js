@@ -55,7 +55,7 @@ class Login extends Component {
     })
     .then(res => res.json())
     .then((responseJson) => {
-      console.log(responseJson);
+      alert(responseJson.message);
     });
   }
 
