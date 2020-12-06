@@ -11,7 +11,11 @@ const userSchema = new mongoose.Schema({
   },
   email: {
       type: String,
-      default: ''
+      required: [true, "Please check your data entry, no email specified!"]
+  },
+  password: {
+      type: String,
+      required: [true, "Please check your data entry, no password specified!"]
   },
   university: {
       type: String,
