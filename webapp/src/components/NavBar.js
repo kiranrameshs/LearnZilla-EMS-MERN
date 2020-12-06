@@ -16,13 +16,15 @@ class NavBar extends Component {
       .then(res => res.json())
       .then(json => {
        console.log(json);
-        
+
       });
       }
 
       render() {
         return (
           <>
+            <p>Hi</p>
+            <button onClick={this.newCounter}>demo</button
             <div>
               <ul className="navBar">
                 <li><a href="#">HOME</a></li>
