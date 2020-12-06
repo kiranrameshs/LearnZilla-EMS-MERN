@@ -28,7 +28,8 @@ Mongo Atlas
  * npm install -g concurrently
 
  --> Client Dependencies
- * Bootstrap
+ * npm install react-bootstrap bootstrap
+ * npm install -g sass
  --Integration
 
 

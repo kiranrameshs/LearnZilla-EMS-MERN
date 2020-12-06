@@ -46,7 +46,6 @@ loggedName.txt
 *.idea
 dist/
 /dist
-
 # testing
 /coverage
 

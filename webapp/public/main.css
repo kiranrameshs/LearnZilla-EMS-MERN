@@ -1,0 +1,23 @@
+h1 {
+  text-align: center; }
+
+ul {
+  list-style: none; }
+
+body {
+  padding: 5px; }
+
+.navBar {
+  list-style: none;
+  display: flex;
+  padding: 5px;
+  justify-content: space-evenly;
+  background-color: wheat; }
+
+.courseFinalGrade {
+  display: grid;
+  width: 300px;
+  background-color: whitesmoke;
+  border-radius: 25px;
+  text-align: center;
+  padding: 5px; }

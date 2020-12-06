@@ -10,7 +10,7 @@ const index = (request, response) => {
 
    })
    .catch( handleError(response));
-   
+
 
 };
 
@@ -34,11 +34,8 @@ const create = (request, response) => {
     .then((todos) => {
         response.status(200);
         response.json(todos);
-
     })
     .catch(handleError(response));
-
-
 };
 
 //update specific todo
@@ -97,10 +94,10 @@ const fetch = (request, response) => {
             .then((todos) => {
                 response.status(200);
                 response.json(todos == null? {message:"Todo not present"}: todos);
-    
+
             })
             .catch(handleError(response));
-    
+
         }
         else{
             response.status(200);
@@ -121,7 +118,7 @@ const handleError = (error, response) => {
         })
 
     };
-    
+
 
 }
 

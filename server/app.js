@@ -2,15 +2,15 @@ import express from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
-import model from './models';
 import mongoose from 'mongoose';
+import model from './models';
 import routes from  './routes';
 
 // Connect to MongoURI exported from config
 const keys = require('./config/keys');
 
 //connection to local db
-mongoose.connect('mongodb://localhost:27017/todoDB', {
+mongoose.connect('mongodb://localhost:27017/demoDB', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
