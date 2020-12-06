@@ -6,7 +6,9 @@ import { loginUser } from '../../store/actions/user.action';
 import { removeError } from '../../store/actions/error.action';
 
 class Login extends Component {
+
   constructor(props) {
+
     super(props);
     this.state = {
       email: '',
@@ -17,8 +19,7 @@ class Login extends Component {
     this.handleInput = this.handleInput.bind(this);
   }
 
-  componentWillReceiveProps(newProps) {
-
+  UNSAFE_componentWillReceiveProps (newProps) {
     if (newProps.errorMesage.err) {
         alert(newProps.errorMesage.err)
         this.props.removeError()
@@ -29,13 +30,14 @@ class Login extends Component {
   }
 
   handleInput(e) {
+
     let name = e.target.id
     let val = e.target.value
     this.setState({[name]: val})
   }
 
   submitForm(e){
-    alert("this");
+    alert("Login");
     e.preventDefault();
     this.props.loginUser(this.state);
 
@@ -53,12 +55,14 @@ class Login extends Component {
     // .then(res => res.json())
     // .then((responseJson) => {
     //   alert(responseJson.message);
+    // }).catch((err) => {
+    //   alert(err)
     // });
   }
 
   render(){
     return(
-      <Form horizontal={true} onSubmit={this.props.submitForm}>
+      <Form onSubmit={this.props.submitForm}>
         <FormGroup controlId="email">
           <FormLabel>Email</FormLabel>
           <FormControl type="text" value={this.state.value} placeholder="Enter email" onChange={this.handleInput} />

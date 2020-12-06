@@ -5,7 +5,6 @@ const initialState = userState;
 
 export default function(state = initialState, action) {
   switch (action.type) {
-
     case REGISTER_USER:
       return {
         ...state,
@@ -24,7 +23,7 @@ export default function(state = initialState, action) {
         ...state,
         authUser: {}
       };
-      
+
     default:
       return state;
   }
