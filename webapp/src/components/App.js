@@ -3,6 +3,8 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 import NavBar from './NavBar';
 import Login from './Authentication/Login';
 import Register from './Authentication/Register';
+import AllCourseGrades from './AllCoursesGrades';
+import CourseScores from './CourseScores';
 
 // const App = () => (
 //   <>
