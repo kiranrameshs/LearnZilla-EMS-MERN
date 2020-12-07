@@ -20,7 +20,7 @@ const checkuser = (email) => {
 const register = (newUser, role) => {
   const user = new User(newUser);
   user.save();
-  
+  console.log(role);
   let promise;
   if (role == "Student") {
     const student = new Student({

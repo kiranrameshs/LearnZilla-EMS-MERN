@@ -92,8 +92,9 @@ class Register extends Component {
         <FormGroup controlId="role">
           <FormLabel>Role</FormLabel>
           <FormControl as="select" value={this.state.value} onChange={this.handleInput}>
-            <option>Student</option>
+            <option>Enter Role</option>
             <option>Teacher</option>
+            <option>Student</option>
           </FormControl>
         </FormGroup>
 
