@@ -33,3 +33,37 @@ export const loginUser = userData => dispatch => {
     })
   );
 };
+
+
+export const registerUser = userData => dispatch => {
+  let registerUrl = '/register/';
+  fetch(registerUrl, {
+    method: 'POST',
+    body: JSON.stringify({
+      'name': userData.name,
+      'address': userData.address,
+      'email': userData.email,
+      'password': userData.password,
+      'university': userData.university,
+      'role': userData.role
+    }),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+  .then(res => res.json())
+  .then((responseJson) => {
+    alert(responseJson.message);
+    if (responseJson.status >= 200 && responseJson.status < 300) {
+      dispatch({ type: ActionTypes.REGISTER_USER, payload: responseJson})
+    } else {
+      dispatch({ type:ActionTypes.ERRORS, responseJson})
+    }
+  })
+  .catch(err =>
+    dispatch({
+      type: ActionTypes.ERRORS,
+      payload: err.response.data
+    })
+  );
+};

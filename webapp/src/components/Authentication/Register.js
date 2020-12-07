@@ -7,6 +7,9 @@ import {
   FormLabel,
 } from 'react-bootstrap';
 import './Authentication.scss';
+import { connect } from 'react-redux';
+import { registerUser } from '../../store/actions/user.action';
+import { removeError } from '../../store/actions/error.action';
 
 class Register extends Component {
   constructor(props) {
@@ -41,31 +44,31 @@ class Register extends Component {
 
   submitForm(e){
     e.preventDefault();
-    //this.props.loginUser(this.state);
+    this.props.registerUser(this.state);
     //console.log(this.state);
-    let registerUrl = '/register/';
-    fetch(registerUrl, {
-      method: 'POST',
-      body: JSON.stringify({
-          'name': this.state.name,
-          'address': this.state.address,
-          'email': this.state.email,
-          'password': this.state.password,
-          'university': this.state.university,
-          'role': this.state.role
-        }
-      ),
-      headers: {'Content-Type': 'application/json'}
-    })
-    .then(res => res.json())
-    .then((responseJson) => {
-      console.log(responseJson);
-    });
+    // let registerUrl = '/register/';
+    // fetch(registerUrl, {
+    //   method: 'POST',
+    //   body: JSON.stringify({
+    //       'name': this.state.name,
+    //       'address': this.state.address,
+    //       'email': this.state.email,
+    //       'password': this.state.password,
+    //       'university': this.state.university,
+    //       'role': this.state.role
+    //     }
+    //   ),
+    //   headers: {'Content-Type': 'application/json'}
+    // })
+    // .then(res => res.json())
+    // .then((responseJson) => {
+    //   console.log(responseJson);
+    // });
   }
 
   render(){
     return(
-      <Form horizontal={true} onSubmit={this.submitForm}>
+      <Form onSubmit={this.submitForm}>
       <FormGroup controlId="name">
         <FormLabel>Name</FormLabel>
         <FormControl type="text" value={this.state.value} placeholder="Enter name" onChange={this.handleInput} />
@@ -102,4 +105,13 @@ class Register extends Component {
   }
 }
 
-export default Register;
+//export default Register;
+const reduxProps = state => {
+  return ({
+    auth: state.user.authUser,
+    errorMesage: state.errors.message
+  })
+};
+
+
+export default connect(reduxProps, { registerUser, removeError })(Register);

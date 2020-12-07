@@ -19,18 +19,18 @@ class Login extends Component {
     this.handleInput = this.handleInput.bind(this);
   }
 
-  UNSAFE_componentWillReceiveProps (newProps) {
+  componentWillReceiveProps (newProps) {
+    alert(newProps);
     if (newProps.errorMesage.err) {
         alert(newProps.errorMesage.err)
         this.props.removeError()
     }
     if (Object.keys(newProps.auth).length > 0 ) {
-      this.props.history.push('/')
+      this.props.history.push('/register')
     }
   }
 
   handleInput(e) {
-
     let name = e.target.id
     let val = e.target.value
     this.setState({[name]: val})
