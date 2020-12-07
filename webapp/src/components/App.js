@@ -19,7 +19,7 @@ class App extends Component {
     <div className="App">
       <BrowserRouter>
         <Switch>
-            <Route path="/login" component={Login} />
+            <Route path="/login" key="login" component={Login} />
             <Route path="/register" component={Register} />
             <Route path="/" component={NavBar} />
         </Switch>

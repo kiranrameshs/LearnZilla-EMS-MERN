@@ -1,16 +1,12 @@
 import React, {Component} from 'react';
-import {
-  Form,
-  FormGroup,
-  FormControl,
-  Button,
-  FormLabel,
-} from 'react-bootstrap';
+import {Form, FormGroup, FormControl, Button, FormLabel,} from 'react-bootstrap';
 import './Authentication.scss';
-
-//import { loginUser } from '../../actions/userActions';
+import { connect } from 'react-redux';
+import { loginUser } from '../../store/actions/user.action';
+import { removeError } from '../../store/actions/error.action';
 
 class Login extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -22,13 +18,14 @@ class Login extends Component {
     this.handleInput = this.handleInput.bind(this);
   }
 
-  componentWillReceiveProps(newProps) {
+  componentWillReceiveProps (newProps) {
+    alert(newProps);
     if (newProps.errorMesage.err) {
         alert(newProps.errorMesage.err)
         this.props.removeError()
     }
     if (Object.keys(newProps.auth).length > 0 ) {
-      this.props.history.push('/')
+      this.props.history.push('/register')
     }
   }
 
@@ -39,29 +36,32 @@ class Login extends Component {
   }
 
   submitForm(e){
+    //alert("Login");
     e.preventDefault();
-    //this.props.loginUser(this.state);
-    //console.log(this.state);
-    let loginUrl = '/login/';
-    fetch(loginUrl, {
-      method: 'POST',
-      body: JSON.stringify( {
-          "email": this.state.email,
-          "password": this.state.password,
-          "role": this.state.role
-        }
-      ),
-      headers: {"Content-Type": "application/json"}
-    })
-    .then(res => res.json())
-    .then((responseJson) => {
-      console.log(responseJson);
-    });
+    this.props.loginUser(this.state);
+
+    // let loginUrl = '/login/';
+    // fetch(loginUrl, {
+    //   method: 'POST',
+    //   body: JSON.stringify( {
+    //       "email": this.state.email,
+    //       "password": this.state.password,
+    //       "role": this.state.role
+    //     }
+    //   ),
+    //   headers: {"Content-Type": "application/json"}
+    // })
+    // .then(res => res.json())
+    // .then((responseJson) => {
+    //   alert(responseJson.message);
+    // }).catch((err) => {
+    //   alert(err)
+    // });
   }
 
   render(){
     return(
-      <Form horizontal={true} onSubmit={this.submitForm}>
+      <Form onSubmit={this.submitForm}>
         <FormGroup controlId="email">
           <FormLabel>Email</FormLabel>
           <FormControl type="text" value={this.state.value} placeholder="Enter email" onChange={this.handleInput} />
@@ -75,13 +75,14 @@ class Login extends Component {
         <FormGroup controlId="role">
           <FormLabel>Role</FormLabel>
           <FormControl as="select" value={this.state.value} onChange={this.handleInput}>
-            <option>Student</option>
+            <option>Enter Role</option>
             <option>Teacher</option>
+            <option>Student</option>
           </FormControl>
         </FormGroup>
 
         <FormGroup>
-          <Button type="submit" >Login</Button>
+          <Button type="submit">Login</Button>
         </FormGroup>
       </Form>
 
@@ -89,4 +90,13 @@ class Login extends Component {
   }
 }
 
-export default Login;
+//export default Login;
+const reduxProps = state => {
+  return ({
+    auth: state.user.authUser,
+    errorMesage: state.errors.message
+  })
+};
+
+
+export default connect(reduxProps, { loginUser, removeError })(Login);

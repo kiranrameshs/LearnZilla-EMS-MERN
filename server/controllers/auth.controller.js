@@ -4,7 +4,7 @@ import authService from './../services/auth.service';
 const saltRounds = 10;
 
 const login = (request, response) => {
-  
+
     const email = request.body.email;
     const password = request.body.password;
     const role = request.body.role;
@@ -37,7 +37,7 @@ const login = (request, response) => {
 };
 
 const register = (request, response) => {
-
+    console.log("user saved");
     authService.checkuser(request.body.email)
       .then((foundUser) => {
         if (foundUser) {
@@ -46,14 +46,14 @@ const register = (request, response) => {
           bcrypt.hash(request.body.password, saltRounds).then(hash => {
             request.body.password = hash;
             const newUser = Object.assign({}, request.body);
-            //console.log(newUser);
+            // console.log(newUser);
             authService.register(newUser, request.body.role)
           }).then((user) => {
             response.status(200);
             response.json({"message": "Successfully Registered"});
           }).catch(handleError(response));
-        }
-      });
+      }
+  });
 };
 
 // Display Error message in case any error occurs
