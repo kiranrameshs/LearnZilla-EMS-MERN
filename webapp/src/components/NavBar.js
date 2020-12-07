@@ -12,15 +12,6 @@ class NavBar extends Component {
     componentDidMount() {
     
     }
-
-
-<<<<<<< HEAD
-      render() {
-        return (
-          <>
-            <p>NavBar</p>
-            <button>demo</button>
-=======
       render(props) {
         let fname = "Ron";//this.props.fname;
         return (
@@ -42,7 +33,6 @@ class NavBar extends Component {
               </div>
             </nav>
 
->>>>>>> 71fb45aa6daca93b20c55f80416b2beff0f8138e
           </>
         );
       }
