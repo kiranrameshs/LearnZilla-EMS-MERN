@@ -1,40 +1,37 @@
-import todo from "../../dist/models/todo";
-import todos from "../models/todo"
+import courses from "../models/course"
 
 //Methods to perform CRUD actions on todo collection
 
 const search = (id) => {
-    const promise = todos.find(id).exec();
+    const promise = courses.find(id).exec();
     return promise;
 
 }
 
 const get = (id) => {
-    const promise = todos.findById(id).exec();
+    const promise = courses.findById(id).exec();
     return promise;
 
 }
 
-const create = (todo) => {
-    const newtodo = new todos(todo);
-    const promise = newtodo.save();
+const create = (course) => {
+    const newCourse = new courses(course);
+    const promise = newCourse.save();
     return promise;
-
 }
 
-const update = (id,todo) => {
+const update = (id,course) => {
    
-    const promise = todos.findByIdAndUpdate(
+    const promise = courses.findByIdAndUpdate(
         { _id: id},
-        todo,
-        {new: true}// add todo if not present
+        course,
+        {new: true}// add course if not present
     ).exec();
     return promise;
-
 }
 
-const remove = (id,todo) => {
-    const promise = todos.remove(
+const remove = (id,course) => {
+    const promise = courses.remove(
         { _id: id}     
     ).exec();
     return promise;
@@ -42,7 +39,7 @@ const remove = (id,todo) => {
 }
 
 var checkIDExists = (id) => {
-    todos.findOne({ _id: id }).select("_id").lean().then(result => {
+    courses.findOne({ _id: id }).select("_id").lean().then(result => {
         if (result) 
             return true;  //ID exists        
         else

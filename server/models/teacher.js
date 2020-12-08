@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
-import User from 'userSchema';
-import Assignment from 'assignmentSchema';
-import Course from 'courseSchema';
+import User from './user';
+import Assignment from './assignment';
+import Course from './course';
 
 const teacherSchema = new mongoose.Schema({
   user: {

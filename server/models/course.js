@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import Assignment from 'assignmentSchema';
+import Assignment from './assignment';
 
 const courseSchema = new mongoose.Schema({
   coursename: {
