@@ -40,7 +40,9 @@ class Dashboard extends React.Component {
         return (
             <>
             <NavBar/>
-            <div className={`gridOf${getCourseArray.length}`}>
+            {/* <div className={`gridOf${getCourseArray.length}`}> */}
+            <div className="gridOf4">
+
             <CourseContainer   getCourseArray={getCourseArray} openCourseDetails={this.openCourseDetails} />
             </div>
             <SidePanel />
