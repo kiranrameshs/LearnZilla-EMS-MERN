@@ -3,10 +3,6 @@ import CourseCards from './CourseCards'
 
 class CourseContainer extends Component {
 
-    // constructor(props){
-    //     super(props);
-    // }
-
     render() {
 
         return this.props.getCourseArray.map((course)=>(
@@ -15,8 +11,8 @@ class CourseContainer extends Component {
             course={course}
             openCourseDetails={this.props.openCourseDetails} 
             />
-        ))
-
+        ));
+      
     }
 }
 

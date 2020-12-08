@@ -2,11 +2,13 @@ import React from 'react'
 import NavBar from './NavBar'
 import SidePanel from './SidePanel'
 import CourseContainer from './CourseContainer'
+import './../styles/Modules/CourseCards.scss'
 
 class Dashboard extends React.Component {
 
     constructor(props){
         super(props);
+        //should replace this hardcoded with a fetch API 
         this.state = {
             User: "User1",
             Role: "Student",
@@ -25,20 +27,22 @@ class Dashboard extends React.Component {
     }
 
 
-    openCourseDetails = () => {
+    openCourseDetails = (Course) => {
 
-        console.log("get coursedetails clicked");
+        //invoke display component
+        console.log(Course);
     }
 
     render()
     {
-        const openCourseDetails = this.openCourseDetails;
         const getCourseArray = this.state.Courses;
 
         return (
             <>
             <NavBar/>
-            <CourseContainer getCourseArray={getCourseArray} openCourseDetails={openCourseDetails} />
+            <div className={`gridOf${getCourseArray.length}`}>
+            <CourseContainer   getCourseArray={getCourseArray} openCourseDetails={this.openCourseDetails} />
+            </div>
             <SidePanel />
             </>
         )

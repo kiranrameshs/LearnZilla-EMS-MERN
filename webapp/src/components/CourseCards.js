@@ -1,18 +1,20 @@
 import React, { Component } from 'react'
+import './../styles/Modules/CourseCards.scss'
 
 class CourseCards extends Component {
 
-    constructor(props){
-        super(props);
-    }
+    // constructor(props){
+    //     super(props);
+    // }
 
     render() {
-    console.log(this.props.course.title);
+        const course = this.props.course;
+    // console.log(this.props.course.title);
 
         return (
-            <div>
-                <button onClick={this.props.openCourseDetails.bind(this)}> Get Course  Details</button>
-            </div>
+            
+                <div className={`col${course.id} card`} onClick={this.props.openCourseDetails.bind(this, course)}> {course.title}</div>
+
         )
     }
 }
