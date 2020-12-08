@@ -10,11 +10,7 @@ import routes from  './routes';
 const keys = require('./config/keys');
 
 //connection to local db
-<<<<<<< HEAD
 mongoose.connect('mongodb://localhost:27017/demoDB', {
-=======
-mongoose.connect('mongodb://localhost:27017/emsdb', {
->>>>>>> kiran
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
