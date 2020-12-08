@@ -19,6 +19,7 @@ class App extends Component {
         <Switch>
             <Route path="/login" key="login" component={Login} />
             <Route path="/register" component={Register} />
+            <Route path="/dashboard" component={Dashboard} />
             <Route path="/" component={NavBar} />
         </Switch>
       </BrowserRouter>
