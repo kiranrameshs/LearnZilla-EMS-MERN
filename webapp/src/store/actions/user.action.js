@@ -5,7 +5,7 @@ import * as ActionTypes from './action-types';
 // }
 
 export const loginUser = userData => dispatch => {
-  let loginUrl = '/login/';
+  let loginUrl = '/auth/login/';
   fetch(loginUrl, {
     method: 'POST',
     body: JSON.stringify({
@@ -36,7 +36,7 @@ export const loginUser = userData => dispatch => {
 
 
 export const registerUser = userData => dispatch => {
-  let registerUrl = '/register/';
+  let registerUrl = '/auth/register/';
   fetch(registerUrl, {
     method: 'POST',
     body: JSON.stringify({
