@@ -1,8 +1,9 @@
+import AuthService from "./../services/auth.services";
 import bcrypt from 'bcrypt';
-import authService from './../services/auth.service';
 
 const saltRounds = 10;
 
+//login
 const login = (request, response) => {
 
     const email = request.body.email;
@@ -11,7 +12,7 @@ const login = (request, response) => {
     // console.log(email);
     // console.log(password);
     // console.log(role);
-    authService.login(email, role)
+    AuthService.login(email, role)
       .then((foundUser) => {
         console.log(foundUser);
         if (foundUser) {
@@ -36,9 +37,19 @@ const login = (request, response) => {
       .catch(handleError(response));
 };
 
+//logout
+const logout = (request, response) => {
+    AuthService.logout({ })
+   .then( (auth) => {
+    response.status(200);
+    response.json(auth);
+   })
+   .catch( handleError(response));
+};
+
 const register = (request, response) => {
     console.log("user saved");
-    authService.checkuser(request.body.email)
+    AuthService.checkuser(request.body.email)
       .then((foundUser) => {
         if (foundUser) {
           return response.status(409).json({"message": "Email already exsists"});
@@ -47,7 +58,7 @@ const register = (request, response) => {
             request.body.password = hash;
             const newUser = Object.assign({}, request.body);
             // console.log(newUser);
-            authService.register(newUser, request.body.role)
+            AuthService.register(newUser, request.body.role)
           }).then((user) => {
             response.status(200);
             response.json({"message": "Successfully Registered"});
@@ -56,18 +67,23 @@ const register = (request, response) => {
   });
 };
 
-// Display Error message in case any error occurs
-const handleError = (response) => {
+
+
+
+const handleError = (error, response) => {
     return (error) => {
         response.status(500);
         response.json({
             message: error.message
         })
+
     };
+    
+
 }
 
-// Export functions
 export default {
     login: login,
+    logout: logout,
     register: register
 }

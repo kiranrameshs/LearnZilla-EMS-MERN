@@ -10,7 +10,11 @@ import routes from  './routes';
 const keys = require('./config/keys');
 
 //connection to local db
+<<<<<<< HEAD
 mongoose.connect('mongodb://localhost:27017/demoDB', {
+=======
+mongoose.connect('mongodb://localhost:27017/emsdb', {
+>>>>>>> kiran
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
@@ -18,7 +22,7 @@ mongoose.connect('mongodb://localhost:27017/demoDB', {
 {console.log("Failed to connect "+err)});
 
 mongoose.Promise = global.Promise;
-
+console.log(Date.now);
 //connect to remote db using keys imported above
 // mongoose.connect(keys.MongoURI, {
 //     useNewUrlParser: true,
