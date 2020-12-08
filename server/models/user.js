@@ -5,6 +5,10 @@ const userSchema = new mongoose.Schema({
       type: String,
       required: [true, "Please check your data entry, no name specified!"]
   },
+  password: {
+    type: String,
+    required: [true, "Please check your data entry, no name specified!"]
+},
   address: {
       type: String,
       default: ''

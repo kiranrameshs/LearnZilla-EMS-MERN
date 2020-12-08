@@ -18,7 +18,7 @@ mongoose.connect('mongodb://localhost:27017/demoDB', {
 {console.log("Failed to connect "+err)});
 
 mongoose.Promise = global.Promise;
-
+console.log(Date.now);
 //connect to remote db using keys imported above
 // mongoose.connect(keys.MongoURI, {
 //     useNewUrlParser: true,
