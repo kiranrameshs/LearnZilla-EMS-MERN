@@ -1,2 +1,0 @@
-import todo from './todo';
-

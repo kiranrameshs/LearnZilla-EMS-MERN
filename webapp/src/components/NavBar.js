@@ -7,6 +7,7 @@ class NavBar extends Component {
     constructor(props){
         super();
         this.state=props;
+        // need to change this. can't directly assign props to the state. bad practice
     }
 
     componentDidMount() {
@@ -19,10 +20,10 @@ class NavBar extends Component {
             <nav className="navbar navbar-inverse">
               <div className="container-fluid">
                 <div className="navbar-header">
-                  <a className="navbar-brand" href="#"> <span class="glyphicon glyphicon-education"></span> LearnZilla</a>
+                  <a className="navbar-brand" href="#"> <span className="glyphicon glyphicon-education"></span> LearnZilla</a>
                 </div>
                 <ul className="nav navbar-nav">
-                  <li className="active"><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                  <li className="active"><a href="#"><span className="glyphicon glyphicon-home"></span> Home</a></li>
                   <li><a>Courses</a></li>
                   <li><a>Grade</a></li>
                 </ul>

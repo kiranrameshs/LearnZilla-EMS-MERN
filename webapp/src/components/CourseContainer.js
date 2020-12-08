@@ -1,28 +1,23 @@
 import React, { Component } from 'react'
-import CourseItem from './CourseItem'
+import CourseCards from './CourseCards'
 
 class CourseContainer extends Component {
 
-    constructor(props){
-        super(props);
-    }
-    getCourseArray =(studentId) =>{
-        // request a fetch get from the api based on studentID and returns an array of CoureList
-        // writing a dummy return statement for now
-        const courses =[studentId, "course1", "course2"];
-        return courses;
-    };
+    // constructor(props){
+    //     super(props);
+    // }
 
     render() {
-        return this.getCourseArray(this.props.studentID).map((courseItem) => (
-            <CourseItem 
-            key={courseItem}
-            openCourseDetails = {this.props.openCourseDetails}
-            
-            />
-        )
-            
-        )
+    console.log("render ");
+
+        return this.props.getCourseArray.map((course)=>{
+            console.log(course.title);
+            <CourseCards key={course}
+            course = {course}
+            openCourseDetails={this.props.openCourseDetails} />
+            console.log(course.FinalGrade);
+
+        })
     }
 }
 

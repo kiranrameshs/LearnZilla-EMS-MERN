@@ -5,6 +5,7 @@ import Login from './Authentication/Login';
 import Register from './Authentication/Register';
 import AllCourseGrades from './AllCoursesGrades';
 import CourseScores from './CourseScores';
+import Dashboard from './Dashboard';
 
 // const App = () => (
 //   <>
@@ -21,6 +22,7 @@ class App extends Component {
         <Switch>
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
+            <Route path="/dashboard" component={Dashboard} />
             <Route path="/" component={NavBar} />
         </Switch>
       </BrowserRouter>

@@ -81,7 +81,7 @@ class Login extends Component {
         </FormGroup>
 
         <FormGroup>
-          <Button type="submit" >Login</Button>
+          <Button type="submit">Login</Button>
         </FormGroup>
       </Form>
 

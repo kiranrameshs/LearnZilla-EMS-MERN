@@ -5,24 +5,45 @@ import CourseContainer from './CourseContainer'
 
 class Dashboard extends React.Component {
 
-    openCourseDetails = (courseId) => {
-        //uses a fetch get request to dplay the course details
-        // writing a dummy return statement for now
-        console.log("get coursedetails clicked")
-        return courseId + " " + "CourseDetails"  ;
+    constructor(props){
+        super(props);
+        this.state = {
+            User: "User1",
+            Role: "Student",
+            Courses: [
+              {
+                id:1,
+                title: "Web Design",
+                FinalGrade: "A"
+              },
+              {
+                  id:2,
+                  title: "Cloud Computing",
+                  FinalGrade: "A-"
+              }]
+        }
     }
 
+    // componentDidMount() {
+    //     this.setState({
+    //         courses: []
+    //     })
+    //    }
 
+    openCourseDetails = () => {
 
-    render(){
+        console.log("get coursedetails clicked");
+    }
 
+    render()
+    {
         const openCourseDetails = this.openCourseDetails;
-        const studentID = this.props.studentID;
+        const getCourseArray = this.state.Courses;
 
         return (
             <>
             <NavBar/>
-            <CourseContainer openCourseDetails={openCourseDetails} studentID={studentID}  />
+            <CourseContainer getCourseArray={getCourseArray} openCourseDetails={openCourseDetails} />
             <SidePanel />
             </>
         )
