@@ -25,6 +25,7 @@
 *.sql
 *.sqlite
 .eslintcache
+/webapp/.eslintcache
 
 .DS_Store
 **/npm-cache
