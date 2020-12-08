@@ -6,7 +6,7 @@ class NavBar extends Component {
 
     constructor(props){
         super();
-        this.state=props;
+        // this.state=props;
         // need to change this. can't directly assign props to the state. bad practice
     }
 

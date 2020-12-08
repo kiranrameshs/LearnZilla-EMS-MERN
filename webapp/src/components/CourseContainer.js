@@ -8,16 +8,15 @@ class CourseContainer extends Component {
     // }
 
     render() {
-    console.log("render ");
 
-        return this.props.getCourseArray.map((course)=>{
-            console.log(course.title);
-            <CourseCards key={course}
-            course = {course}
-            openCourseDetails={this.props.openCourseDetails} />
-            console.log(course.FinalGrade);
+        return this.props.getCourseArray.map((course)=>(
+            < CourseCards 
+            key={course.id}
+            course={course}
+            openCourseDetails={this.props.openCourseDetails} 
+            />
+        ))
 
-        })
     }
 }
 

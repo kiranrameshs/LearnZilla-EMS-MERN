@@ -5,12 +5,13 @@ class CourseCards extends Component {
     constructor(props){
         super(props);
     }
+
     render() {
-    console.log("render1 ");
+    console.log(this.props.course.title);
 
         return (
             <div>
-                <button onClick = {this.props.openCourseDetails.bind(this)}> GetCourse  Details</button>
+                <button onClick={this.props.openCourseDetails.bind(this)}> Get Course  Details</button>
             </div>
         )
     }

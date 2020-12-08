@@ -24,11 +24,6 @@ class Dashboard extends React.Component {
         }
     }
 
-    // componentDidMount() {
-    //     this.setState({
-    //         courses: []
-    //     })
-    //    }
 
     openCourseDetails = () => {
 
