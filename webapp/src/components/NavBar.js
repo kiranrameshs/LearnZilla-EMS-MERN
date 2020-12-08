@@ -11,7 +11,7 @@ class NavBar extends Component {
     }
 
     componentDidMount() {
-    
+
     }
       render(props) {
         let fname = "Ron";//this.props.fname;

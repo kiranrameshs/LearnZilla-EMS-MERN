@@ -1,6 +1,6 @@
-import User from './../models/userSchema';
-import Student from './../models/studentSchema';
-import Teacher from './../models/teacherSchema';
+import User from './../models/user';
+import Student from './../models/student';
+import Teacher from './../models/teacher';
 
 const login = (email, role) => {
     const promise = User.findOne({
@@ -20,7 +20,7 @@ const checkuser = (email) => {
 const register = (newUser, role) => {
   const user = new User(newUser);
   user.save();
-
+  console.log(role);
   let promise;
   if (role == "Student") {
     const student = new Student({
