@@ -4,6 +4,13 @@ import * as ActionTypes from './action-types';
 //     return { type: ActionTypes.LOGIN_USER, payload: userData }
 // }
 
+export const logoutUser = () => dispatch => {
+  //alert("here");
+  dispatch({
+    type: ActionTypes.LOGOUT_USER
+  })
+};
+
 export const loginUser = userData => dispatch => {
   let loginUrl = '/auth/login/';
   fetch(loginUrl, {
