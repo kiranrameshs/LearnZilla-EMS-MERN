@@ -5,6 +5,7 @@ import * as ActionTypes from './action-types';
 // }
 
 export const logoutUser = () => dispatch => {
+  //alert("here");
   dispatch({
     type: ActionTypes.LOGOUT_USER
   })

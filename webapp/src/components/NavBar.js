@@ -14,9 +14,10 @@ class NavBar extends Component {
     }
 
     logout(e){
+      // alert("Logout");
       e.preventDefault();
       this.props.logoutUser();
-      alert("User Logged Out! Log in here");
+      //alert("User Logged Out! Log in here");
     }
 
     componentDidMount() {
@@ -38,7 +39,7 @@ class NavBar extends Component {
                 </ul>
                 <ul className="nav navbar-nav navbar-right">
                   <li><a href="#"><span className="glyphicon glyphicon-user"></span> My profile</a></li>
-                  <li><a href="#" onClick={this.logout}><span className="glyphicon glyphicon-log-out"></span> LOGOUT</a></li>
+                  <li><a href="/login" onClick={this.logout}><span className="glyphicon glyphicon-log-out"></span> LOGOUT</a></li>
                 </ul>
               </div>
             </nav>
@@ -49,4 +50,12 @@ class NavBar extends Component {
 
 }
 
-export default NavBar;
+//export default NavBar;
+
+const reduxProps = state => {
+  return ({
+    auth: state.user.authUser
+  })
+};
+
+export default connect(reduxProps, {logoutUser})(NavBar);
