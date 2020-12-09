@@ -17,7 +17,7 @@ class NavBar extends Component {
       // alert("Logout");
       e.preventDefault();
       this.props.logoutUser();
-      //alert("User Logged Out! Log in here");
+      alert("User Logged Out! Log in here");
     }
 
     componentDidMount() {
