@@ -3,6 +3,7 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 import NavBar from './NavBar';
 import Login from './Authentication/Login';
 import Register from './Authentication/Register';
+import AllGradesContainer from './Grades/AllGradesContainer';
 
 // const App = () => (
 //   <>
@@ -19,7 +20,8 @@ class App extends Component {
         <Switch>
             <Route path="/login" key="login" component={Login} />
             <Route path="/register" component={Register} />
-            <Route path="/" component={NavBar} />
+            <Route path="/home" component={NavBar} />
+            <Route path="/grades" component={AllGradesContainer} />
         </Switch>
       </BrowserRouter>
     </div>

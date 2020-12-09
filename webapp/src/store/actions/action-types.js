@@ -10,3 +10,5 @@ export const DELETE_COURSE = 'DELETE_COURSE';
 export const UPDATE_COURSE = 'UPDATE_COURSE';
 export const ERRORS = 'ERRORS';
 export const REMOVE_ERRORS = 'REMOVE_ERRORS';
+
+export const GET_COURSE_GRADES = 'GET_COURSE_GRADES';

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Table, Button } from 'react-bootstrap';
-import NavBar from './NavBar';
+import NavBar from '../NavBar';
 
 class CourseScores extends Component {
 
