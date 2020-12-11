@@ -51,7 +51,6 @@ generateLinks(menuItems){
     /*role --> admin = 1, student = 2, teacher = 3*/
 
     let role = this.props.role;
-    let isResponsive = this.props.isResponsive;
     let menuItems = this.state.menu.filter(el => {
 
       if (role == "Student") {
