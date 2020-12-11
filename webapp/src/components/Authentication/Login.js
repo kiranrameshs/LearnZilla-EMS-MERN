@@ -19,14 +19,14 @@ class Login extends Component {
   }
 
   componentWillReceiveProps (newProps) {
-    alert(Object.keys(newProps.auth));
-    if (newProps.errorMesage.err) {
-        alert(newProps.errorMesage.err)
+    console.log(newProps)
+    //alert(Object.keys(newProps.auth));
+    if (newProps.errorMesage == undefined) {
         this.props.removeError()
     }
     if (Object.keys(newProps.auth).length > 0 ) {
       alert(newProps.auth);
-      this.props.history.push('/')
+      this.props.history.push('/dashboard')
     }
   }
 
@@ -37,7 +37,6 @@ class Login extends Component {
   }
 
   submitForm(e){
-    //alert("Login");
     e.preventDefault();
     this.props.loginUser(this.state);
   }
