@@ -1,89 +1,47 @@
 import * as ActionTypes from './action-types';
 
 export const getCoursesGrades = () => dispatch => {
-    let tempJSON = [
-        { id: "_1", title: "Web Design", FinalGrade: "A" },
-        { id: "_2",  title: "Cloud Computing", FinalGrade: "A-" },
-        {  id: "_3", title: "Web Tools", FinalGrade: "B+" }
-    ]
-    dispatch({ type: ActionTypes.GET_COURSE_GRADES, payload: tempJSON})
 
-    // let coursesGrades_URL = '/courses/grades/';
-    // fetch(coursesGrades_URL, {
-    //   method: 'GET',
-    //   headers: {
-    //     "Content-Type": "application/json"
-    //   }
-    // })
-    // .then(res => res.json())
-    // .then((responseJson) => {
-    //    // dispatch here
-    // })
-    // .catch(err =>
-    //   dispatch({
-    //     type: ActionTypes.ERRORS,
-    //     payload: err.response.data
-    //   })
-    // );
+    let coursesGrades_URL = '/courses';
+    fetch(coursesGrades_URL, {
+      method: 'GET',
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    .then(res => res.json())
+    .then((responseJson) => {
+       dispatch({ type: ActionTypes.GET_COURSE_GRADES, payload: responseJson})
+    })
+    .catch(err =>
+      dispatch({
+        type: ActionTypes.ERRORS,
+        payload: err.responseJson
+      })
+    );
 
 
   };
 
-export const getCourseHWs = () => dispatch => {
-    let tempJSON = [
-      {
-        id: "_1",
-        title:"ReactJS Demo",
-        score: 95,
-        submittedOn: "23/4/2020",
-        feedback: "Avs khkn kjsain er jdvhzl fas"
-      },
-      {
-        id: "_2",
-        title:"Redux Demo",
-        score: 87,
-        submittedOn: "10/34/2020",
-        feedback: "Kijbjv gkcmxz fg kkv afd kblfbf."
+export const getCourseAssigns = (assignID) => dispatch => {
+
+    let coursesGrades_URL = '/assignments/' + assignID;
+    fetch(coursesGrades_URL, {
+      method: 'GET',
+      headers: {
+        "Content-Type": "application/json"
       }
-
-    ]
-    // {
-    //     CourseHWs: [
-    //       {
-    //         id: "_1",
-    //         title:"ReactJS Demo",
-    //         score: 95,
-    //         submittedOn: "23/4/2020",
-    //         feedback: "Avs khkn kjsain er jdvhzl fas"
-    //       },
-    //       {
-    //         id: "_2",
-    //         title:"Redux Demo",
-    //         score: 87,
-    //         submittedOn: "10/34/2020",
-    //         feedback: "Kijbjv gkcmxz fg kkv afd kblfbf."
-    //       }
-    //     ]
-    // }
-    dispatch({ type: ActionTypes.GET_COURSE_HW_GRADES, payload: tempJSON})
-
-    // let coursesGrades_URL = '/courses/grades/';
-    // fetch(coursesGrades_URL, {
-    //   method: 'GET',
-    //   headers: {
-    //     "Content-Type": "application/json"
-    //   }
-    // })
-    // .then(res => res.json())
-    // .then((responseJson) => {
-    //    // dispatch here
-    // })
-    // .catch(err =>
-    //   dispatch({
-    //     type: ActionTypes.ERRORS,
-    //     payload: err.response.data
-    //   })
-    // );
+    })
+    .then(res => res.json())
+    .then((responseJson) => {
+      dispatch({ type: ActionTypes.GET_COURSE_ASSIGN_GRADES, payload: responseJson})
+    })
+    .catch(err =>
+      dispatch({
+        type: ActionTypes.ERRORS,
+        payload: err.rresponseJson
+      })
+    );
 
 
   };

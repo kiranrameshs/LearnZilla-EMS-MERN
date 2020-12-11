@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import NavBar from '../NavBar';
+import CourseAssignScores from './CourseAssignScores';
 
-class CourseGrade extends Component {
+import { connect } from 'react-redux';
+import { getCourseAssigns } from '../../store/actions/grade.action';
+
+class AllGradesCard extends Component {
 
     constructor(props){
         super(props);
@@ -11,7 +15,14 @@ class CourseGrade extends Component {
 
       if (event.target.classList.contains('viewCourseScores')) {
         const itemKey = event.target.id;
-        //navigate to course score component using id
+
+        //navigate to CourseAssignScores component passing assignments as props
+        return (
+          <CourseAssignScores courseAssigns={this.props.course.assignment}/>
+
+        );
+        
+         
       }
         switch(event.target.id){
             default:
@@ -26,9 +37,9 @@ class CourseGrade extends Component {
           let c = this.props.course;
         return (
           <> <div className="courseFinalGrade">
-          <h2>{c.title}</h2>
-          <span className="finalGrade">{c.FinalGrade}</span>
-          <span className="viewCourseScores" id={c.title + "-view"} onClick={this.handleClick}>View More..</span>
+          <h2>{c.coursename}</h2>
+          <span className="finalGrade">{c.coursefinalscrore}</span>
+          <span className="viewCourseScores" id={c.id + "-view"} onClick={this.handleClick}>View More..</span>
          </div> <br />
          </>
         );
@@ -36,4 +47,13 @@ class CourseGrade extends Component {
 
 }
 
-export default CourseGrade;
+//export default AllGradesCard;
+
+const reduxProps = state => {
+  return ({
+      //grades: state.grades.coursesGrades 
+  })
+};
+
+
+export default connect(reduxProps, { getCourseAssigns })(AllGradesCard);
