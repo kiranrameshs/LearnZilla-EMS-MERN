@@ -1,6 +1,6 @@
 import allGradesState from '../state/allGrades';
 import {GET_COURSE_GRADES} from '../actions/action-types';
-import {GET_COURSE_HW_GRADES} from '../actions/action-types';
+import {GET_COURSE_ASSIGN_GRADES} from '../actions/action-types';
 import {ACTIONS} from '../actions/action-types';
 
 const initialState = allGradesState;
@@ -12,12 +12,11 @@ export default function(state = initialState, action) {
         ...state,
         coursesGrades: action.payload
       };
-    case GET_COURSE_HW_GRADES:
-      return {
+    case GET_COURSE_ASSIGN_GRADES:
+      return { 
         ...state,
-        CourseHWs: action.payload
-      };
-
+        CourseAssigns: [...state.CourseAssigns, action.payload]
+      }
 
     default:
       return state;

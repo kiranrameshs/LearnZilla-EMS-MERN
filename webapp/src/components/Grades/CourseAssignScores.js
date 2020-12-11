@@ -3,16 +3,27 @@ import { Table, Button } from 'react-bootstrap';
 import NavBar from '../NavBar';
 
 import { connect } from 'react-redux';
-import { getCourseHWs } from '../../store/actions/grade.action';
+import { getCourseAssigns } from '../../store/actions/grade.action';
+//import { getAvailableCourseAssigns } from '../../store/selectors/grade.selectors';
 
-class CourseHWScores extends Component {
+class CourseAssignScores extends Component {
+
+  constructor(props){
+    super(props)
+
+  }
 
   componentDidMount() {
-    this.props.getCourseHWs();
+    let assigns = ["5fd3b55b14fb9961d1b2857d","5fd3e6120706e37d3720cbdf"]//this.props.courseAssigns;
+    assigns.map((aID)=>{
+      this.props.getCourseAssigns(aID);
+
+    });
+    
   }
 
   render() {
-    let homeWorks = this.props.courseHW;//   bordered
+    let homeWorks = this.props.courseAssignScores;//   bordered
     return (
       <>
         <NavBar />
@@ -31,9 +42,9 @@ class CourseHWScores extends Component {
               {homeWorks.map((c) => {
                 return <tr>
                   <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-                  <td> {c.title}</td>
-                  <td> {c.submittedOn}</td>
-                  <td> {c.score}</td>
+                  <td> {c.assignmentname}</td>
+                  <td> {c.assignmentenddate}</td>
+                  <td> {c.assignmentscrore}</td>
                   <td> <Button data-toggle="tooltip" data-placement="bottom" title="See FeedBack"> View Feedback</Button> <Button> Add Sticky</Button></td>
                 </tr>
 
@@ -50,9 +61,8 @@ class CourseHWScores extends Component {
 
 const reduxProps = state => {
   return ({
-    courseHW: state.grades.CourseHWs
+    courseAssignScores: state.grades.CourseAssigns //getAvailableCourseAssigns(state) 
   })
 };
 
-
-export default connect(reduxProps, { getCourseHWs })(CourseHWScores);
+export default connect(reduxProps, { getCourseAssigns })(CourseAssignScores);
