@@ -22,10 +22,14 @@ const login = (request, response) => {
                 "message": "This is the wrong password"
               })
             } else {
-              response.status(200);
-              response.json({
+              return response.status(200).json({
+                "status": 200,
                 "message": "Successfully Logged in"
-              });
+              })
+              // response.status(200);
+              // response.json({
+              //   "message": "Successfully Logged in"
+              // })
             }
           })
         } else {
@@ -78,7 +82,7 @@ const handleError = (error, response) => {
         })
 
     };
-    
+
 
 }
 

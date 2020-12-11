@@ -26,10 +26,12 @@ export const loginUser = userData => dispatch => {
   })
   .then(res => res.json())
   .then((responseJson) => {
-    alert(responseJson.message);
+    console.log(responseJson);
     if (responseJson.status >= 200 && responseJson.status < 300) {
+      alert("Go to Home");
       dispatch({ type: ActionTypes.LOGIN_USER, payload: responseJson})
     } else {
+      alert("Something is wrong!");
       dispatch({ type:ActionTypes.ERRORS, responseJson})
     }
   })

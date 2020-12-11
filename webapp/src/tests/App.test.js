@@ -49,6 +49,24 @@ describe('Testing <CourseHWScores /> Component', () => {
   });
 })
 
+// Renders Login Component
+describe('Testing <Login /> Component', () => {
+  const wrapper = shallow(
+    <Provider store={store}>
+      <Login />
+    </Provider>)
+  it('renders', () => {
+    expect(wrapper.length).toBe(1);
+  });
+})
 
-
-
+// Renders Login Component
+describe('Testing <Logout /> Component', () => {
+  const wrapper = shallow(
+    <Provider store={store}>
+      <Logout />
+    </Provider>)
+  it('renders', () => {
+    expect(wrapper.length).toBe(1);
+  });
+})

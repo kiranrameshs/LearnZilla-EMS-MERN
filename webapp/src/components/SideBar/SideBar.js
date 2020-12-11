@@ -51,8 +51,6 @@ generateLinks(menuItems){
     /*role --> student = 0 and admin = 1*/
     let role = this.props.auth.role
     let isResponsive = this.props.isResponsive;
-
-
     let menuItems = this.state.menu.filter(el => {
       if (role === 1){
         if (el.role === 2) {
@@ -71,8 +69,6 @@ generateLinks(menuItems){
     let finalLinks = this.generateLinks(menuItems)
 
     if (isResponsive) {
-
-
       return(<Nav className="hidden-md hidden-lg">
             {finalLinks}
             <NavItem key="logout" componentClass='span'>
