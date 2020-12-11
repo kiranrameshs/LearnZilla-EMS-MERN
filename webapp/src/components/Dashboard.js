@@ -3,7 +3,7 @@ import NavBar from './NavBar'
 import Sidebar from './SideBar/SideBar'
 import CourseContainer from './CourseContainer'
 import './../styles/Modules/CourseCards.scss'
-import './SideBar/Sidebar.scss';
+import './SideBar/SideBar.scss';
 import { Navbar,Nav, NavItem } from 'react-bootstrap' ;
 
 class Dashboard extends React.Component {
@@ -50,7 +50,7 @@ class Dashboard extends React.Component {
               </Navbar.Collapse>
             </Navbar>
             <div className="gridOf4">
-            <CourseContainer className="gridOf4" getCourseArray={getCourseArray} openCourseDetails={this.openCourseDetails} />
+              <CourseContainer className="gridOf4" getCourseArray={getCourseArray} openCourseDetails={this.openCourseDetails} />
             </div>
 
 

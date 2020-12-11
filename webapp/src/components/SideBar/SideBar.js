@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Nav, NavItem } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import './Sidebar.scss';
+import './SideBar.scss';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../store/actions/user.action';
 
@@ -35,9 +35,12 @@ logout(e){
 generateLinks(menuItems){
     return menuItems.map((exp,i) => {
         return (
-          <NavItem key={i} componentClass='span'>
-            <Link replace to={{pathname: exp.url}}>  {exp.name} </Link>
-          </NavItem>)
+          <div class="sidebarLinks">
+            <NavItem key={i} componentClass='span'>
+              <Link replace to={{pathname: exp.url}}>  {exp.name} </Link>
+            </NavItem>
+          </div>
+          )
 
     })
   }
