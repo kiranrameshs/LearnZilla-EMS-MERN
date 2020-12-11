@@ -3,6 +3,8 @@ import { render, screen } from '@testing-library/react';
 import NavBar from '../components/NavBar';
 import AllGradesContainer from '../components/Grades/AllGradesContainer';
 import CourseHWScores from '../components/Grades/CourseHWScores';
+import Login from '../components/Authentication/Login';
+import Register from '../components/Authentication/Register';
 
 
 // Get mock data for API simulation
@@ -60,11 +62,11 @@ describe('Testing <Login /> Component', () => {
   });
 })
 
-// Renders Login Component
-describe('Testing <Logout /> Component', () => {
+// Renders Register Component
+describe('Testing <Register /> Component', () => {
   const wrapper = shallow(
     <Provider store={store}>
-      <Logout />
+      <Register />
     </Provider>)
   it('renders', () => {
     expect(wrapper.length).toBe(1);
