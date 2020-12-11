@@ -34,7 +34,7 @@ class CourseHWScores extends Component {
                   <td> {c.title}</td>
                   <td> {c.submittedOn}</td>
                   <td> {c.score}</td>
-                  <td> <Button> View Feedback</Button> <Button> Add Sticky</Button></td>
+                  <td> <Button data-toggle="tooltip" data-placement="bottom" title="See FeedBack"> View Feedback</Button> <Button> Add Sticky</Button></td>
                 </tr>
 
               })}
