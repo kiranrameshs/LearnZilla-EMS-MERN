@@ -30,6 +30,8 @@ Mongo Atlas
  --> Client Dependencies
  * npm install react-bootstrap bootstrap
  * npm install -g sass
+ * npm install redux-mock-store --save-dev
+ * npm i --save-dev enzyme enzyme-adapter-react-16
  --Integration
 
 
