@@ -3,7 +3,9 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 import NavBar from './NavBar';
 import Login from './Authentication/Login';
 import Register from './Authentication/Register';
-import Dashboard from './Dashboard'
+import AllGradesContainer from './Grades/AllGradesContainer';
+import CourseHWScores from './Grades/CourseHWScores';
+import Dashboard from './Dashboard';
 
 // const App = () => (
 //   <>
@@ -20,8 +22,11 @@ class App extends Component {
         <Switch>
             <Route path="/login" key="login" component={Login} />
             <Route path="/register" component={Register} />
+            <Route path="/home" component={NavBar} />
+            <Route path="/grades" component={AllGradesContainer} />
+            <Route path="/HW-scores" component={CourseHWScores} />
             <Route path="/dashboard" component={Dashboard} />
-            <Route path="/" component={NavBar} />
+
         </Switch>
       </BrowserRouter>
     </div>
