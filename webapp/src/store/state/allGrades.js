@@ -6,7 +6,7 @@ export default {
             FinalGrade: ""
         }
     ],
-    CourseHWs: [
+    CourseAssigns: [
         {
             id:"",
             title: "",
