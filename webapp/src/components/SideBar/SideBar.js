@@ -34,25 +34,16 @@ logout(e){
 /** Generating asll links depending on user role*/
 generateLinks(menuItems){
     return menuItems.map((exp,i) => {
-
-      let isResponsive = this.props.isResponsive;
-      if (isResponsive) {
         return (
           <NavItem key={i} componentClass='span'>
             <Link replace to={{pathname: exp.url}}>  {exp.name} </Link>
           </NavItem>)
 
-      }else{
-        return (<li key={i} className="nav-item nav-item-education">
-                <Link replace to={{pathname: exp.url}}>  {exp.name} </Link>
-            </li>)
-      }
     })
   }
 
   render() {
 
-    /*role --> student = 0 and admin = 1*/
     //alert(this.props.role);
     /*role --> admin = 1, student = 2, teacher = 3*/
 
@@ -78,25 +69,11 @@ generateLinks(menuItems){
         } else return false;
       }
 
-      //
-      // if (role === 1){
-      //   if (el.role === 2) {
-      //     return false
-      //   }
-      //   return true
-      // }
-      //
-      // if (role === 0) {
-      //   if (el.role === 0 || el.role === 2) {
-      //     return true;
-      //   }
-      // }
-      // return false
     })
 
     let finalLinks = this.generateLinks(menuItems)
     console.log(finalLinks);
-    // if (isResponsive) {
+
       return(<Nav>
               {finalLinks}
               <NavItem key="logout" componentClass='span'>
@@ -104,22 +81,6 @@ generateLinks(menuItems){
               </NavItem>
             </Nav>
           )
-
-    // }else{
-    //
-    //   return (
-    //       <nav className="col-md-2 hidden-xs hidden-sm sidebar">
-    //         <div className="sidebar-sticky">
-    //           <ul className="nav flex-column">
-    //                   {finalLinks}
-    //                   <li key="logout" className="nav-item nav-item-education">
-    //                       <a href="/login" onClick={this.logout}>  Logout </a>
-    //                   </li>
-    //           </ul>
-    //         </div>
-    //       </nav>
-    //   )
-    // }
   }
 }
 

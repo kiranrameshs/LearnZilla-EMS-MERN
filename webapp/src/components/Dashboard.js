@@ -3,7 +3,8 @@ import NavBar from './NavBar'
 import Sidebar from './SideBar/SideBar'
 import CourseContainer from './CourseContainer'
 import './../styles/Modules/CourseCards.scss'
-import { Navbar,Nav, NavItem } from 'react-bootstrap';
+import './SideBar/Sidebar.scss';
+import { Navbar,Nav, NavItem } from 'react-bootstrap' ;
 
 class Dashboard extends React.Component {
 
@@ -12,7 +13,7 @@ class Dashboard extends React.Component {
         //should replace this hardcoded with a fetch API
         this.state = {
             User: "User1",
-            role: "Student",
+            role: "Teacher",
             Courses: [
               {
                 id:1,
@@ -42,13 +43,16 @@ class Dashboard extends React.Component {
             <>
             <NavBar/>
             {/* <div className={`gridOf${getCourseArray.length}`}> */}
-            <div className="gridOf4">
 
-            <CourseContainer   getCourseArray={getCourseArray} openCourseDetails={this.openCourseDetails} />
+            <Navbar className="sidebar">
+              <Navbar.Collapse>
+                <Sidebar role={this.state.role} />
+              </Navbar.Collapse>
+            </Navbar>
+            <div className="gridOf4">
+            <CourseContainer className="gridOf4" getCourseArray={getCourseArray} openCourseDetails={this.openCourseDetails} />
             </div>
-            <Navbar.Collapse>
-              <Sidebar isResponsive={true} role={this.state.role} />
-            </Navbar.Collapse>
+
 
             </>
         )
