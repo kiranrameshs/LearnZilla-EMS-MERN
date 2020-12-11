@@ -12,3 +12,4 @@ export const ERRORS = 'ERRORS';
 export const REMOVE_ERRORS = 'REMOVE_ERRORS';
 
 export const GET_COURSE_GRADES = 'GET_COURSE_GRADES';
+export const GET_COURSE_HW_GRADES = 'GET_COURSE_HW_GRADES';
