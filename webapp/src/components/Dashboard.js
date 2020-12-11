@@ -1,6 +1,6 @@
 import React from 'react'
 import NavBar from './NavBar'
-import SidePanel from './SidePanel'
+import SidePanel from './SideBar/SideBar'
 import CourseContainer from './CourseContainer'
 import './../styles/Modules/CourseCards.scss'
 
@@ -8,7 +8,7 @@ class Dashboard extends React.Component {
 
     constructor(props){
         super(props);
-        //should replace this hardcoded with a fetch API 
+        //should replace this hardcoded with a fetch API
         this.state = {
             User: "User1",
             Role: "Student",
@@ -49,7 +49,7 @@ class Dashboard extends React.Component {
             </>
         )
     }
-    
+
 }
 
-export default Dashboard 
+export default Dashboard
