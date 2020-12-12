@@ -19,13 +19,14 @@ class Login extends Component {
   }
 
   componentWillReceiveProps (newProps) {
-    alert(newProps);
-    if (newProps.errorMesage.err) {
-        alert(newProps.errorMesage.err)
+    console.log(newProps)
+    //alert(Object.keys(newProps.auth));
+    if (newProps.errorMesage == undefined) {
         this.props.removeError()
     }
     if (Object.keys(newProps.auth).length > 0 ) {
-      this.props.history.push('/register')
+      alert(newProps.auth);
+      this.props.history.push('/dashboard')
     }
   }
 
@@ -36,27 +37,8 @@ class Login extends Component {
   }
 
   submitForm(e){
-    //alert("Login");
     e.preventDefault();
     this.props.loginUser(this.state);
-
-    // let loginUrl = '/login/';
-    // fetch(loginUrl, {
-    //   method: 'POST',
-    //   body: JSON.stringify( {
-    //       "email": this.state.email,
-    //       "password": this.state.password,
-    //       "role": this.state.role
-    //     }
-    //   ),
-    //   headers: {"Content-Type": "application/json"}
-    // })
-    // .then(res => res.json())
-    // .then((responseJson) => {
-    //   alert(responseJson.message);
-    // }).catch((err) => {
-    //   alert(err)
-    // });
   }
 
   render(){
@@ -78,6 +60,7 @@ class Login extends Component {
             <option>Enter Role</option>
             <option>Teacher</option>
             <option>Student</option>
+            <option>Admin</option>
           </FormControl>
         </FormGroup>
 

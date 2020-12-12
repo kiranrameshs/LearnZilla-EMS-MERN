@@ -6,6 +6,10 @@ const courseSchema = new mongoose.Schema({
       type: String,
       required: [true, "Please check your data entry, no course name specified!"]
   },
+  coursedesc: {
+      type: String,
+      default: ''
+  },
   coursestartdate: {
       type: Date,
       default: Date.now
