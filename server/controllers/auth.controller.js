@@ -28,10 +28,6 @@ const login = (request, response) => {
                 "status": 200,
                 "message": "Successfully Logged in"
               })
-              // response.status(200);
-              // response.json({
-              //   "message": "Successfully Logged in"
-              // })
             }
           })
         } else {
@@ -55,20 +51,28 @@ const logout = (request, response) => {
 };
 
 const register = (request, response) => {
-    console.log("user saved");
     AuthService.checkuser(request.body.email)
       .then((foundUser) => {
         if (foundUser) {
-          return response.status(409).json({"message": "Email already exsists"});
+          return response.status(409).json({
+            "auth": request.body.role,
+            "status": 409,
+            "message": "Email already exsists"
+          });
         } else {
           bcrypt.hash(request.body.password, saltRounds).then(hash => {
             request.body.password = hash;
             const newUser = Object.assign({}, request.body);
-            // console.log(newUser);
+            console.log(newUser);
             AuthService.register(newUser, request.body.role)
           }).then((user) => {
             response.status(200);
-            response.json({"message": "Successfully Registered"});
+            response.json({
+              "auth": request.body.role,
+              "status": 200,
+              "registereduser": newUser,
+              "message": "Successfully Registered"
+            });
           }).catch(handleError(response));
       }
   });
@@ -79,9 +83,12 @@ const register = (request, response) => {
 
 const handleError = (error, response) => {
     return (error) => {
+        console.log(error);
         response.status(500);
         response.json({
-            message: error.message
+          "auth": request.body.role,
+          "status": 500,
+          "message": error.message
         })
 
     };
