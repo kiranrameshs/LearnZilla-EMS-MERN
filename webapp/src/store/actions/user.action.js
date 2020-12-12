@@ -30,7 +30,7 @@ export const loginUser = userData => dispatch => {
   .catch(err =>
     dispatch({
       type: ActionTypes.ERRORS,
-      payload: err.response.data
+      payload: err.response
     })
   );
 };

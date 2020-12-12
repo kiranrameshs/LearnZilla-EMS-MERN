@@ -40,7 +40,7 @@ class Dashboard extends React.Component {
 
     render()
     {
-        let userState = this.props.userState;
+        let userState = this.props.location.state.userState;
         console.log(userState);
         const getCourseArray = this.state.Courses;
 

@@ -25,8 +25,8 @@ class Login extends Component {
         this.props.removeError()
     }
     if (Object.keys(newProps.auth).length > 0 ) {
-      alert(newProps.auth);
-      this.props.history.push({pathname: '/dashboard', userState: newProps});
+      //console.log(JSON.stringify(newProps.auth));
+      this.props.history.push({pathname: '/dashboard', state: {userState: newProps.auth}});
     }
   }
 
