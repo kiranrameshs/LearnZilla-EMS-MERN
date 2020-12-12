@@ -65,7 +65,7 @@ const register = (request, response) => {
           }).then((user) => {
             response.status(200);
             response.json({
-              "auth": role,
+              "auth": request.body.role,
               "status": 200,
               "message": "Successfully Registered"
             });
@@ -81,7 +81,9 @@ const handleError = (error, response) => {
     return (error) => {
         response.status(500);
         response.json({
-            message: error.message
+          "auth": request.body.role,
+          "status": 200,
+          "message": error.message
         })
 
     };

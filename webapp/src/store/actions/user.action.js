@@ -54,7 +54,7 @@ export const registerUser = userData => dispatch => {
   })
   .then(res => res.json())
   .then((responseJson) => {
-    alert(responseJson.message);
+    //alert(responseJson.message);
     if (responseJson.status >= 200 && responseJson.status < 300) {
       dispatch({ type: ActionTypes.REGISTER_USER, payload: responseJson})
     } else {
@@ -64,7 +64,7 @@ export const registerUser = userData => dispatch => {
   .catch(err =>
     dispatch({
       type: ActionTypes.ERRORS,
-      payload: err.response.data
+      payload: err.response
     })
   );
 };
