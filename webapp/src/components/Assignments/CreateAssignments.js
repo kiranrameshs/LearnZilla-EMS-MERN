@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {Form, FormGroup, FormControl, Button, FormLabel,} from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { createAssignment } from '../../store/actions/course.action';
+import { createAssignment } from '../../store/actions/assignment.action';
 import { removeError } from '../../store/actions/error.action';
 
-class CreateCourses extends Component {
+class CreateAssignments extends Component {
 
   constructor(props) {
     super(props);
@@ -24,7 +24,6 @@ class CreateCourses extends Component {
     if (newProps.errorMesage == undefined) {
         this.props.removeError()
     } else {
-      alert("Assignment is added successfully!");
       alert("Redirect to Dashboard");
       this.props.history.push('/dashboard')
     }
@@ -42,7 +41,8 @@ class CreateCourses extends Component {
 
   submitForm(e){
     e.preventDefault();
-    this.props.createCourse(this.state);
+    this.props.createAssignment(this.state);
+    alert("Assignment is added successfully!");
   }
 
   render(){
@@ -79,9 +79,9 @@ class CreateCourses extends Component {
 
 const reduxProps = state => {
   return ({
-    courses: state.course.courses,
+    assignments: state.assignment.assignments,
     errorMesage: state.errors.message
   })
 };
 
-export default connect(reduxProps, { createCourse, removeError })(CreateCourses);
+export default connect(reduxProps, { createAssignment, removeError })(CreateAssignments);
