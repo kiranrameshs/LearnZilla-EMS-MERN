@@ -3,7 +3,7 @@ import { Nav, NavItem } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './SideBar.scss';
 import { connect } from 'react-redux';
-import { logoutUser } from '../../store/actions/user.action';
+import { logoutUser } from '../store/actions/user.action';
 
 
 class Sidebar extends Component {
@@ -14,7 +14,7 @@ class Sidebar extends Component {
     this.state = {menu: [
       {name: "Home", url: "/", role: 0},
       //{name: "All Courses", url: "/courses", role: 0},
-      // {name: "All Users", url: "/all-users", role: 1},
+      {name: "All Users", url: "/all-users", role: 1},
       {name: "My Courses", url: "/dashboard", role: 0},
       {name: "Create Course", url: "/courses/create", role: 1},
       {name: "Create User", url: "/register", role: 1},
