@@ -18,8 +18,8 @@ export const createAssignment = assignmentData => dispatch => {
   .then(res => res.json())
   .then((responseJson) => {
     if (responseJson.status >= 200 && responseJson.status < 300) {
-      //console.log(responseJson.course)
-      dispatch({ type: ActionTypes.CREATE_ASSIGNMENT, payload: responseJson.course})
+      //console.log(responseJson.assignment)
+      dispatch({ type: ActionTypes.CREATE_ASSIGNMENT, payload: responseJson.assignment})
     } else {
       //alert(responseJson);
       dispatch({ type:ActionTypes.ERRORS, responseJson})
