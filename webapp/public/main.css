@@ -7,6 +7,9 @@ ul {
 body {
   padding: 5px; }
 
+.gridOf4 {
+  display: inline-block; }
+
 .gridOf2 {
   display: -ms-grid;
   display: grid;
@@ -28,6 +31,7 @@ body {
   height: inherit; }
 
 .gridOf4 {
+  margin-left: 300px;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr 1fr 1fr;
@@ -76,3 +80,22 @@ body {
   border-radius: 25px;
   text-align: center;
   padding: 5px; }
+
+.chart {
+  width: 600px; }
+
+.profile {
+  width: 400px; }
+
+.sidebar {
+  position: fixed;
+  top: 20px;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  padding: 48px 0 0;
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1); }
+
+.sidebarLinks {
+  margin-top: 10px;
+  margin-bottom: 10px; }
