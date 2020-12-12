@@ -33,7 +33,7 @@ class Register extends Component {
     }
 
     if (Object.keys(newProps.auth).length > 0 ) {
-      alert(newProps.auth);
+      //alert(newProps.auth);
       this.props.history.push('/dashboard')
     }
   }
@@ -47,7 +47,7 @@ class Register extends Component {
   submitForm(e){
     e.preventDefault();
     this.props.registerUser(this.state);
-    alert("done")
+    //alert("done")
   }
 
   render(){

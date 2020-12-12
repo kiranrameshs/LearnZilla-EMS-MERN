@@ -24,6 +24,7 @@ class CreateCourses extends Component {
         this.props.removeError()
     } else {
       alert("Redirect to Dashboard");
+      this.props.history.push('/dashboard')
     }
     // if (Object.keys(newProps.auth).length > 0 ) {
     //   alert(newProps.auth);
@@ -76,7 +77,10 @@ class CreateCourses extends Component {
 }
 
 const reduxProps = state => {
-  return ({courses: state.course.courses})
+  return ({
+    courses: state.course.courses,
+    errorMesage: state.errors.message
+  })
 };
 
-export default connect(reduxProps, { createCourse })(CreateCourses);
+export default connect(reduxProps, { createCourse, removeError })(CreateCourses);
