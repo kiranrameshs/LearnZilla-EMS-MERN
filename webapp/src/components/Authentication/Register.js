@@ -27,6 +27,7 @@ class Register extends Component {
   }
 
   componentWillReceiveProps (newProps) {
+    console.log(newProps);
     if (newProps.errorMesage == undefined) {
         this.props.removeError()
     }
@@ -45,6 +46,7 @@ class Register extends Component {
   submitForm(e){
     e.preventDefault();
     this.props.registerUser(this.state);
+    alert("done")
   }
 
   render(){
