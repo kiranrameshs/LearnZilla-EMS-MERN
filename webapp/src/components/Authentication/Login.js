@@ -60,6 +60,7 @@ class Login extends Component {
             <option>Enter Role</option>
             <option>Teacher</option>
             <option>Student</option>
+            <option>Admin</option>
           </FormControl>
         </FormGroup>
 

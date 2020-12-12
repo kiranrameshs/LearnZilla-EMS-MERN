@@ -13,7 +13,7 @@ class Dashboard extends React.Component {
         //should replace this hardcoded with a fetch API
         this.state = {
             User: "User1",
-            role: "Teacher",
+            role: "Admin",
             Courses: [
               {
                 id:1,

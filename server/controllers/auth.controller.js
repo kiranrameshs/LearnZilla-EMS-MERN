@@ -28,10 +28,6 @@ const login = (request, response) => {
                 "status": 200,
                 "message": "Successfully Logged in"
               })
-              // response.status(200);
-              // response.json({
-              //   "message": "Successfully Logged in"
-              // })
             }
           })
         } else {
@@ -68,7 +64,11 @@ const register = (request, response) => {
             AuthService.register(newUser, request.body.role)
           }).then((user) => {
             response.status(200);
-            response.json({"message": "Successfully Registered"});
+            response.json({
+              "auth": role,
+              "status": 200,
+              "message": "Successfully Registered"
+            });
           }).catch(handleError(response));
       }
   });
