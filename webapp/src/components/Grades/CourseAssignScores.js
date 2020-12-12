@@ -28,7 +28,7 @@ class CourseAssignScores extends Component {
       <>
         <NavBar />
         <>
-          <Table responsive striped condensed hover>
+          <Table responsive striped condensed >
             <thead>
               <tr>
                 <th> </th>

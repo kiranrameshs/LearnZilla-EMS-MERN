@@ -4,52 +4,45 @@ import SidePanel from './SidePanel'
 import CourseContainer from './CourseContainer'
 import './../styles/Modules/CourseCards.scss'
 
+import { connect } from 'react-redux';
+import { getCoursesDetails } from './../store/actions/grade.action';
+
+
+const reduxProps = state => {
+    return ({
+        courses: state.grades.courses
+    }
+    )
+  };
+
+
 class Dashboard extends React.Component {
 
-    constructor(props){
-        super(props);
-        //should replace this hardcoded with a fetch API 
-        this.state = {
-            User: "User1",
-            Role: "Student",
-            Courses: [
-              {
-                id:1,
-                title: "Web Design",
-                FinalGrade: "A"
-              },
-              {
-                  id:2,
-                  title: "Cloud Computing",
-                  FinalGrade: "A-"
-              }]
-        }
+    componentDidMount() {
+        this.props.getCoursesDetails();
     }
 
+    render(){
 
-    openCourseDetails = (Course) => {
 
-        //invoke display component
-        console.log(Course);
-    }
-
-    render()
-    {
-        const getCourseArray = this.state.Courses;
-
+        const courseList = this.props.courses.map((c, i) => {
+            return (
+            <CourseContainer key={i} course={c}>
+            </CourseContainer>
+            )
+        });
         return (
-            <>
-            <NavBar/>
-            {/* <div className={`gridOf${getCourseArray.length}`}> */}
-            <div className="gridOf4">
+        <> 
+        <NavBar />
+        <h1>Dashboard</h1>
+        <ul>
+            {courseList}
+        </ul>
+        </>
+        );
 
-            <CourseContainer   getCourseArray={getCourseArray} openCourseDetails={this.openCourseDetails} />
-            </div>
-            <SidePanel />
-            </>
-        )
+        
     }
     
 }
-
-export default Dashboard 
+export default connect(reduxProps, { getCoursesDetails })(Dashboard);
