@@ -9,19 +9,21 @@ export default function(state = initialState, action) {
       return {
         ...state,
         //users: [action.payload, ...state.users],
-        //user: action.payload
+        //user: action.payload,
         authUser: action.payload
       };
 
     case LOGIN_USER:
       return {
         ...state,
+        user: action.payload.user,
         authUser: action.payload
       };
 
     case LOGOUT_USER:
       return {
         ...state,
+        //user: {},
         authUser: {}
       };
 

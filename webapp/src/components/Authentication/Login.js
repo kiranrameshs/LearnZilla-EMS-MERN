@@ -19,7 +19,7 @@ class Login extends Component {
   }
 
   componentWillReceiveProps (newProps) {
-    console.log(newProps)
+    //console.log(newProps)
     //alert(Object.keys(newProps.auth));
     if (newProps.errorMesage == undefined) {
         this.props.removeError()
