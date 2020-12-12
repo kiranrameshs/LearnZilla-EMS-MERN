@@ -57,8 +57,6 @@ generateLinks(menuItems){
     console.log(userState);
 
     /*role --> admin = 1, student = 2, teacher = 3*/
-    //console.log("state = " + JSON.stringify(this.props.userState));
-    //let role = this.props.userState.role;
 
     let role = this.props.auth.user.role;
     alert(role);
