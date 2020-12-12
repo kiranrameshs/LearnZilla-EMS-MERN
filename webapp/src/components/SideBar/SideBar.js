@@ -13,10 +13,10 @@ class Sidebar extends Component {
 
     this.state = {menu: [
       {name: "Home", url: "/", role: 0},
-      // {name: "All Courses", url: "/all-courses", role: 0},
+      //{name: "All Courses", url: "/courses", role: 0},
       // {name: "All Users", url: "/all-users", role: 1},
-      {name: "My Courses", url: "/courses", role: 0},
-      {name: "Create Course", url: "/create-course", role: 1},
+      {name: "My Courses", url: "/dashboard", role: 0},
+      {name: "Create Course", url: "/courses/create", role: 1},
       {name: "Create User", url: "/register", role: 1},
       {name: "Create Assignment", url: "/create-assignment", role: 3},
       {name: "Grade Assignment", url: "/grade-assignment", role: 3},
