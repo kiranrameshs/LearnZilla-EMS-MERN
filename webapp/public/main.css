@@ -85,7 +85,8 @@ body {
   width: 600px; }
 
 .profile {
-  width: 400px; }
+  width: 400px;
+  height: 400px; }
 
 .sidebar {
   position: fixed;
