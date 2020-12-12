@@ -33,7 +33,7 @@ const create = (request, response) => {
         response.status(200);
         response.json({
           "status": 200,
-          course: course,
+          "course": course,
           "message": "Course created Successfully"
         });
     })

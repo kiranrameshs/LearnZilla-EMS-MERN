@@ -19,7 +19,7 @@ class CreateCourses extends Component {
   }
 
   componentWillReceiveProps (newProps) {
-    console.log(newProps)
+    console.log("newProps " + newProps)
     if (newProps.errorMesage == undefined) {
         this.props.removeError()
     } else {
