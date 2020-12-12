@@ -8,6 +8,7 @@ import CourseAssignScores from './Grades/CourseAssignScores';
 import Dashboard from './Dashboard';
 import FeedBack from './Grades/AssignFeedback';
 import GradeAnalytics from './Grades/GradeAnalytics';
+import Profile from './Profile';
 
 class App extends Component {
 
@@ -23,6 +24,7 @@ class App extends Component {
             <Route path="/HW-scores" component={CourseAssignScores} />
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/analytics" component={GradeAnalytics} />
+            <Route path="/profile" component={Profile} />
 
         </Switch>
       </BrowserRouter>
@@ -32,4 +34,3 @@ class App extends Component {
   }
 }
 export default App;
-

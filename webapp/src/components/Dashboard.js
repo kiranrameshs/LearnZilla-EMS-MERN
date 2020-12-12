@@ -1,17 +1,18 @@
 import React from 'react'
 import NavBar from './NavBar'
-import SidePanel from './SidePanel'
+import Sidebar from './SideBar';
 import CourseContainer from './CourseContainer'
-import './../styles/Modules/CourseCards.scss'
+//import './../styles/Modules/CourseCards.scss'
+import { Navbar,Nav, NavItem } from 'react-bootstrap' ;
 
 class Dashboard extends React.Component {
 
     constructor(props){
         super(props);
-        //should replace this hardcoded with a fetch API 
+        //should replace this hardcoded with a fetch API
         this.state = {
             User: "User1",
-            Role: "Student",
+            role: "Teacher",
             Courses: [
               {
                 id:1,
@@ -41,15 +42,21 @@ class Dashboard extends React.Component {
             <>
             <NavBar/>
             {/* <div className={`gridOf${getCourseArray.length}`}> */}
-            <div className="gridOf4">
 
-            <CourseContainer   getCourseArray={getCourseArray} openCourseDetails={this.openCourseDetails} />
+            <Navbar className="sidebar">
+              <Navbar.Collapse>
+                <Sidebar role={this.state.role} />
+              </Navbar.Collapse>
+            </Navbar>
+            <div className="gridOf4">
+              <CourseContainer className="gridOf4" getCourseArray={getCourseArray} openCourseDetails={this.openCourseDetails} />
             </div>
-            <SidePanel />
+
+
             </>
         )
     }
-    
+
 }
 
-export default Dashboard 
+export default Dashboard

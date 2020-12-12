@@ -19,17 +19,24 @@ const login = (request, response) => {
           bcrypt.compare(password, foundUser.password).then(result => {
             if (result === false) {
               return response.status(401).json({
+                "status": 401,
                 "message": "This is the wrong password"
               })
             } else {
-              response.status(200);
-              response.json({
+              return response.status(200).json({
+                "auth": role,
+                "status": 200,
                 "message": "Successfully Logged in"
-              });
+              })
+              // response.status(200);
+              // response.json({
+              //   "message": "Successfully Logged in"
+              // })
             }
           })
         } else {
           return response.status(401).json({
+            "status": 401,
             "message": "No user with this email"
           })
         }
@@ -78,7 +85,7 @@ const handleError = (error, response) => {
         })
 
     };
-    
+
 
 }
 
