@@ -1,27 +1,32 @@
-import {
-  ADD_COURSE,
-  GET_COURSES,
-  GET_COURSE,
-  UPDATE_COURSE,
-  DELETE_COURSE,
-  ERRORS
-} from './action-types';
-import axios from 'axios';
+import * as ActionTypes from './action-types';
 
-
-/** Action function to add course  */
-export const addCourse = courseData => dispatch => {
-  axios.post('/api/course/', courseData)
-    .then(res =>
-      dispatch({
-        type: ADD_COURSE,
-        payload: res.data
-      })
-    )
-    .catch(err =>
-      dispatch({
-        type: ERRORS,
-        payload: err.response.data
-      })
-    );
+export const createCourse = courseData => dispatch => {
+  let createcourseUrl = '/courses/create/';
+  fetch(createcourseUrl, {
+    method: 'POST',
+    body: JSON.stringify({
+      'coursename': courseData.coursename,
+      'coursedesc': courseData.coursedesc,
+      'coursestartdate': courseData.coursestartdate,
+      'courseenddate': courseData.courseenddate
+    }),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+  .then(res => res.json())
+  .then((responseJson) => {
+    alert(responseJson.message);
+    if (responseJson.status >= 200 && responseJson.status < 300) {
+      dispatch({ type: ActionTypes.CREATE_COURSE, payload: responseJson})
+    } else {
+      dispatch({ type:ActionTypes.ERRORS, responseJson})
+    }
+  })
+  .catch(err =>
+    dispatch({
+      type: ActionTypes.ERRORS,
+      payload: err.response
+    })
+  );
 };

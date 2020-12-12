@@ -6,10 +6,9 @@ const index = (request, response) => {
    .then( (courses) => {
     response.status(200);
     response.json(courses);
-
    })
    .catch( handleError(response));
-   
+
 
 };
 
@@ -87,7 +86,7 @@ const handleError = (response) => {
         })
 
     };
-    
+
 
 }
 

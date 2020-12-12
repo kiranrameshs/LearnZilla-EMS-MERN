@@ -6,8 +6,8 @@ import {
   Button,
   FormLabel,
 } from 'react-bootstrap';
-import './Authentication.scss';
 import { connect } from 'react-redux';
+import './Authentication.scss';
 import { registerUser } from '../../store/actions/user.action';
 import { removeError } from '../../store/actions/error.action';
 
@@ -31,6 +31,7 @@ class Register extends Component {
     if (newProps.errorMesage == undefined) {
         this.props.removeError()
     }
+
     if (Object.keys(newProps.auth).length > 0 ) {
       alert(newProps.auth);
       this.props.history.push('/dashboard')

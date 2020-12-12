@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {Form, FormGroup, FormControl, Button, FormLabel,} from 'react-bootstrap';
-import './Authentication.scss';
 import { connect } from 'react-redux';
-import { loginUser } from '../../store/actions/user.action';
+import { createCourse } from '../../store/actions/course.action';
 import { removeError } from '../../store/actions/error.action';
 
 class Login extends Component {
@@ -11,6 +10,7 @@ class Login extends Component {
     super(props);
     this.state = {
       coursename: '',
+      coursedesc: ''
       coursestartdate: '',
       courseenddate: ''
     };
@@ -22,11 +22,13 @@ class Login extends Component {
     console.log(newProps)
     if (newProps.errorMesage == undefined) {
         this.props.removeError()
+    } else {
+      alert("Course is added successfully!");
     }
-    if (Object.keys(newProps.auth).length > 0 ) {
-      alert(newProps.auth);
-      this.props.history.push('/dashboard')
-    }
+    // if (Object.keys(newProps.auth).length > 0 ) {
+    //   alert(newProps.auth);
+    //   this.props.history.push('/dashboard')
+    // }
   }
 
   handleInput(e) {
@@ -48,6 +50,11 @@ class Login extends Component {
           <FormControl type="text" value={this.state.value} placeholder="Enter Course Name" onChange={this.handleInput} />
         </FormGroup>
 
+        <FormGroup controlId="coursedesc">
+          <FormLabel>Course Description</FormLabel>
+          <FormControl type="text" value={this.state.value} placeholder="Enter Course Name" onChange={this.handleInput} />
+        </FormGroup>
+
         <FormGroup controlId="coursestartdate">
           <FormLabel>Course Start Date</FormLabel>
           <FormControl type="date" value={this.state.value} placeholder="Enter Course Start Date" onChange={this.handleInput} />
@@ -59,7 +66,7 @@ class Login extends Component {
         </FormGroup>
 
         <FormGroup>
-          <Button type="submit">Login</Button>
+          <Button type="submit">Add Course</Button>
         </FormGroup>
       </Form>
 
@@ -67,13 +74,8 @@ class Login extends Component {
   }
 }
 
-//export default Login;
 const reduxProps = state => {
-  return ({
-    auth: state.user.authUser,
-    errorMesage: state.errors.message
-  })
+  return ({courses: state.course.courses})
 };
 
-
-export default connect(reduxProps, { loginUser, removeError })(Login);
+export default connect(reduxProps, { createCourse })(CreateCourse);
