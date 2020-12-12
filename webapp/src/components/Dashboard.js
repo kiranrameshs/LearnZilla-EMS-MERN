@@ -8,8 +8,15 @@ import { Navbar,Nav, NavItem } from 'react-bootstrap' ;
 import Sidebar from './SideBar/SideBar'
 import './SideBar/SideBar.scss'
 
-class Dashboard extends React.Component {
+import { connect } from 'react-redux';
+import { getCoursesDetails } from './../store/actions/grade.action';
 
+
+<<<<<<< HEAD
+const reduxProps = state => {
+    return ({
+        courses: state.grades.courses
+=======
     constructor(props){
         super(props);
         //should replace this hardcoded with a fetch API
@@ -29,20 +36,40 @@ class Dashboard extends React.Component {
                   FinalGrade: "A-"
               }]
         }
+>>>>>>> integration
+    }
+    )
+  };
+
+
+class Dashboard extends React.Component {
+
+    componentDidMount() {
+        this.props.getCoursesDetails();
     }
 
+    render(){
 
-    openCourseDetails = (Course) => {
 
-        //invoke display component
-        console.log(Course);
-    }
-
-    render()
-    {
-        const getCourseArray = this.state.Courses;
-
+        const courseList = this.props.courses.map((c, i) => {
+            return (
+            <CourseContainer key={i} course={c}>
+            </CourseContainer>
+            )
+        });
         return (
+<<<<<<< HEAD
+        <> 
+        <NavBar />
+        <h1>Dashboard</h1>
+        <ul>
+            {courseList}
+        </ul>
+        </>
+        );
+
+        
+=======
             <>
             <NavBar/>
             {/* <div className={`gridOf${getCourseArray.length}`}> */}
@@ -59,8 +86,13 @@ class Dashboard extends React.Component {
 
             </>
         )
+>>>>>>> integration
     }
 
 }
+<<<<<<< HEAD
+export default connect(reduxProps, { getCoursesDetails })(Dashboard);
+=======
 
 export default Dashboard
+>>>>>>> integration
