@@ -1,11 +1,6 @@
 import * as ActionTypes from './action-types';
 
-// export const loginUser = (userData) => {
-//     return { type: ActionTypes.LOGIN_USER, payload: userData }
-// }
-
 export const logoutUser = () => dispatch => {
-  //alert("here");
   dispatch({
     type: ActionTypes.LOGOUT_USER
   })
@@ -26,7 +21,6 @@ export const loginUser = userData => dispatch => {
   })
   .then(res => res.json())
   .then((responseJson) => {
-    alert(responseJson.message);
     if (responseJson.status >= 200 && responseJson.status < 300) {
       dispatch({ type: ActionTypes.LOGIN_USER, payload: responseJson})
     } else {
@@ -70,7 +64,7 @@ export const registerUser = userData => dispatch => {
   .catch(err =>
     dispatch({
       type: ActionTypes.ERRORS,
-      payload: err.response.data
+      payload: err.response
     })
   );
 };

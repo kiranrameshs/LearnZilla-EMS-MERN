@@ -6,8 +6,8 @@ import {
   Button,
   FormLabel,
 } from 'react-bootstrap';
-import './Authentication.scss';
 import { connect } from 'react-redux';
+import './Authentication.scss';
 import { registerUser } from '../../store/actions/user.action';
 import { removeError } from '../../store/actions/error.action';
 
@@ -26,13 +26,15 @@ class Register extends Component {
     this.handleInput = this.handleInput.bind(this);
   }
 
-  componentWillReceiveProps(newProps) {
-    if (newProps.errorMesage.err) {
-        alert(newProps.errorMesage.err)
+  componentWillReceiveProps (newProps) {
+    console.log(newProps);
+    if (newProps.errorMesage == undefined) {
         this.props.removeError()
     }
+
     if (Object.keys(newProps.auth).length > 0 ) {
-      this.props.history.push('/')
+      //alert(newProps.auth);
+      this.props.history.push('/dashboard')
     }
   }
 
@@ -45,25 +47,7 @@ class Register extends Component {
   submitForm(e){
     e.preventDefault();
     this.props.registerUser(this.state);
-    //console.log(this.state);
-    // let registerUrl = '/register/';
-    // fetch(registerUrl, {
-    //   method: 'POST',
-    //   body: JSON.stringify({
-    //       'name': this.state.name,
-    //       'address': this.state.address,
-    //       'email': this.state.email,
-    //       'password': this.state.password,
-    //       'university': this.state.university,
-    //       'role': this.state.role
-    //     }
-    //   ),
-    //   headers: {'Content-Type': 'application/json'}
-    // })
-    // .then(res => res.json())
-    // .then((responseJson) => {
-    //   console.log(responseJson);
-    // });
+    //alert("done")
   }
 
   render(){
@@ -95,6 +79,7 @@ class Register extends Component {
             <option>Enter Role</option>
             <option>Teacher</option>
             <option>Student</option>
+            <option>Admin</option>
           </FormControl>
         </FormGroup>
 

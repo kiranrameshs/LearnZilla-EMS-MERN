@@ -4,7 +4,7 @@ export const LOGOUT_USER = 'LOGOUT_USER';
 
 export const GET_USER = 'GET_USER';
 export const GET_COURSES = 'GET_COURSES';
-export const ADD_COURSE = 'ADD_COURSE';
+export const CREATE_COURSE = 'CREATE_COURSE';
 export const GET_COURSE = 'GET_COURSE';
 export const DELETE_COURSE = 'DELETE_COURSE';
 export const UPDATE_COURSE = 'UPDATE_COURSE';
@@ -13,4 +13,12 @@ export const REMOVE_ERRORS = 'REMOVE_ERRORS';
 
 export const GET_COURSE_GRADES = 'GET_COURSE_GRADES';
 export const GET_COURSE_ASSIGN_GRADES = 'GET_COURSE_ASSIGN_GRADES';
+<<<<<<< HEAD
 export const GET_COURSE_DETAILS = "GET_COURSE_DETAILS";
+=======
+
+export const GET_ASSIGNMENTS = 'GET_ASSIGNMENTS';
+export const CREATE_ASSIGNMENT = 'CREATE_ASSIGNMENT';
+export const GET_ASSIGNMENT = 'GET_ASSIGNMENT';
+export const DELETE_ASSIGNMENT = 'DELETE_ASSIGNMENT';
+>>>>>>> integration

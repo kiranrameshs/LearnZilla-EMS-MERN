@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { Table, Button } from 'react-bootstrap';
 import NavBar from '../NavBar';
+import FeedBack from './AssignFeedback';
+import GradeAnalytics from './GradeAnalytics';
 
 import { connect } from 'react-redux';
 import { getCourseAssigns } from '../../store/actions/grade.action';
 //import { getAvailableCourseAssigns } from '../../store/selectors/grade.selectors';
+
 
 class CourseAssignScores extends Component {
 
@@ -22,13 +25,44 @@ class CourseAssignScores extends Component {
     
   }
 
+  handleClick = (event) => {
+
+    if (event.target.classList.contains('glyphicon-signal')) {
+      const itemKey = event.target.id;
+
+      let data ={};
+      data.scores = [];
+      data.categories = []; 
+
+      //navigate to analytics passing data as props
+      return (
+        <GradeAnalytics data={data}/>
+      );
+       
+    }
+      switch(event.target.id){
+          default:
+          break;
+      }
+
+  }
+
   render() {
     let homeWorks = this.props.courseAssignScores;//   bordered
     return (
       <>
         <NavBar />
         <>
+<<<<<<< HEAD
           <Table responsive striped condensed >
+=======
+         <div> 
+         <a onClick={this.handleClick} className="btn btn-info btn-lg">
+          <span className="glyphicon glyphicon-signal"></span> Analytics 
+        </a>
+         </div>
+          <Table responsive striped condensed hover>
+>>>>>>> integration
             <thead>
               <tr>
                 <th> </th>
@@ -45,7 +79,10 @@ class CourseAssignScores extends Component {
                   <td> {c.assignmentname}</td>
                   <td> {c.assignmentenddate}</td>
                   <td> {c.assignmentscrore}</td>
-                  <td> <Button data-toggle="tooltip" data-placement="bottom" title="See FeedBack"> View Feedback</Button> <Button> Add Sticky</Button></td>
+                  <td> <Button data-toggle="tooltip" data-toggle="modal" data-target="#feedbackModal" data-placement="bottom" title="See FeedBack"><span class="glyphicon glyphicon-comment"></span></Button> <Button> Add Sticky</Button>
+                       <FeedBack />
+                      
+                  </td>
                 </tr>
 
               })}

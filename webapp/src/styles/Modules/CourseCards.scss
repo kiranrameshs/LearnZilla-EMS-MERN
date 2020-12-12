@@ -1,16 +1,19 @@
+.gridOf4{
+  display: inline-block;
+}
 .gridOf2 {
     display: -ms-grid;
     display: grid;
     -ms-grid-columns: 1fr 1fr;
-        grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-column-gap: 5%;
     width: inherit;
     height: inherit;
     // width:50%;
   }
-  
+
   /* Used Ms-grid for layout */
-  
+
   .gridOf3 {
     display: -ms-grid;
     display: grid;
@@ -21,8 +24,9 @@
     width: inherit;
     height: inherit;
   }
-  
+
   .gridOf4 {
+    margin-left: 300px;
     display: -ms-grid;
     display: grid;
     -ms-grid-columns: 1fr 1fr 1fr 1fr;
@@ -55,7 +59,7 @@ grid-column: 3;
 grid-row: 1;
 padding: 0px 10px 0 10px;
 }
-  
+
 .card{
     //sample styling toverify effects
     font-size: xx-large;
