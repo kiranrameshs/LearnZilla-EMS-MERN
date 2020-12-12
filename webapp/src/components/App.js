@@ -6,12 +6,8 @@ import Register from './Authentication/Register';
 import AllGradesContainer from './Grades/AllGradesContainer';
 import CourseAssignScores from './Grades/CourseAssignScores';
 import Dashboard from './Dashboard';
-
-// const App = () => (
-//   <>
-//     <NavBar />
-//   </>
-// );
+import FeedBack from './Grades/AssignFeedback';
+import GradeAnalytics from './Grades/GradeAnalytics';
 
 class App extends Component {
 
@@ -26,6 +22,7 @@ class App extends Component {
             <Route path="/grades" component={AllGradesContainer} />
             <Route path="/HW-scores" component={CourseAssignScores} />
             <Route path="/dashboard" component={Dashboard} />
+            <Route path="/analytics" component={GradeAnalytics} />
 
         </Switch>
       </BrowserRouter>

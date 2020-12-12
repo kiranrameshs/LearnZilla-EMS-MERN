@@ -76,3 +76,6 @@ body {
   border-radius: 25px;
   text-align: center;
   padding: 5px; }
+
+.chart {
+  width: 600px; }
