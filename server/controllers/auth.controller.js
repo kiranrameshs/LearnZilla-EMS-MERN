@@ -26,6 +26,7 @@ const login = (request, response) => {
               return response.status(200).json({
                 "auth": role,
                 "status": 200,
+                "user": foundUser,
                 "message": "Successfully Logged in"
               })
             }
@@ -70,7 +71,7 @@ const register = (request, response) => {
             response.json({
               "auth": request.body.role,
               "status": 200,
-              "registereduser": user,
+              "user": user,
               "message": "Successfully Registered"
             });
           }).catch(handleError(response));
