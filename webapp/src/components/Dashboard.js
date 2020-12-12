@@ -76,7 +76,7 @@ class Dashboard extends React.Component {
 
             <Navbar className="sidebar">
               <Navbar.Collapse>
-                <Sidebar role={this.state.role} />
+                <Sidebar />
               </Navbar.Collapse>
             </Navbar>
             <div className="gridOf4">
