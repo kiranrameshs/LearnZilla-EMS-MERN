@@ -50,9 +50,10 @@ generateLinks(menuItems){
 
     //alert(this.props.role);
     /*role --> admin = 1, student = 2, teacher = 3*/
-    //console.log("state = " + JSON.stringify(state));
+    console.log("state = " + JSON.stringify(this.props.userState));
 
-    let role = this.props.role;
+    let role = this.props.userState.role;
+    console.log(role);
     let menuItems = this.state.menu.filter(el => {
 
       if (role == "Student") {

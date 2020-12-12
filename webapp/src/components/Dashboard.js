@@ -41,7 +41,7 @@ class Dashboard extends React.Component {
     render()
     {
         let userState = this.props.location.state.userState;
-        console.log(userState);
+        //console.log(userState.user);
         const getCourseArray = this.state.Courses;
 
         return (
@@ -51,7 +51,7 @@ class Dashboard extends React.Component {
 
             <Navbar className="sidebar">
               <Navbar.Collapse>
-                <Sidebar role={this.state.role} />
+                <Sidebar userState={userState.user} />
               </Navbar.Collapse>
             </Navbar>
             <div className="gridOf4">
