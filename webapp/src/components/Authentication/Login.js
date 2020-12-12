@@ -26,7 +26,8 @@ class Login extends Component {
     }
     if (Object.keys(newProps.auth).length > 0 ) {
       //console.log(JSON.stringify(newProps.auth));
-      this.props.history.push({pathname: '/dashboard', state: {userState: newProps.auth}});
+      //this.props.history.push({pathname: '/dashboard', state: {userState: newProps.auth}});
+      this.props.history.push('/dashboard');
     }
   }
 

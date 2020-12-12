@@ -6,6 +6,11 @@ import { connect } from 'react-redux';
 import { logoutUser } from '../../store/actions/user.action';
 import state from '../../store/state';
 
+const reduxProps = state => {
+  return ({
+    auth: state.user.authUser
+  })
+};
 
 class Sidebar extends Component {
 
@@ -48,12 +53,15 @@ generateLinks(menuItems){
 
   render() {
 
-    //alert(this.props.role);
-    /*role --> admin = 1, student = 2, teacher = 3*/
-    console.log("state = " + JSON.stringify(this.props.userState));
+    let userState = this.props.auth;
+    console.log(userState);
 
-    let role = this.props.userState.role;
-    console.log(role);
+    /*role --> admin = 1, student = 2, teacher = 3*/
+    //console.log("state = " + JSON.stringify(this.props.userState));
+    //let role = this.props.userState.role;
+
+    let role = this.props.auth.user.role;
+    alert(role);
     let menuItems = this.state.menu.filter(el => {
 
       if (role == "Student") {
@@ -91,10 +99,6 @@ generateLinks(menuItems){
 
 
 
-const reduxProps = state => {
-  return ({
-    auth: state.user.authUser
-  })
-};
+
 
 export default connect(reduxProps, {logoutUser})(Sidebar);

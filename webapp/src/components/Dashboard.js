@@ -40,18 +40,18 @@ class Dashboard extends React.Component {
 
     render()
     {
-        let userState = this.props.location.state.userState;
-        //console.log(userState.user);
+        //let userState = this.props.location.state.userState;
         const getCourseArray = this.state.Courses;
 
         return (
             <>
             <NavBar/>
             {/* <div className={`gridOf${getCourseArray.length}`}> */}
+            
 
             <Navbar className="sidebar">
               <Navbar.Collapse>
-                <Sidebar userState={userState.user} />
+                <Sidebar />
               </Navbar.Collapse>
             </Navbar>
             <div className="gridOf4">
