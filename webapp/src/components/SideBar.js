@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Nav, NavItem } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import './SideBar.scss';
 import { connect } from 'react-redux';
-import { logoutUser } from '../../store/actions/user.action';
+import { logoutUser } from  '../store/actions/user.action';
 
 
 class Sidebar extends Component {

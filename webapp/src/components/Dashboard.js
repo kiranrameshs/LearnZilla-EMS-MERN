@@ -1,9 +1,8 @@
 import React from 'react'
 import NavBar from './NavBar'
-import Sidebar from './SideBar/SideBar'
+import Sidebar from './SideBar';
 import CourseContainer from './CourseContainer'
-import './../styles/Modules/CourseCards.scss'
-import './SideBar/SideBar.scss';
+//import './../styles/Modules/CourseCards.scss'
 import { Navbar,Nav, NavItem } from 'react-bootstrap' ;
 
 class Dashboard extends React.Component {

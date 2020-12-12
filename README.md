@@ -32,6 +32,8 @@ Mongo Atlas
  * npm install -g sass
  * npm install redux-mock-store --save-dev
  * npm i --save-dev enzyme enzyme-adapter-react-16
+ * npm install highcharts
+ * npm install highcharts-react-official
  --Integration
 
 
