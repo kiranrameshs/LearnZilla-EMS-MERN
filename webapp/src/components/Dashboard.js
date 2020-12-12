@@ -21,7 +21,8 @@ class Dashboard extends React.Component {
                 id:1,
                 title: "Web Design",
                 FinalGrade: "A"
-              },
+              }
+              ,
               {
                   id:2,
                   title: "Cloud Computing",
@@ -48,7 +49,7 @@ class Dashboard extends React.Component {
 
             <Navbar className="sidebar">
               <Navbar.Collapse>
-                <Sidebar role={this.state.role} alluser={this.state} />
+                <Sidebar role={this.state.role} />
               </Navbar.Collapse>
             </Navbar>
             <div className="gridOf4">
