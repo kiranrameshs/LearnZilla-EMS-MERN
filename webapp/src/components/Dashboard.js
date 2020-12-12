@@ -1,9 +1,12 @@
 import React from 'react'
 import NavBar from './NavBar'
-import Sidebar from './SideBar';
+// import Sidebar from './SideBar';
 import CourseContainer from './CourseContainer'
 //import './../styles/Modules/CourseCards.scss'
 import { Navbar,Nav, NavItem } from 'react-bootstrap' ;
+
+import Sidebar from './SideBar/SideBar'
+import './SideBar/SideBar.scss'
 
 class Dashboard extends React.Component {
 
@@ -12,7 +15,7 @@ class Dashboard extends React.Component {
         //should replace this hardcoded with a fetch API
         this.state = {
             User: "User1",
-            role: "Admin",
+            role: "Teacher",
             Courses: [
               {
                 id:1,

@@ -9,7 +9,7 @@ const index = (request, response) => {
 
    })
    .catch( handleError(response));
-   
+
 
 };
 
@@ -32,7 +32,11 @@ const create = (request, response) => {
     AssignmentService.create(newCourse)
     .then((assignment) => {
         response.status(200);
-        response.json(assignment);
+        response.json({
+          "status": 200,
+          "assignment": assignment,
+          "message": "Course created Successfully"
+        });
 
     })
     .catch(handleError(response));
@@ -87,7 +91,7 @@ const handleError = (error, response) => {
         })
 
     };
-    
+
 
 }
 
