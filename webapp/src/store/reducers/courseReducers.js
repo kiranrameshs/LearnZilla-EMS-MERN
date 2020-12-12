@@ -6,7 +6,7 @@ const initialState = courseState;
 export default function(state = initialState, action) {
   switch (action.type) {
     case CREATE_COURSE:
-     console.log(action);
+      console.log(action);
       return {
         ...state,
         courses: [...state.courses, action.payload],

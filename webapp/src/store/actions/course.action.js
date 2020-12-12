@@ -17,9 +17,10 @@ export const createCourse = courseData => dispatch => {
   .then(res => res.json())
   .then((responseJson) => {
     if (responseJson.status >= 200 && responseJson.status < 300) {
-      console.log(responseJson)
+      //console.log(responseJson)
       dispatch({ type: ActionTypes.CREATE_COURSE, payload: responseJson})
     } else {
+      alert(responseJson);
       dispatch({ type:ActionTypes.ERRORS, responseJson})
     }
   })

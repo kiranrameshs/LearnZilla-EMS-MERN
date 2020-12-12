@@ -70,6 +70,7 @@ const register = (request, response) => {
             response.json({
               "auth": request.body.role,
               "status": 200,
+              "registereduser": newUser,
               "message": "Successfully Registered"
             });
           }).catch(handleError(response));
