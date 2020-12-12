@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 import { createCourse } from '../../store/actions/course.action';
 import { removeError } from '../../store/actions/error.action';
 
-class Login extends Component {
+class CreateCourses extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
       coursename: '',
-      coursedesc: ''
+      coursedesc: '',
       coursestartdate: '',
       courseenddate: ''
     };
@@ -70,7 +70,7 @@ class Login extends Component {
         </FormGroup>
       </Form>
 
-  )
+    )
   }
 }
 
@@ -78,4 +78,4 @@ const reduxProps = state => {
   return ({courses: state.course.courses})
 };
 
-export default connect(reduxProps, { createCourse })(CreateCourse);
+export default connect(reduxProps, { createCourse })(CreateCourses);
