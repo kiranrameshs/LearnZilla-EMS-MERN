@@ -8,10 +8,9 @@ export default function(state = initialState, action) {
     case CREATE_COURSE:
       return {
         ...state,
-        courses: [action.payload, ...state.courses]
+        courses: action.payload,
+        //courses: [...state.courses, action.payload]
       };
-
-
 
     default:
       return state;

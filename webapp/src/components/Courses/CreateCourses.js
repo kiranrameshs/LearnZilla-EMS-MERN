@@ -23,7 +23,7 @@ class CreateCourses extends Component {
     if (newProps.errorMesage == undefined) {
         this.props.removeError()
     } else {
-      alert("Course is added successfully!");
+      alert("Redirect to Dashboard");
     }
     // if (Object.keys(newProps.auth).length > 0 ) {
     //   alert(newProps.auth);
@@ -39,7 +39,8 @@ class CreateCourses extends Component {
 
   submitForm(e){
     e.preventDefault();
-    this.props.loginUser(this.state);
+    this.props.createCourse(this.state);
+    alert("Course is added successfully!");
   }
 
   render(){

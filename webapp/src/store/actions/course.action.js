@@ -1,7 +1,7 @@
 import * as ActionTypes from './action-types';
 
 export const createCourse = courseData => dispatch => {
-  let createcourseUrl = '/courses/create/';
+  let createcourseUrl = '/courses';
   fetch(createcourseUrl, {
     method: 'POST',
     body: JSON.stringify({
@@ -16,7 +16,6 @@ export const createCourse = courseData => dispatch => {
   })
   .then(res => res.json())
   .then((responseJson) => {
-    alert(responseJson.message);
     if (responseJson.status >= 200 && responseJson.status < 300) {
       dispatch({ type: ActionTypes.CREATE_COURSE, payload: responseJson})
     } else {

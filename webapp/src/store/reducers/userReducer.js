@@ -10,7 +10,7 @@ export default function(state = initialState, action) {
         ...state,
         //users: [action.payload, ...state.users],
         //user: action.payload
-        authUser: action.payload    
+        authUser: action.payload
       };
 
     case LOGIN_USER:

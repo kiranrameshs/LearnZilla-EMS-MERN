@@ -32,7 +32,6 @@ const create = (request, response) => {
     .then((course) => {
         response.status(200);
         response.json(course);
-
     })
     .catch(handleError(response));
 
