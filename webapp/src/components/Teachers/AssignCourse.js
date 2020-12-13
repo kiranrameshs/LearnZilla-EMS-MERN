@@ -64,7 +64,7 @@ class AssignCourse extends Component {
   }
 
   updateTeacher(teacherid, courseid) {
-    let editUrl = "/teachers" + teacherid;
+    let editUrl = "/teachers/" + teacherid;
     fetch(editUrl, {
       method: 'PUT',
       body: JSON.stringify({
@@ -76,7 +76,8 @@ class AssignCourse extends Component {
     })
     .then(res => res.json())
     .then((responseJson) => {
-      console.log(responseJson);
+      alert("here")
+  //    console.log(responseJson);
     });
   }
 

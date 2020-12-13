@@ -6,7 +6,6 @@ const index = (request, response) => {
    .then( (teachers) => {
     response.status(200);
     response.json(teachers);
-
    })
    .catch( handleError(response));
 };
@@ -18,7 +17,6 @@ const get = (request, response) => {
         .then((teacher) => {
             response.status(200);
             response.json(user == null? {message:"User not present"}: teacher);
-
         })
         .catch(handleError(response));
 
@@ -43,8 +41,9 @@ const update = (request, response) => {
         response.json("Invalid Input");
         return response;
     }
-    const updateUser = Object.assign({ }, request.body);
-    TeacherService.update(id,updateUser)
+    const updateTeacher = Object.assign({ }, request.body);
+    alert("in controller");
+    TeacherService.update(id,updateTeacher)
         .then((teacher) => {
             response.status(200);
             response.json(user == null? {message:"User not present"}: teacher);
@@ -79,10 +78,7 @@ const handleError = (response) => {
         response.json({
             message: error.message
         })
-
     };
-
-
 }
 
 export default {
