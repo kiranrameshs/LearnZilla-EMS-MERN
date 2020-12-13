@@ -2,7 +2,15 @@ import React, {Component} from 'react';
 import {Form, FormGroup, FormControl, Button, FormLabel,} from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { createAssignment } from '../../store/actions/assignment.action';
+import { loginUser } from '../../store/actions/user.action';
 import { removeError } from '../../store/actions/error.action';
+
+
+// const userReduxProps = state => {
+//   return ({
+//     auth: state.user.authUser
+//   })
+// };
 
 class CreateAssignments extends Component {
 
@@ -46,7 +54,12 @@ class CreateAssignments extends Component {
   }
 
   render(){
+
+    let userState = this.props.auth;
+    console.log(userState);
+
     return(
+
       <Form onSubmit={this.submitForm}>
         <FormGroup controlId="assignmentname">
           <FormLabel>Assignment Name</FormLabel>
