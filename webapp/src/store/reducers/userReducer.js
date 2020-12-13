@@ -1,5 +1,5 @@
 import userState from '../state';
-import {REGISTER_USER, LOGIN_USER, LOGOUT_USER} from '../actions/action-types';
+import {REGISTER_USER, LOGIN_USER, LOGOUT_USER,UPDATE_USER} from '../actions/action-types';
 
 const initialState = userState;
 
@@ -23,6 +23,13 @@ export default function(state = initialState, action) {
         ...state,
         authUser: {}
       };
+    case UPDATE_USER:
+      return {
+        ...state,
+        user: action.payload
+      };
+
+    
 
     default:
       return state;

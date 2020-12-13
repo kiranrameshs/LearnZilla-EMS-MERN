@@ -8,7 +8,7 @@ import CourseAssignScores from './Grades/CourseAssignScores';
 import Dashboard from './Dashboard';
 import FeedBack from './Grades/AssignFeedback';
 import GradeAnalytics from './Grades/GradeAnalytics';
-import Profile from './Profile';
+import Profile from './Profile/ProfileContainer';
 
 class App extends Component {
 

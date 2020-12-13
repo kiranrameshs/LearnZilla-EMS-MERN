@@ -3,6 +3,7 @@ export const LOGIN_USER = 'LOGIN_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
 
 export const GET_USER = 'GET_USER';
+export const UPDATE_USER = "UPDATE_USER";
 export const GET_COURSES = 'GET_COURSES';
 export const ADD_COURSE = 'ADD_COURSE';
 export const GET_COURSE = 'GET_COURSE';
