@@ -3,6 +3,7 @@ import profile from '../assets/profile.png'
 import { Navbar,Nav, NavItem } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { logoutUser } from '.././store/actions/user.action';
+import { gradeComponent } from './Grades/AllGradesContainer';
 
 class NavBar extends Component {
 
@@ -20,6 +21,12 @@ class NavBar extends Component {
       alert("User Logged Out! Log in here");
     }
 
+    routeToGrades(e){
+      e.preventDefault();
+
+    }
+
+
     componentDidMount() {
 
     }
@@ -35,7 +42,7 @@ class NavBar extends Component {
                 <ul className="nav navbar-nav">
                   <li className="active"><a href="#"><span className="glyphicon glyphicon-home"></span> Home</a></li>
                   <li><a>Courses</a></li>
-                  <li><a>Grade</a></li>
+                  <li><a href="/grades" onClick={this.routeToGrades}>Grades</a></li>
                 </ul>
                 <ul className="nav navbar-nav navbar-right">
                   <li><a href="#"><span className="glyphicon glyphicon-user"></span> My profile</a></li>
