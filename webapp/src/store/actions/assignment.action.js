@@ -1,6 +1,6 @@
 import * as ActionTypes from './action-types';
 
-export const createAssignment = assignmentData => dispatch => {
+export const createAssignment = (assignmentData, assignmentid) => dispatch => {
   let createAssignmentUrl = '/assignments';
   fetch(createAssignmentUrl, {
     method: 'POST',
@@ -18,7 +18,7 @@ export const createAssignment = assignmentData => dispatch => {
   .then(res => res.json())
   .then((responseJson) => {
     if (responseJson.status >= 200 && responseJson.status < 300) {
-      //console.log(responseJson.assignment)
+      assignmentid = responseJson.assignment;
       dispatch({ type: ActionTypes.CREATE_ASSIGNMENT, payload: responseJson.assignment})
     } else {
       //alert(responseJson);

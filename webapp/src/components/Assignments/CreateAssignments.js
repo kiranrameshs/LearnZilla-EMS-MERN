@@ -5,7 +5,7 @@ import { createAssignment } from '../../store/actions/assignment.action';
 import { removeError } from '../../store/actions/error.action';
 import { logoutUser } from '../../store/actions/user.action';
 
-const reduxProps = state => {
+const userreduxProps = state => {
   return ({
     auth: state.user.authUser
   })
@@ -23,23 +23,25 @@ class CreateAssignments extends Component {
       assignmentenddate: '',
       assignmentscrore: 0,
       teacherid: '',
-      courseid: ''
+      courseid: '',
+      assignmentid: ''
     };
     this.submitForm = this.submitForm.bind(this);
     this.handleInput = this.handleInput.bind(this);
-    this.getTeacherId = this.getTeacherId.bind(this);
+    this.getTeacherIdCourseId = this.getTeacherIdCourseId.bind(this);
   }
 
-  getTeacherId(url)  {
+  getTeacherIdCourseId(url)  {
     fetch(url, {
         method: 'GET'
       })
       .then(res => res.json())
       .then(
         (result) => {
-          console.log(result);
+          console.log(result.message[0]);
           this.setState({
-            teacherid: result
+            teacherid: result.message[0].id,
+            courseid: result.message[0].course
           });
         },
         (error) => {
@@ -48,6 +50,8 @@ class CreateAssignments extends Component {
         });
       }
     )
+
+
   }
 
   componentWillReceiveProps (newProps) {
@@ -68,22 +72,19 @@ class CreateAssignments extends Component {
 
   submitForm(e){
     e.preventDefault();
-    this.props.createAssignment(this.state);
+    this.props.createAssignment(this.state, this.state.assignmentid);
+    console.log(this.state.assignmentid);
     //alert("Assignment is added successfully!");
+    
     let userState = this.props.auth;
-    console.log(userState.user._id);
     let id = userState.user._id;
-    let url = "/teachers/" + id;
-    this.getTeacherId(url);
+    let url = "/users/teacher/" + id;
+    this.getTeacherIdCourseId(url);
+    //console.log(this.state.teacherid);
+    //console.log(this.state.courseid);
   }
 
   render(){
-    let userState = this.props.auth;
-    //console.log(userState.user._id);
-    let id = userState.user._id;
-    let url = "/teachers/" + id;
-    //  this.getTeacherId(url);
-
 
     return(
 
@@ -117,11 +118,11 @@ class CreateAssignments extends Component {
   }
 }
 
-// const reduxProps = state => {
-//   return ({
-//     assignments: state.assignment.assignments,
-//     errorMesage: state.errors.message
-//   })
-// };
+const reduxProps = state => {
+  return ({
+    assignments: state.assignment.assignments,
+    errorMesage: state.errors.message
+  })
+};
 
 export default connect(reduxProps, { createAssignment, removeError })(CreateAssignments);
