@@ -12,6 +12,7 @@ import Dashboard from './Dashboard';
 import FeedBack from './Grades/AssignFeedback';
 import GradeAnalytics from './Grades/GradeAnalytics';
 import Profile from './Profile';
+import SuccessPage from './SuccessPage/SuccessPage';
 
 class App extends Component {
 

@@ -8,8 +8,8 @@ class AssignCourse extends Component {
     super(props);
     this.state = {
       error: null,
-      teachername: '',
-      coursename: '',
+      teacherid: '',
+      courseid: '',
       teacherList: [],
       courseList: [],
       courseLoaded: false,
@@ -52,7 +52,7 @@ class AssignCourse extends Component {
             teacherLoaded: true,
             teacherList: result
           });
-          console.log(this.state.teacherList);
+        //  console.log(this.state.teacherList);
         },
         (error) => {
           this.setState({
@@ -61,7 +61,28 @@ class AssignCourse extends Component {
         });
       }
     )
+  }
 
+  updateTeacher(teacherid, courseid) {
+    fetch("/teachers", {
+        method: 'PUT'
+      })
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            teacherLoaded: true,
+            teacherList: result
+          });
+        //  console.log(this.state.teacherList);
+        },
+        (error) => {
+          this.setState({
+            teacherLoaded: false,
+            error
+        });
+      }
+    )
   }
 
   componentDidMount() {
@@ -70,22 +91,28 @@ class AssignCourse extends Component {
   }
 
   handleInput(e) {
-    let name = e.target.id
-    let val = e.target.value
-    this.setState({[name]: val})
+    let id = e.target.id;
+    let val = e.target.value;
+    console.log(id);
+    console.log(val);
+    this.setState({
+      [id]: val
+    });
+
   }
 
   submitForm(e){
     e.preventDefault();
-
-    alert("Course is added successfully!");
+    console.log(e);
+  //  this.updateTeacher(this.state.teacherid, this.state.courseid);
+    alert("Course is assigned successfully!");
     alert("Redirect to Dashboard");
     this.props.history.push('/dashboard')
 
   }
 
   render(){
-    //console.log(this.state.courseList);
+      //console.log(this.state.courseList);
       if (this.state.error) {
         return <div>Error: {this.state.error.message}</div>;
       } else if (!this.state.courseLoaded) {
@@ -93,7 +120,7 @@ class AssignCourse extends Component {
       } else {
         return(
           <Form onSubmit={this.submitForm}>
-            <FormGroup controlId="teachername">
+            <FormGroup controlId="teacherid">
               <FormLabel>Teacher Name</FormLabel>
               <FormControl as="select" value={this.state.value} onChange={this.handleInput}>
                 <option>Select Teacher</option>
@@ -101,7 +128,7 @@ class AssignCourse extends Component {
               </FormControl>
             </FormGroup>
 
-            <FormGroup controlId="coursename">
+            <FormGroup controlId="courseid">
               <FormLabel>Course Name</FormLabel>
               <FormControl as="select" value={this.state.value} onChange={this.handleInput}>
                 <option>Select Course</option>

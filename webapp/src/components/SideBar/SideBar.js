@@ -53,13 +53,13 @@ generateLinks(menuItems){
 
   render() {
 
-    let userState = this.props.auth.user;
+    let userState = this.props.auth;
     let role;
     /*role --> admin = 1, student = 2, teacher = 3*/
     if (this.props.auth.user == undefined) {
       role = "Admin";
     } else {
-      console.log(userState);
+      console.log(this.props.auth.user);
       role = this.props.auth.user.role;
     }
     alert(role);
