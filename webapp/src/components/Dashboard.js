@@ -12,7 +12,6 @@ import { connect } from 'react-redux';
 import { getCoursesDetails } from './../store/actions/grade.action';
 
 
-
 const reduxProps = state => {
     return ({
         courses: state.grades.courses
@@ -42,6 +41,7 @@ class Dashboard extends React.Component {
         <Navbar className="sidebar">
               <Navbar.Collapse>
                 <Sidebar role={this.state.role} />
+                <Sidebar />
               </Navbar.Collapse>
         </Navbar>
         <h1>Dashboard</h1>
@@ -51,7 +51,7 @@ class Dashboard extends React.Component {
         </>
         );
 
-        
+  
     }
 
 }
