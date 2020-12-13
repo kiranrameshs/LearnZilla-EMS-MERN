@@ -64,25 +64,20 @@ class AssignCourse extends Component {
   }
 
   updateTeacher(teacherid, courseid) {
-    fetch("/teachers", {
-        method: 'PUT'
-      })
-      .then(res => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            teacherLoaded: true,
-            teacherList: result
-          });
-        //  console.log(this.state.teacherList);
-        },
-        (error) => {
-          this.setState({
-            teacherLoaded: false,
-            error
-        });
-      }
-    )
+    let editUrl = "/teachers" + teacherid;
+    fetch(editUrl, {
+      method: 'PUT',
+      body: JSON.stringify({
+          "course": courseid,
+          "salary": 50000.00
+        }
+      ),
+      headers: {"Content-Type": "application/json"}
+    })
+    .then(res => res.json())
+    .then((responseJson) => {
+      console.log(responseJson);
+    });
   }
 
   componentDidMount() {
@@ -93,8 +88,8 @@ class AssignCourse extends Component {
   handleInput(e) {
     let id = e.target.id;
     let val = e.target.value;
-    console.log(id);
-    console.log(val);
+    //console.log(id);
+    //console.log(val);
     this.setState({
       [id]: val
     });
@@ -103,12 +98,11 @@ class AssignCourse extends Component {
 
   submitForm(e){
     e.preventDefault();
-    console.log(e);
-  //  this.updateTeacher(this.state.teacherid, this.state.courseid);
-    alert("Course is assigned successfully!");
-    alert("Redirect to Dashboard");
+    let teacherid = this.state.teacherid;
+    let courseid = this.state.courseid;
+    this.updateTeacher(teacherid, courseid);
+    alert("Course is assigned successfully! Redirect to SuccessPage");
     this.props.history.push('/success');
-
   }
 
   render(){
