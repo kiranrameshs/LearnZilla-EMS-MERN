@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Nav, NavItem } from 'react-bootstrap';
+import { BrowserRouter, Route, } from 'react-router-dom';
+import Login from '../Authentication/Login';
 import { Link } from 'react-router-dom';
 import './SideBar.scss';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../store/actions/user.action';
-import state from '../../store/state';
+
 
 const reduxProps = state => {
   return ({
@@ -52,17 +54,16 @@ generateLinks(menuItems){
   }
 
   render() {
-
-    let userState = this.props.auth;
+    let userState;
     let role;
     /*role --> admin = 1, student = 2, teacher = 3*/
-    if (this.props.auth.user == undefined) {
-      role = "Admin";
+
+    if (this.props.auth === undefined) {
+        role = "Admin"
     } else {
-      //console.log(this.props.auth.user);
-      role = this.props.auth.user.role;
+      userState = this.props.auth.user
+      role = this.props.auth.user.role
     }
-    //alert(role);
 
     let menuItems = this.state.menu.filter(el => {
 

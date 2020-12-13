@@ -6,11 +6,11 @@ import { loginUser } from '../../store/actions/user.action';
 import { removeError } from '../../store/actions/error.action';
 
 
-// const userReduxProps = state => {
-//   return ({
-//     auth: state.user.authUser
-//   })
-// };
+const userReduxProps = state => {
+  return ({
+    auth: state.user.authUser
+  })
+};
 
 class CreateAssignments extends Component {
 
