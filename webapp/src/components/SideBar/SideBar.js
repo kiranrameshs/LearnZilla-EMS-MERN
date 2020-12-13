@@ -23,6 +23,7 @@ class Sidebar extends Component {
       {name: "All Users", url: "/all-users", role: 1},
       {name: "My Courses", url: "/dashboard", role: 0},
       {name: "Create Course", url: "/courses/create", role: 1},
+      {name: "Assign teacher with Course", url: "/courses/create", role: 1},
       {name: "Create User", url: "/register", role: 1},
       {name: "Create Assignment", url: "/assignments/create", role: 3},
       {name: "Grade Assignment", url: "/assignments/edit", role: 3},
@@ -54,12 +55,16 @@ generateLinks(menuItems){
   render() {
 
     let userState = this.props.auth;
-    console.log(userState);
-
+    let role;
     /*role --> admin = 1, student = 2, teacher = 3*/
-
-    let role = this.props.auth.user.role;
+    if (this.props.auth.user == undefined) {
+      role = "Admin";
+    } else {
+      console.log(userState);
+      role = this.props.auth.user.role;
+    }
     alert(role);
+
     let menuItems = this.state.menu.filter(el => {
 
       if (role == "Student") {
@@ -94,9 +99,5 @@ generateLinks(menuItems){
           )
   }
 }
-
-
-
-
 
 export default connect(reduxProps, {logoutUser})(Sidebar);
