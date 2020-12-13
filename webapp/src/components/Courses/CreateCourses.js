@@ -24,8 +24,8 @@ class CreateCourses extends Component {
         this.props.removeError()
     } else {
       alert("Course is added successfully!");
-      alert("Redirect to Dashboard");
-      this.props.history.push('/dashboard')
+      alert("Redirect to SuccessPage");
+      this.props.history.push('/success')
     }
     // if (Object.keys(newProps.auth).length > 0 ) {
     //   alert(newProps.auth);

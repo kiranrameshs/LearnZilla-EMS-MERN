@@ -59,7 +59,7 @@ generateLinks(menuItems){
     if (this.props.auth.user == undefined) {
       role = "Admin";
     } else {
-      console.log(this.props.auth.user);
+      //console.log(this.props.auth.user);
       role = this.props.auth.user.role;
     }
     alert(role);

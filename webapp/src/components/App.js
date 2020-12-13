@@ -32,6 +32,7 @@ class App extends Component {
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/analytics" component={GradeAnalytics} />
             <Route path="/profile" component={Profile} />
+            <Route path="/success" component={SuccessPage} />
 
         </Switch>
       </BrowserRouter>

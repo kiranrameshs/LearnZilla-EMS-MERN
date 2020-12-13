@@ -107,7 +107,7 @@ class AssignCourse extends Component {
   //  this.updateTeacher(this.state.teacherid, this.state.courseid);
     alert("Course is assigned successfully!");
     alert("Redirect to Dashboard");
-    this.props.history.push('/dashboard')
+    this.props.history.push('/success');
 
   }
 
