@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logoutUser } from '../store/actions/user.action';
 
+
 class Sidebar extends Component {
 
   constructor(props) {
@@ -48,7 +49,7 @@ generateLinks(menuItems){
 
     //alert(this.props.role);
     /*role --> admin = 1, student = 2, teacher = 3*/
-
+    
     let role = this.props.role;
     let menuItems = this.state.menu.filter(el => {
 
@@ -73,7 +74,7 @@ generateLinks(menuItems){
     })
 
     let finalLinks = this.generateLinks(menuItems)
-    console.log(finalLinks);
+    //console.log(finalLinks);
 
       return(<Nav>
               {finalLinks}
