@@ -11,7 +11,6 @@ const search = (id) => {
 const get = (id) => {
     const promise = teachers.findById(id).exec();
     return promise;
-
 }
 
 const create = (teacher) => {

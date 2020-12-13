@@ -70,6 +70,11 @@ class CreateAssignments extends Component {
     e.preventDefault();
     this.props.createAssignment(this.state);
     //alert("Assignment is added successfully!");
+    let userState = this.props.auth;
+    console.log(userState.user._id);
+    let id = userState.user._id;
+    let url = "/teachers/" + id;
+    this.getTeacherId(url);
   }
 
   render(){
@@ -77,7 +82,7 @@ class CreateAssignments extends Component {
     //console.log(userState.user._id);
     let id = userState.user._id;
     let url = "/teachers/" + id;
-    this.getTeacherId(url);
+    //  this.getTeacherId(url);
 
 
     return(
