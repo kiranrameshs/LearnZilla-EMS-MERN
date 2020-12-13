@@ -23,7 +23,7 @@ class Sidebar extends Component {
       {name: "All Users", url: "/all-users", role: 1},
       {name: "My Courses", url: "/dashboard", role: 0},
       {name: "Create Course", url: "/courses/create", role: 1},
-      {name: "Assign teacher with Course", url: "/courses/create", role: 1},
+      {name: "Assign Course to Teacher ", url: "/teachers/edit", role: 1},
       {name: "Create User", url: "/register", role: 1},
       {name: "Create Assignment", url: "/assignments/create", role: 3},
       {name: "Grade Assignment", url: "/assignments/edit", role: 3},
