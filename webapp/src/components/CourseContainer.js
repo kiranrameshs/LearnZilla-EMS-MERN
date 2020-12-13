@@ -1,17 +1,24 @@
 import React, { Component } from 'react'
 import CourseCards from './CourseCards'
+import { connect } from 'react-redux';
 
 class CourseContainer extends Component {
 
-    render() {
 
-        return this.props.getCourseArray.map((course)=>(
-            < CourseCards 
-            key={course.id}
-            course={course}
-            openCourseDetails={this.props.openCourseDetails} 
-            />
-        ));
+    constructor(props){
+        super(props);
+    }
+
+
+
+    render() {
+        let c = this.props.course;
+
+        return(
+            <>
+            <h2>{c.coursename + c.assignment}</h2>
+            </>
+        )
       
     }
 }

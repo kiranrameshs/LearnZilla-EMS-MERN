@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 
 const assignmentSchema = new mongoose.Schema({
+
   assignmentname: {
       type: String,
       required: [true, "Please check your data entry, no assignment name specified!"]
