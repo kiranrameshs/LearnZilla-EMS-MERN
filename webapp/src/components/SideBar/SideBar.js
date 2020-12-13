@@ -47,14 +47,13 @@ generateLinks(menuItems){
               <Link replace to={{pathname: exp.url}}>  {exp.name} </Link>
             </NavItem>
           </div>
-          )
-
+        )
     })
   }
 
   render() {
 
-    let userState = this.props.auth;
+    let userState = this.props.auth.user;
     let role;
     /*role --> admin = 1, student = 2, teacher = 3*/
     if (this.props.auth.user == undefined) {

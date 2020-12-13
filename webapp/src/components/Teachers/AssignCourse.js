@@ -12,7 +12,8 @@ class AssignCourse extends Component {
       coursename: '',
       teacherList: [],
       courseList: [],
-      courseLoaded: false
+      courseLoaded: false,
+      teacherLoaded: false
     };
     this.submitForm = this.submitForm.bind(this);
     this.handleInput = this.handleInput.bind(this);
@@ -41,10 +42,30 @@ class AssignCourse extends Component {
   }
 
   loadTeachers() {
+    fetch("/teachers", {
+        method: 'GET'
+      })
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            teacherLoaded: true,
+            teacherList: result
+          });
+          console.log(this.state.teacherList);
+        },
+        (error) => {
+          this.setState({
+            teacherLoaded: false,
+            error
+        });
+      }
+    )
 
   }
 
   componentDidMount() {
+    this.loadTeachers();
     this.loadCourses();
   }
 
@@ -76,9 +97,7 @@ class AssignCourse extends Component {
               <FormLabel>Teacher Name</FormLabel>
               <FormControl as="select" value={this.state.value} onChange={this.handleInput}>
                 <option>Select Teacher</option>
-                <option>Teacher 1</option>
-                <option>Teacher 2</option>
-                <option>Teacher 3</option>
+                {this.state.teacherList.map((t, index) => <option key={index} value={t.id} >{t.id}</option>)}
               </FormControl>
             </FormGroup>
 
@@ -86,7 +105,7 @@ class AssignCourse extends Component {
               <FormLabel>Course Name</FormLabel>
               <FormControl as="select" value={this.state.value} onChange={this.handleInput}>
                 <option>Select Course</option>
-                {this.state.courseList.map((c, index) => <option value={c.id} >{c.coursename}</option>)}
+                {this.state.courseList.map((c, index) => <option key={index} value={c.id} >{c.coursename}</option>)}
               </FormControl>
             </FormGroup>
 
