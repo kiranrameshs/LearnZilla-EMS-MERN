@@ -4,7 +4,7 @@ import NavBar from './NavBar';
 import Login from './Authentication/Login';
 import Register from './Authentication/Register';
 import CreateCourses from './Courses/CreateCourses';
-import AssignCourse from './Teachers/AssignCourse';
+import EditTeacher from './Teachers/EditTeacher';
 import CreateAssignments from './Assignments/CreateAssignments';
 import AllGradesContainer from './Grades/AllGradesContainer';
 import CourseAssignScores from './Grades/CourseAssignScores';
@@ -24,7 +24,7 @@ class App extends Component {
             <Route path="/login" key="login" component={Login} />
             <Route path="/register" component={Register} />
             <Route path="/courses/create" component={CreateCourses} />
-            <Route path="/teachers/edit" component={AssignCourse} />
+            <Route path="/teachers/edit" component={EditTeacher} />
             <Route path="/assignments/create" component={CreateAssignments} />
             <Route path="/home" component={NavBar} />
             <Route path="/grades" component={AllGradesContainer} />

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Form, FormGroup, FormControl, Button, FormLabel,} from 'react-bootstrap';
 import { removeError } from '../../store/actions/error.action';
 
-class AssignCourse extends Component {
+class EditTeacher extends Component {
 
   constructor(props) {
     super(props);
@@ -10,6 +10,7 @@ class AssignCourse extends Component {
       error: null,
       teacherid: '',
       courseid: '',
+      salary: 0,
       teacherList: [],
       courseList: [],
       courseLoaded: false,
@@ -63,21 +64,21 @@ class AssignCourse extends Component {
     )
   }
 
-  updateTeacher(teacherid, courseid) {
+  updateTeacher(teacherid, courseid, salary) {
     let editUrl = "/teachers/" + teacherid;
     fetch(editUrl, {
       method: 'PUT',
       body: JSON.stringify({
           "course": courseid,
-          "salary": 50000.00
+          "salary": salary
         }
       ),
       headers: {"Content-Type": "application/json"}
     })
     .then(res => res.json())
     .then((responseJson) => {
-      alert("here")
-  //    console.log(responseJson);
+  //    alert("here")
+      console.log(responseJson);
     });
   }
 
@@ -101,8 +102,9 @@ class AssignCourse extends Component {
     e.preventDefault();
     let teacherid = this.state.teacherid;
     let courseid = this.state.courseid;
-    this.updateTeacher(teacherid, courseid);
-    alert("Course is assigned successfully! Redirect to SuccessPage");
+    let salary = this.state.salary;
+    this.updateTeacher(teacherid, courseid, salary);
+    //alert("Course is assigned successfully! Redirect to SuccessPage");
     this.props.history.push('/success');
   }
 
@@ -131,6 +133,11 @@ class AssignCourse extends Component {
               </FormControl>
             </FormGroup>
 
+            <FormGroup controlId="salary">
+              <FormLabel>Salary</FormLabel>
+              <FormControl type="Number" value={this.state.value} placeholder="Enter Salary" onChange={this.handleInput} />
+            </FormGroup>
+
             <FormGroup>
               <Button type="submit">Assign Course</Button>
             </FormGroup>
@@ -141,4 +148,4 @@ class AssignCourse extends Component {
 }
 
 
-export default AssignCourse;
+export default EditTeacher;

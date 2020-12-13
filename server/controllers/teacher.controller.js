@@ -19,7 +19,6 @@ const get = (request, response) => {
             response.json(user == null? {message:"User not present"}: teacher);
         })
         .catch(handleError(response));
-
 };
 
 //add new user
@@ -35,18 +34,19 @@ const create = (request, response) => {
 
 //update specific user
 const update = (request, response) => {
+
     const id = request.params.id;
     if(id == undefined){
         response.status(200);
         response.json("Invalid Input");
         return response;
     }
-    const updateTeacher = Object.assign({ }, request.body);
-    alert("in controller");
+    const updateTeacher = Object.assign({}, request.body);
+
     TeacherService.update(id,updateTeacher)
         .then((teacher) => {
             response.status(200);
-            response.json(user == null? {message:"User not present"}: teacher);
+            response.json({message:"Teacher Updated Successfully"});
         })
         .catch(handleError(response));
 

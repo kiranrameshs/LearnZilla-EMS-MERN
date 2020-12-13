@@ -17,6 +17,4 @@ router.route('/:id')
 .put(TeacherController.update)
 .delete(TeacherController.remove);
 
-
-
 export default router;
