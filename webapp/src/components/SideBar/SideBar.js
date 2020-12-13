@@ -45,7 +45,7 @@ generateLinks(menuItems){
     return menuItems.map((exp,i) => {
         return (
           <div class="sidebarLinks">
-            <NavItem key={i} componentClass='span'>
+            <NavItem userid={this.props.auth.user._id} key={i} componentClass='span'>
               <Link replace to={{pathname: exp.url}}>  {exp.name} </Link>
             </NavItem>
           </div>
@@ -63,6 +63,7 @@ generateLinks(menuItems){
     } else {
       userState = this.props.auth.user
       role = this.props.auth.user.role
+    //  console.log(userState);
     }
 
     let menuItems = this.state.menu.filter(el => {
