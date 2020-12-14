@@ -10,6 +10,7 @@ class NavBar extends Component {
     constructor(props){
         super(props);
         this.logout = this.logout.bind(this);
+        this.deleteSession = this.deleteSession.bind(this);
         // this.state=props;
         // need to change this. can't directly assign props to the state. bad practice
     }
@@ -18,6 +19,7 @@ class NavBar extends Component {
       // alert("Logout");
       e.preventDefault();
       this.props.logoutUser();
+      this.deleteSession();
       alert("User Logged Out! Log in here");
     }
 
