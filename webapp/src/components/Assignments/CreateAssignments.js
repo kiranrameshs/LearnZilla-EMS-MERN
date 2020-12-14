@@ -11,6 +11,13 @@ const userreduxProps = state => {
   })
 };
 
+// const reduxProps = state => {
+//   return ({
+//     assignments: state.assignment.assignments,
+//     errorMesage: state.errors.message
+//   })
+// };
+
 class CreateAssignments extends Component {
 
   constructor(props) {
@@ -23,8 +30,7 @@ class CreateAssignments extends Component {
       assignmentenddate: '',
       assignmentscrore: 0,
       teacherid: '',
-      courseid: '',
-      assignmentid: ''
+      courseid: ''
     };
     this.submitForm = this.submitForm.bind(this);
     this.handleInput = this.handleInput.bind(this);
@@ -38,7 +44,7 @@ class CreateAssignments extends Component {
       .then(res => res.json())
       .then(
         (result) => {
-          console.log(result.message[0]);
+          //console.log(result.message[0]);
           this.setState({
             teacherid: result.message[0].id,
             courseid: result.message[0].course
@@ -55,7 +61,6 @@ class CreateAssignments extends Component {
   }
 
   componentWillReceiveProps (newProps) {
-    console.log("newProps " + newProps)
     if (newProps.errorMesage == undefined) {
         this.props.removeError()
     } else {
@@ -72,16 +77,16 @@ class CreateAssignments extends Component {
 
   submitForm(e){
     e.preventDefault();
-    this.props.createAssignment(this.state, this.state.assignmentid);
-    console.log(this.state.assignmentid);
-    //alert("Assignment is added successfully!");
-    
     let userState = this.props.auth;
     let id = userState.user._id;
     let url = "/users/teacher/" + id;
     this.getTeacherIdCourseId(url);
-    //console.log(this.state.teacherid);
-    //console.log(this.state.courseid);
+
+    this.props.createAssignment(this.state);
+    alert("Assignment is added successfully!");
+
+
+
   }
 
   render(){
@@ -118,11 +123,6 @@ class CreateAssignments extends Component {
   }
 }
 
-const reduxProps = state => {
-  return ({
-    assignments: state.assignment.assignments,
-    errorMesage: state.errors.message
-  })
-};
 
-export default connect(reduxProps, { createAssignment, removeError })(CreateAssignments);
+
+export default connect(userreduxProps, { createAssignment, removeError })(CreateAssignments);

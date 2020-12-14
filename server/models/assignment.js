@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import Course from './course';
 
 const assignmentSchema = new mongoose.Schema({
 
@@ -18,7 +19,11 @@ const assignmentSchema = new mongoose.Schema({
       type: Date,
       required: [true, "Please check your data entry, no assignment end date specified!"]
   },
-  assignmentscrore: Number
+  assignmentscrore: Number,
+  course: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Course'
+  }
 });
 
 assignmentSchema.virtual('id').get(function() {

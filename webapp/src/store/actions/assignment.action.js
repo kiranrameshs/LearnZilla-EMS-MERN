@@ -1,6 +1,6 @@
 import * as ActionTypes from './action-types';
 
-export const createAssignment = (assignmentData, assignmentid) => dispatch => {
+export const createAssignment = (assignmentData) => dispatch => {
   let createAssignmentUrl = '/assignments';
   fetch(createAssignmentUrl, {
     method: 'POST',
@@ -9,7 +9,8 @@ export const createAssignment = (assignmentData, assignmentid) => dispatch => {
       'assignmentdescription': assignmentData.assignmentdescription,
       'assignmentstartdate': assignmentData.assignmentstartdate,
       'assignmentenddate': assignmentData.assignmentenddate,
-      'assignmentscrore': assignmentData.assignmentscrore
+      'assignmentscrore': assignmentData.assignmentscrore,
+      'course': assignmentData.courseid
     }),
     headers: {
       "Content-Type": "application/json"
@@ -18,7 +19,6 @@ export const createAssignment = (assignmentData, assignmentid) => dispatch => {
   .then(res => res.json())
   .then((responseJson) => {
     if (responseJson.status >= 200 && responseJson.status < 300) {
-      assignmentid = responseJson.assignment;
       dispatch({ type: ActionTypes.CREATE_ASSIGNMENT, payload: responseJson.assignment})
     } else {
       //alert(responseJson);
@@ -31,4 +31,7 @@ export const createAssignment = (assignmentData, assignmentid) => dispatch => {
       payload: err.response
     })
   );
+
+
+
 };
