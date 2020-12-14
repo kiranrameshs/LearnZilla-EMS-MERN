@@ -13,6 +13,12 @@ export default function(state = initialState, action) {
         //courses: [...state.courses, action.payload]
       };
 
+    case GET_MY_COURSES:
+      console.log(action.payload);
+      return {
+        ...state,
+        courses: action.payload
+      }
     default:
       return state;
   }

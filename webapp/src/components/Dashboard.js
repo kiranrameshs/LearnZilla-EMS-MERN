@@ -11,6 +11,7 @@ import './SideBar/SideBar.scss';
 import { BrowserRouter, Route, } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getCoursesDetails } from './../store/actions/grade.action';
+
 import { logoutUser } from './../store/actions/user.action';
 
 
@@ -23,7 +24,7 @@ const reduxloginProps = state => {
 
 const reduxProps = state => {
     return ({
-        courses: state.grades.courses
+        courses: state.course.courses
       }
     )
   };
@@ -31,9 +32,8 @@ const reduxProps = state => {
 
 class Dashboard extends React.Component {
 
-
     componentDidMount() {
-        this.props.getCoursesDetails();
+        this.props.getMyCourses("5fd42d21feb2286945101366");
     }
 
     render(){

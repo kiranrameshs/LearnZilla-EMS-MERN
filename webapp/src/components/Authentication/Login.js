@@ -36,7 +36,6 @@ class Login extends Component {
     if (localStorage.getItem("user") === null) {
       localStorage.setItem("user", JSON.stringify(userDetails));
     }
-    
   }
 
   handleInput(e) {
