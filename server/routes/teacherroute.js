@@ -3,15 +3,15 @@ import TeacherController from '../controllers/teacher.controller';
 
 const router = express.Router();
 
-// all users / GET
-// add user  /POST
+// all teachers / GET
+// add teachers  /POST
 router.route('/')
 .get(TeacherController.index)
 .post(TeacherController.create);
 
-// get single user- GET /users/${id}
-// update single USER- PUT  /users/${id}
-// delete single USER- DELETE  /users/${id}
+// get single user- GET /teachers/${id}
+// update single USER- PUT  /teachers/${id}
+// delete single USER- DELETE  /teachers/${id}
 router.route('/:id')
 .get(TeacherController.get)
 .put(TeacherController.update)
