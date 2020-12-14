@@ -3,6 +3,7 @@ import profile from '../assets/profile.png'
 import { Navbar,Nav, NavItem } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { logoutUser } from '.././store/actions/user.action';
+import {Redirect} from 'react-router-dom';
 
 class NavBar extends Component {
 
@@ -18,6 +19,8 @@ class NavBar extends Component {
       e.preventDefault();
       this.props.logoutUser();
       alert("User Logged Out! Log in here");
+      window.location = '/';
+
     }
 
     componentDidMount() {

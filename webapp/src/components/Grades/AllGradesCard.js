@@ -5,6 +5,12 @@ import CourseAssignScores from './CourseAssignScores';
 import { connect } from 'react-redux';
 import { getCourseAssigns } from '../../store/actions/grade.action';
 
+const reduxProps = state => {
+  return ({
+    auth: state.user.authUser
+  })
+};
+
 class AllGradesCard extends Component {
 
     constructor(props){
@@ -17,18 +23,18 @@ class AllGradesCard extends Component {
         const itemKey = event.target.id;
 
         //navigate to CourseAssignScores component passing assignments as props
+        //window.location = '/HW-scores';
         return (
-          <CourseAssignScores courseAssigns={this.props.course.assignment}/>
-
+           <CourseAssignScores courseAssigns={this.props.course.assignment}/>
         );
-        
-         
+
+
       }
         switch(event.target.id){
             default:
             break;
         }
- 
+
     }
 
 
@@ -49,11 +55,11 @@ class AllGradesCard extends Component {
 
 //export default AllGradesCard;
 
-const reduxProps = state => {
-  return ({
-      //grades: state.grades.coursesGrades 
-  })
-};
+// const reduxProps = state => {
+//   return ({
+//       //grades: state.grades.coursesGrades
+//   })
+// };
 
 
 export default connect(reduxProps, { getCourseAssigns })(AllGradesCard);
