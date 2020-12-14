@@ -16,6 +16,7 @@ class Login extends Component {
     };
     this.submitForm = this.submitForm.bind(this);
     this.handleInput = this.handleInput.bind(this);
+    this.createSession = this.createSession.bind(this);
   }
 
   componentWillReceiveProps (newProps) {
@@ -25,8 +26,17 @@ class Login extends Component {
         this.props.removeError()
     }
     if (Object.keys(newProps.auth).length > 0 ) {
+      this.createSession(newProps.auth.user);
       this.props.history.push('/dashboard');
     }
+  }
+
+  createSession(userDetails) {
+    //first time add
+    if (localStorage.getItem("user") === null) {
+      localStorage.setItem("user", JSON.stringify(userDetails));
+    }
+    
   }
 
   handleInput(e) {

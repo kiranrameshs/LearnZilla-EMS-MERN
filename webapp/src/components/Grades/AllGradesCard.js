@@ -13,9 +13,9 @@ class AllGradesCard extends Component {
 
     handleClick = (event) => {
 
-      if (event.target.classList.contains('viewCourseScores')) {
+      if (event.target.classList.contains('courseGradeCard')) {
         const itemKey = event.target.id;
-
+        this.props.history.push('/HW-scores');
         //navigate to CourseAssignScores component passing assignments as props
         return (
           <CourseAssignScores courseAssigns={this.props.course.assignment}/>
