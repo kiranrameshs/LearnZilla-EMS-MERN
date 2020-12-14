@@ -1,16 +1,28 @@
 import React, { Component } from 'react';
-import { Table, Button } from 'react-bootstrap';
 import NavBar from '../NavBar';
 import UpdateProfile from './UpdateProfile';
 import UpdatePassword from './UpdatePassword';
 
 import { connect } from 'react-redux';
 import { registerUser } from '../../store/actions/user.action';
+import { logoutUser } from '../../store/actions/user.action';
 
+const userreduxProps = state => {
+  return ({
+    auth: state.user.authUser
+  })
+};
 
 class Profile extends Component {
 
+  componentDidMount(){
+   // this.props.logoutUser();
+    let userState = this.props.auth;
+    let id = userState.user._id;
+  }
+
     render() {
+     // let p =  this.props.logoutUser();
         return(
             <>
              <NavBar />
@@ -38,11 +50,12 @@ class Profile extends Component {
 
 
 //export default Profile;
-const reduxProps = state => {
-	return ({
-	  profile: state.user.authUser
-	})
-  };
+// const reduxProps = state => {
+// 	return ({
+//    // profile: state.user.authUser,
+//     auth: state.user.authUser
+// 	})
+//   };
   
   
-export default connect(reduxProps, { registerUser })(Profile);
+export default connect(userreduxProps, { registerUser,logoutUser })(Profile);

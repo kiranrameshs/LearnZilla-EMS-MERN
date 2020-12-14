@@ -21,6 +21,14 @@ class NavBar extends Component {
       alert("User Logged Out! Log in here");
     }
 
+    deleteSession(){
+      if (localStorage.getItem("user") === null) {
+       //
+      }
+      else
+        localStorage.removeItem("user");
+    }
+
     routeToGrades(e){
       e.preventDefault();
       //pass 

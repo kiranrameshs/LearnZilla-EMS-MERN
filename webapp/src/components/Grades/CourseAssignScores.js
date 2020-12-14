@@ -31,9 +31,9 @@ class CourseAssignScores extends Component {
       const itemKey = event.target.id;
 
       let data ={};
-      data.scores = [];
-      data.categories = []; 
-
+      data.scores = this.props.courseAssignScores.filter(x=>x.id != "").map( (x)=>{ return x.assignmentscrore});
+      data.categories = this.props.courseAssignScores.filter(x=>x.id != "").map( (x)=>{ return x.assignmentname}); 
+      this.props.history.push('/analytics');
       //navigate to analytics passing data as props
       return (
         <GradeAnalytics data={data}/>
@@ -48,7 +48,7 @@ class CourseAssignScores extends Component {
   }
 
   render() {
-    let homeWorks = this.props.courseAssignScores;//   bordered
+    let homeWorks = this.props.courseAssignScores.filter(x=>x.id != "");//   bordered
     return (
       <>
         <NavBar />

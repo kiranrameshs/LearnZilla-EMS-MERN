@@ -9,7 +9,6 @@ import CreateAssignments from './Assignments/CreateAssignments';
 import AllGradesContainer from './Grades/AllGradesContainer';
 import CourseAssignScores from './Grades/CourseAssignScores';
 import Dashboard from './Dashboard';
-import FeedBack from './Grades/AssignFeedback';
 import GradeAnalytics from './Grades/GradeAnalytics';
 import Profile from './Profile/ProfileContainer';
 import SuccessPage from './SuccessPage/SuccessPage';
@@ -29,10 +28,7 @@ class App extends Component {
             <Route path="/home" component={NavBar} />
             <Route path="/grades" component={AllGradesContainer} />
             <Route path="/HW-scores" component={CourseAssignScores} />
-            <Route path="/" component={Dashboard} />
-            <Route path="/dashboard" component={Dashboard} />
-            <Route path="/analytics" component={GradeAnalytics} />
-            <Route path="/profile" component={Profile} />
+            {/* <Route path="/" component={Dashboard} /> */}
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/analytics" component={GradeAnalytics} />
             <Route path="/profile" component={Profile} />

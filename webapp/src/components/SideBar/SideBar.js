@@ -24,6 +24,7 @@ class Sidebar extends Component {
       //{name: "All Courses", url: "/courses", role: 0},
       {name: "All Users", url: "/all-users", role: 1},
       {name: "My Courses", url: "/dashboard", role: 0},
+      {name: "My Profile", url: "/profile", role: 0},
       {name: "Create Course", url: "/courses/create", role: 1},
       {name: "Edit Teacher ", url: "/teachers/edit", role: 1},
       {name: "Create User", url: "/register", role: 1},
@@ -43,6 +44,7 @@ logout(e){
 /** Generating asll links depending on user role*/
 generateLinks(menuItems){
     return menuItems.map((exp,i) => {
+      if(this.props.auth){
         return (
           <div class="sidebarLinks">
             <NavItem userid={this.props.auth.user._id} key={i} componentClass='span'>
@@ -50,6 +52,9 @@ generateLinks(menuItems){
             </NavItem>
           </div>
         )
+
+      }
+       
     })
   }
 
