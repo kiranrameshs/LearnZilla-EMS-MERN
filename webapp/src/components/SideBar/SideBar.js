@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Nav, NavItem } from 'react-bootstrap';
+import { BrowserRouter, Route, } from 'react-router-dom';
+import Login from '../Authentication/Login';
 import { Link } from 'react-router-dom';
 import './SideBar.scss';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../store/actions/user.action';
-import state from '../../store/state';
+
 
 const reduxProps = state => {
   return ({
@@ -23,6 +25,7 @@ class Sidebar extends Component {
       {name: "All Users", url: "/all-users", role: 1},
       {name: "My Courses", url: "/dashboard", role: 0},
       {name: "Create Course", url: "/courses/create", role: 1},
+      {name: "Edit Teacher ", url: "/teachers/edit", role: 1},
       {name: "Create User", url: "/register", role: 1},
       {name: "Create Assignment", url: "/assignments/create", role: 3},
       {name: "Grade Assignment", url: "/assignments/edit", role: 3},
@@ -42,24 +45,27 @@ generateLinks(menuItems){
     return menuItems.map((exp,i) => {
         return (
           <div class="sidebarLinks">
-            <NavItem key={i} componentClass='span'>
+            <NavItem userid={this.props.auth.user._id} key={i} componentClass='span'>
               <Link replace to={{pathname: exp.url}}>  {exp.name} </Link>
             </NavItem>
           </div>
-          )
-
+        )
     })
   }
 
   render() {
-
-    let userState = this.props.auth;
-    console.log(userState);
-
+    let userState;
+    let role;
     /*role --> admin = 1, student = 2, teacher = 3*/
 
-    let role = this.props.auth.user.role;
-    alert(role);
+    if (this.props.auth === undefined) {
+        role = "Admin"
+    } else {
+      userState = this.props.auth.user
+      role = this.props.auth.user.role
+    //  console.log(userState);
+    }
+
     let menuItems = this.state.menu.filter(el => {
 
       if (role == "Student") {
@@ -94,9 +100,5 @@ generateLinks(menuItems){
           )
   }
 }
-
-
-
-
 
 export default connect(reduxProps, {logoutUser})(Sidebar);

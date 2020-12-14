@@ -1,62 +1,59 @@
-import AssignmentService from "../services/assignment.services";
+import TeacherService from "./../services/teacher.services";
 
-//fetch all assignments
+//fetch all users
 const index = (request, response) => {
-    AssignmentService.search({ })
-   .then( (assignments) => {
+    TeacherService.search({ })
+   .then( (teachers) => {
     response.status(200);
-    response.json(assignments);
+    response.json(teachers);
    })
    .catch( handleError(response));
-
-
 };
 
-//get specific assignment by id
+//get specific user by id
 const get = (request, response) => {
     const id = request.params.id;
-    AssignmentService.get(id)
-        .then((assignment) => {
+    console.log(id);
+    TeacherService.get(id)
+        .then((teacher) => {
             response.status(200);
-            response.json(assignment == null? {message:"assignment not present"}: assignment);
+            response.json({message: teacher});
         })
         .catch(handleError(response));
 };
 
-//add new assignment
+//add new user
 const create = (request, response) => {
-    const newCourse = Object.assign({ }, request.body);
-    AssignmentService.create(newCourse)
-    .then((assignment) => {
+    const newUser = Object.assign({ }, request.body);
+    TeacherService.create(newUser)
+    .then((teacher) => {
         response.status(200);
-        response.json({
-          "status": 200,
-          "assignment": assignment,
-          "message": "Course created Successfully"
-        });
+        response.json(teacher);
     })
     .catch(handleError(response));
 };
 
-//update specific assignment
+//update specific user
 const update = (request, response) => {
+
     const id = request.params.id;
     if(id == undefined){
         response.status(200);
         response.json("Invalid Input");
         return response;
     }
-    const updateassignment = Object.assign({ }, request.body);
-    AssignmentService.update(id,updateassignment)
-        .then((assignment) => {
+    const updateTeacher = Object.assign({}, request.body);
+
+    TeacherService.update(id,updateTeacher)
+        .then((teacher) => {
             response.status(200);
-            response.json(assignment == null? {message:"assignment not present"}: assignment);
+            response.json({message:"Teacher Updated Successfully"});
         })
         .catch(handleError(response));
 
 };
 
-//delete a assignment
+//delete a user
 const remove = (request, response) => {
     const id = request.params.id;
     if(id == undefined){
@@ -64,28 +61,25 @@ const remove = (request, response) => {
         response.json("Invalid Input");
         return response;
     }
-    AssignmentService.remove(id)
-        .then((assignment) => {
+    TeacherService.remove(id)
+        .then((user) => {
             response.status(200);
             response.json({
                 message: "Delete Sucessful"
             });
-
         })
         .catch(handleError(response));
 
 };
 
-const handleError = (error, response) => {
+const handleError = (response) => {
+    console.log(response)
     return (error) => {
         response.status(500);
         response.json({
             message: error.message
         })
-
     };
-
-
 }
 
 export default {

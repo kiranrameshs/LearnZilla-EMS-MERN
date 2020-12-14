@@ -16,7 +16,7 @@ class CourseContainer extends Component {
 
         return(
             <>
-            <h2>{c.coursename}</h2>
+            <h2>{c.coursename + c.assignment}</h2>
             </>
         )
       

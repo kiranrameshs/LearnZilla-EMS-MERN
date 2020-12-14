@@ -6,7 +6,7 @@ const initialState = assignmentState;
 export default function(state = initialState, action) {
   switch (action.type) {
     case CREATE_ASSIGNMENT:
-      console.log(action.payload);
+      //console.log(action.payload);
       return {
         ...state,
         assignments: action.payload
