@@ -31,6 +31,27 @@ const reduxProps = state => {
 
 class Dashboard extends React.Component {
 
+  constructor(props){
+    super(props);
+    //should replace this hardcoded with a fetch API
+    this.state = {
+        User: "User1",
+        role: "Teacher",
+        Courses: [
+          {
+            id:1,
+            title: "Web Design",
+            FinalGrade: "A"
+          }
+          ,
+          {
+              id:2,
+              title: "Cloud Computing",
+              FinalGrade: "A-"
+          }]
+    }
+}
+
     componentDidMount() {
         this.props.getCoursesDetails();
     }
