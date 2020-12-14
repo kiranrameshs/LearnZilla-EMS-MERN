@@ -1,4 +1,5 @@
-import assignments from "../models/assignment"
+import assignments from "../models/assignment";
+import courses from "../models/course";
 
 //Methods to perform CRUD actions on todo collection
 
@@ -11,7 +12,6 @@ const search = (id) => {
 const get = (id) => {
     const promise = assignments.findById(id).exec();
     return promise;
-
 }
 
 const create = (assignment) => {
@@ -19,6 +19,19 @@ const create = (assignment) => {
     const promise = newAssignment.save();
     return promise;
 }
+
+// const create = (assignment) => {
+//     const newAssignment = new assignments({
+//       'assignmentname': assignment.assignmentname,
+//       'assignmentdescription': assignment.assignmentdescription,
+//       'assignmentstartdate': assignment.assignmentstartdate,
+//       'assignmentenddate': assignment.assignmentenddate,
+//       'assignmentscrore': assignment.assignmentscrore,
+//       'courseid': assignment.courseid
+//     });
+//     const promise = newAssignment.save();
+//     return promise;
+// }
 
 const update = (id,assignment) => {
     const promise = assignments.findByIdAndUpdate(
@@ -30,7 +43,7 @@ const update = (id,assignment) => {
 
 const remove = (id,assignment) => {
     const promise = assignments.remove(
-        { _id: id}     
+        { _id: id}
     ).exec();
     return promise;
 
@@ -38,8 +51,8 @@ const remove = (id,assignment) => {
 
 var checkIDExists = (id) => {
     assignments.findOne({ _id: id }).select("_id").lean().then(result => {
-        if (result) 
-            return true;  //ID exists        
+        if (result)
+            return true;  //ID exists
         else
             return false;//ID does not exist
     });

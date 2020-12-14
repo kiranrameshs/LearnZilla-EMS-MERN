@@ -13,10 +13,11 @@ const index = (request, response) => {
 //get specific user by id
 const get = (request, response) => {
     const id = request.params.id;
+    console.log(id);
     TeacherService.get(id)
         .then((teacher) => {
             response.status(200);
-            response.json(user == null? {message:"User not present"}: teacher);
+            response.json({message: teacher});
         })
         .catch(handleError(response));
 };

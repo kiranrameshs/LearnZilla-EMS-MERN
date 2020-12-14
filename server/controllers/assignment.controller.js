@@ -6,7 +6,6 @@ const index = (request, response) => {
    .then( (assignments) => {
     response.status(200);
     response.json(assignments);
-
    })
    .catch( handleError(response));
 
@@ -20,10 +19,8 @@ const get = (request, response) => {
         .then((assignment) => {
             response.status(200);
             response.json(assignment == null? {message:"assignment not present"}: assignment);
-
         })
         .catch(handleError(response));
-
 };
 
 //add new assignment
@@ -37,11 +34,8 @@ const create = (request, response) => {
           "assignment": assignment,
           "message": "Course created Successfully"
         });
-
     })
     .catch(handleError(response));
-
-
 };
 
 //update specific assignment
@@ -57,7 +51,6 @@ const update = (request, response) => {
         .then((assignment) => {
             response.status(200);
             response.json(assignment == null? {message:"assignment not present"}: assignment);
-
         })
         .catch(handleError(response));
 
