@@ -19,9 +19,10 @@ export const createAssignment = (assignmentData) => dispatch => {
   .then(res => res.json())
   .then((responseJson) => {
     if (responseJson.status >= 200 && responseJson.status < 300) {
+      console.log(responseJson.assignment);
       dispatch({ type: ActionTypes.CREATE_ASSIGNMENT, payload: responseJson.assignment})
     } else {
-      //alert(responseJson);
+      console.log(responseJson.assignment);
       dispatch({ type:ActionTypes.ERRORS, responseJson})
     }
   })
@@ -32,6 +33,6 @@ export const createAssignment = (assignmentData) => dispatch => {
     })
   );
 
-
+//  alert("Assignment is added successfully!");
 
 };

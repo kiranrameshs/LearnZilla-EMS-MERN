@@ -56,8 +56,13 @@ class CreateAssignments extends Component {
         });
       }
     )
+  }
 
-
+  componentDidMount() {
+    let userState = this.props.auth;
+    let id = userState.user._id;
+    let url = "/users/teacher/" + id;
+    this.getTeacherIdCourseId(url);
   }
 
   componentWillReceiveProps (newProps) {
@@ -77,22 +82,13 @@ class CreateAssignments extends Component {
 
   submitForm(e){
     e.preventDefault();
-    let userState = this.props.auth;
-    let id = userState.user._id;
-    let url = "/users/teacher/" + id;
-    this.getTeacherIdCourseId(url);
-
+    console.log(this.state);
     this.props.createAssignment(this.state);
-    alert("Assignment is added successfully!");
-
-
-
   }
 
   render(){
 
     return(
-
       <Form onSubmit={this.submitForm}>
         <FormGroup controlId="assignmentname">
           <FormLabel>Assignment Name</FormLabel>
