@@ -1,4 +1,5 @@
 import StudentService from "./../services/student.services";
+import CourseService from "./../services/course.services"
 
 //fetch all users
 const index = (request, response) => {
@@ -72,6 +73,69 @@ const remove = (request, response) => {
 
 };
 
+const getCourses = (request, response) => {
+    console.log("in student controller getcourses")
+    const id = request.params.id;
+    if(id == undefined){
+        response.status(200);
+        response.json("Invalid Input");
+        return response;
+    }
+    console.log("id is "+id);
+    StudentService.get(id)
+        .then((student) => {
+            var studentCourseList = student.courses.map((c, i) => {
+                return c;
+            });
+            response.status(200);
+            response.json({
+                courses: studentCourseList
+            });
+        })
+};
+
+
+const getAssignments = (request, response) => {
+    console.log("in student controller getAssignments")
+    const studentid = request.params.studentid;
+    const courseid = request.params.courseid;
+    console.log("studentid is "+studentid);
+    console.log("courseid is "+courseid);
+    if(studentid == undefined){
+        response.status(200);
+        response.json("Invalid Input");
+        return response;
+    }
+    StudentService.get(studentid)
+        .then((student) => {
+            var studentCourseList = student.courses.map((c, i) => {
+                return c;
+            });
+            console.log("Fetching courses succesful "+studentCourseList)
+            var assignmentList = [];
+            for (let i in studentCourseList) {
+                console.log(studentCourseList[i])
+                if(studentCourseList[i] == courseid){
+                    console.log("found course ")
+                   CourseService.get(studentCourseList[i])
+                    .then((course) => {
+                        console.log("got course obj")
+                        for(let j in course.assignment){
+                            console.log("push each assignment")
+                            assignmentList.push(course.assignment[j]);
+                            response.status(200);
+                            response.json({
+                                assignments: assignmentList
+                            });
+                        }
+                    })
+                }
+            }
+            
+        })
+    }
+
+
 const handleError = (response) => {
     console.log(response)
     return (error) => {
@@ -87,5 +151,7 @@ export default {
     get: get,
     create: create,
     update: update,
-    remove: remove
+    remove: remove,
+    getCourses: getCourses,
+    getAssignments: getAssignments
 }

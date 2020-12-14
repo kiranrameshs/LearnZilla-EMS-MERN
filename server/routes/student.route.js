@@ -13,8 +13,14 @@ router.route('/')
 // update single USER- PUT  /students/${id}
 // delete single USER- DELETE  /students/${id}
 router.route('/:id')
-.get(TeacherController.get)
+.get(StudentController.get)
 .put(StudentController.update)
 .delete(StudentController.remove);
+
+router.route('/:id/courses')
+.get(StudentController.getCourses)
+
+router.route('/:studentid/:courseid/assignments')
+.get(StudentController.getAssignments)
 
 export default router;
