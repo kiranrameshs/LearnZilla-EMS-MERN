@@ -15,36 +15,30 @@ const userreduxProps = state => {
 
 class Profile extends Component {
 
-  componentDidMount(){
-   // this.props.logoutUser();
-    let userState = this.props.auth;
-    let id = userState.user._id;
-  }
+  // componentDidMount(){
+  //   let userState = JSON.parse(localStorage.getItem("user"));
+  //   let id = userState.user._id;
+  // }
 
     render() {
-     // let p =  this.props.logoutUser();
         return(
             <>
-             <NavBar />
-             
-             <div className="well profile">
-	<ul className="nav nav-tabs ">
-		<li className="active"><a href="#home" data-toggle="tab">Profile</a></li>
-		<li><a href="#profile" data-toggle="tab">Password</a></li>
-	</ul>
-	<div id="myTabContent" className="tab-content">
-		
-        <UpdateProfile />
-		<UpdatePassword />
-		
-	</div>
-</div>
+            <NavBar />
+
+            <div className="well profile">
+              <ul className="nav nav-tabs ">
+                <li className="active"><a href="#home" data-toggle="tab">Profile</a></li>
+                <li><a href="#profile" data-toggle="tab">Password</a></li>
+              </ul>
+              <div id="myTabContent" className="tab-content">
+
+                <UpdateProfile />
+                <UpdatePassword />
+
+              </div>
+            </div>
             </>
-            
-
-
         );
-      
     }
 }
 
