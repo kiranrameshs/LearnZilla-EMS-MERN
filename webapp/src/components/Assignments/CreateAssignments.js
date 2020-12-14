@@ -61,7 +61,7 @@ class CreateAssignments extends Component {
   componentDidMount() {
     let userState = this.props.auth;
     let id = userState.user._id;
-    let url = "/users/teacher/" + id;
+    let url = "/teachers/users/" + id;
     this.getTeacherIdCourseId(url);
   }
 
@@ -84,6 +84,7 @@ class CreateAssignments extends Component {
     e.preventDefault();
     console.log(this.state);
     this.props.createAssignment(this.state);
+    this.props.history.push('/success');
   }
 
   render(){

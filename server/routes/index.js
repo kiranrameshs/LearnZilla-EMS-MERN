@@ -12,5 +12,5 @@ export default (app) => {
     app.use('/courses', CourseRouter );
     app.use('/assignments', AssignmentRouter );
     app.use('/teachers', TeacherRouter );
-    app.use('/users/teacher', TeacherByUserRouter );
+    app.use('/teachers/users', TeacherByUserRouter );
 }
