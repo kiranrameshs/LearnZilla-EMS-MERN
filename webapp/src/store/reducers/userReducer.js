@@ -8,19 +8,22 @@ export default function(state = initialState, action) {
     case REGISTER_USER:
       return {
         ...state,
-        users: [action.payload, ...state.users],
-        user: action.payload
+        //users: [action.payload, ...state.users],
+        //user: action.payload,
+        authUser: action.payload
       };
 
     case LOGIN_USER:
       return {
         ...state,
+        user: action.payload.user,
         authUser: action.payload
       };
 
     case LOGOUT_USER:
       return {
         ...state,
+        //user: {},
         authUser: {}
       };
     case UPDATE_USER:

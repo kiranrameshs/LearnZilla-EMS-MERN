@@ -6,13 +6,38 @@
     background-color: wheat;
 }
 
-.courseFinalGrade {
+.courseGradeCard {
     display: grid;
-    width: 650px;
+    width: 500px;
     background-color: whitesmoke;
-    border-radius: 25px;
     text-align: center;
     padding: 5px;
+    box-shadow: 3px 3px lavenderblush;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.courseHeading {
+    background-color: lightseagreen;
+    padding: 5px;
+    font-size: large;
+    font-family: sans-serif;
+    color: aliceblue;
+    font-weight: bolder;
+}
+
+.finalGrade{
+    width: 50px;
+    font-size: xxx-large;
+    margin-left: 175px;
+    font-weight: bold;
+    font-family: sans-serif;
+    color: darkgoldenrod;
+}
+
+.viewCourseScores {
+    width: 100px;
+    margin-left: 175px;
 }
 
 .chart {

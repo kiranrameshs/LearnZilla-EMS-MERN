@@ -53,12 +53,7 @@ class CourseAssignScores extends Component {
       <>
         <NavBar />
         <>
-         <div> 
-         <a onClick={this.handleClick} className="btn btn-info btn-lg">
-          <span className="glyphicon glyphicon-signal"></span> Analytics 
-        </a>
-         </div>
-          <Table responsive striped condensed hover>
+          <Table responsive striped condensed >
             <thead>
               <tr>
                 <th> </th>

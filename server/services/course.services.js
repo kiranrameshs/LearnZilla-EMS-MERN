@@ -5,7 +5,6 @@ import courses from "../models/course"
 const search = (id) => {
     const promise = courses.find(id).exec();
     return promise;
-
 }
 
 const get = (id) => {
@@ -21,7 +20,7 @@ const create = (course) => {
 }
 
 const update = (id,course) => {
-   
+
     const promise = courses.findByIdAndUpdate(
         { _id: id},
         course,
@@ -32,7 +31,7 @@ const update = (id,course) => {
 
 const remove = (id,course) => {
     const promise = courses.remove(
-        { _id: id}     
+        { _id: id}
     ).exec();
     return promise;
 
@@ -40,8 +39,8 @@ const remove = (id,course) => {
 
 var checkIDExists = (id) => {
     courses.findOne({ _id: id }).select("_id").lean().then(result => {
-        if (result) 
-            return true;  //ID exists        
+        if (result)
+            return true;  //ID exists
         else
             return false;//ID does not exist
     });

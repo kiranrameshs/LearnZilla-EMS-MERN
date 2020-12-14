@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
 import { Nav, NavItem } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import './SideBar.scss';
 import { connect } from 'react-redux';
-import { logoutUser } from '../store/actions/user.action';
+import { logoutUser } from '../../store/actions/user.action';
+import state from '../../store/state';
 
+const reduxProps = state => {
+  return ({
+    auth: state.user.authUser
+  })
+};
 
 class Sidebar extends Component {
 
@@ -19,7 +26,6 @@ class Sidebar extends Component {
       {name: "Create User", url: "/register", role: 1},
       {name: "Create Assignment", url: "/assignments/create", role: 3},
       {name: "Grade Assignment", url: "/assignments/edit", role: 3},
-
     ]}
 
     this.logout = this.logout.bind(this);
@@ -47,10 +53,13 @@ generateLinks(menuItems){
 
   render() {
 
-    //alert(this.props.role);
+    let userState = this.props.auth;
+    console.log(userState);
+
     /*role --> admin = 1, student = 2, teacher = 3*/
-    
-    let role = this.props.role;
+
+    let role = this.props.auth.user.role;
+    alert(role);
     let menuItems = this.state.menu.filter(el => {
 
       if (role == "Student") {
@@ -74,7 +83,7 @@ generateLinks(menuItems){
     })
 
     let finalLinks = this.generateLinks(menuItems)
-    //console.log(finalLinks);
+    // console.log(finalLinks);
 
       return(<Nav>
               {finalLinks}
@@ -88,10 +97,6 @@ generateLinks(menuItems){
 
 
 
-const reduxProps = state => {
-  return ({
-    auth: state.user.authUser
-  })
-};
+
 
 export default connect(reduxProps, {logoutUser})(Sidebar);
