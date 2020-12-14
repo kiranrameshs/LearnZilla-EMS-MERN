@@ -19,7 +19,7 @@ class UpdatePassword extends Component {
         else {
             let data = {};
             data.password = pwd1;
-            let id="5fd4529dfeb228694510137f";
+            let id = JSON.parse(localStorage.getItem("user")).id;
             this.props.updateUser(id,data);
 
         }
