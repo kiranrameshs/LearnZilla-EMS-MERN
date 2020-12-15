@@ -5,12 +5,6 @@ import CourseAssignScores from './CourseAssignScores';
 import { connect } from 'react-redux';
 import { getCourseAssigns } from '../../store/actions/grade.action';
 
-const reduxProps = state => {
-  return ({
-    auth: state.user.authUser
-  })
-};
-
 class AllGradesCard extends Component {
 
     constructor(props){
@@ -53,13 +47,13 @@ class AllGradesCard extends Component {
 
 }
 
-//export default AllGradesCard;
+export default AllGradesCard;
 
-// const reduxProps = state => {
-//   return ({
-//       //grades: state.grades.coursesGrades
-//   })
-// };
+const reduxProps = state => {
+  return ({
+      //grades: state.grades.coursesGrades
+  })
+};
 
 
 export default connect(reduxProps, { getCourseAssigns })(AllGradesCard);
