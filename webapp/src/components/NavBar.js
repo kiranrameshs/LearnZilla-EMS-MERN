@@ -23,16 +23,18 @@ class NavBar extends Component {
       this.props.logoutUser();
       this.deleteSession();
       alert("User Logged Out! Log in here");
-      window.location = '/';
+      window.location = '/login';
 
     }
 
     deleteSession(){
       if (localStorage.getItem("user") === null) {
-       //
+       
       }
       else
         localStorage.removeItem("user");
+        localStorage.removeItem("roleid");
+
     }
 
     routeToGrades(e){
@@ -52,7 +54,7 @@ class NavBar extends Component {
         let fname = "Ron";//this.props.fname;
         return (
           <>
-            <nav className="navbar navbar-inverse">
+            <nav className="navbar navbar-inverse navbar-fixed">
               <div className="container-fluid">
                 <div className="navbar-header">
                   <a className="navbar-brand" href="#"> <span className="glyphicon glyphicon-education"></span> LearnZilla</a>

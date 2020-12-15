@@ -22,6 +22,8 @@ const create = (student) => {
 }
 
 const update = (id,student) => {
+    console.log(id);
+    console.log(student)
     const promise = students.findByIdAndUpdate(
         { _id: id},
         student,
@@ -55,9 +57,9 @@ var checkIDExists = (id) => {
 //             var studentCourseList = student.courses.map((c, i) => {
 //                 return c;
 //             });
-            
+
 //         })
-//         .catch(handleError()); 
+//         .catch(handleError());
 //         console.log("returning studentCourseList "+studentCourseList)
 //         return studentCourseList;
 // }
@@ -75,7 +77,7 @@ var checkIDExists = (id) => {
 //             console.log("returning studentCourseList "+studentCourseList)
 //             return studentCourseList;
 //         })
-//         .catch(handleError()); 
+//         .catch(handleError());
 
 //     students.findById(id)
 //     .then((student) => {
@@ -103,6 +105,3 @@ export default {
     // getStudentCourseAssignment: getStudentCourseAssignment,
     handleError: handleError
 }
-
-
-

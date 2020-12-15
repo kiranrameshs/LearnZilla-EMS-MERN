@@ -6,24 +6,17 @@ import './../styles/Modules/CourseCards.scss'
 import { Navbar,Nav, NavItem } from 'react-bootstrap' ;
 // import './styles/CourseCards.scss'
 import Sidebar from './SideBar/SideBar';
-import Login from './Authentication/Login';
 import './SideBar/SideBar.scss';
-import { BrowserRouter, Route, } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getCoursesDetails } from './../store/actions/grade.action';
-import { logoutUser } from './../store/actions/user.action';
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 
+import { getMyCourses } from './../store/actions/course.action';
 
-const reduxloginProps = state => {
-  return ({
-    auth: state.user.authUser
-  })
-};
 
 
 const reduxProps = state => {
     return ({
-        courses: state.grades.courses
+      courses: state.course.courseState      
       }
     )
   };
@@ -31,19 +24,53 @@ const reduxProps = state => {
 
 class Dashboard extends React.Component {
 
+  constructor(props){
+    super(props);
+    let userState = JSON.parse(localStorage.getItem("user"));
+    let id = userState._id;
+    console.log("userId is " + id)
+    let role = userState.role;
+    let URL;
+    if(role==="Teacher"){
+      URL = "/teachers/users/"
+    } else if(role==="Student"){
+      URL = "/students/users/"
+    }
 
-    componentDidMount() {
-        this.props.getCoursesDetails();
+  let roleID;
+    fetch(URL+id, {
+        method: 'GET',
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+      .then(res => res.json())
+      .then((responseJson) => {
+          console.log("Role id is " + responseJson.message[0].id);
+          roleID =  (responseJson.message[0].id);
+          if (localStorage.getItem("roleid") === null) {
+            localStorage.setItem("roleid", (roleID));
+          }
+          this.props.getMyCourses(roleID);
+
+      })
+      .catch(err => alert(err)
+      );
+    
+    
+  }
+  
+  componentDidMount() {
+
+
     }
 
     render(){
-
-        const courseList = this.props.courses.map((c, i) => {
-            return (
-            <CourseContainer key={i} course={c}>
-            </CourseContainer>
-            )
-        });
+    let courses = this.props.courses.courses!==undefined? this.props.courses.courses: this.props.courses
+      // console.log(this.props.courses[0])
+      const CourseList = courses.map((c, i ) =>{
+        return(console.log(c) );
+      })
         return (
         <>
         <NavBar />
@@ -55,7 +82,7 @@ class Dashboard extends React.Component {
         <h1>Dashboard</h1>
         <div className="gridOf4">
         <ul >
-            {courseList}
+            {/* {courseList} */}
         </ul>
         </div>
 
@@ -63,4 +90,4 @@ class Dashboard extends React.Component {
         );
     }
 }
-export default connect(reduxProps, { getCoursesDetails })(Dashboard);
+export default connect(reduxProps, {getMyCourses})(Dashboard);
