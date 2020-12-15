@@ -28,10 +28,12 @@ class NavBar extends Component {
 
     deleteSession(){
       if (localStorage.getItem("user") === null) {
-       //
+       
       }
       else
         localStorage.removeItem("user");
+        localStorage.removeItem("roleid");
+
     }
 
     routeToGrades(e){

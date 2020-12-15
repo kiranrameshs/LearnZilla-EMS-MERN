@@ -44,9 +44,9 @@ export const getMyCourses = (studentId) => dispatch => {
   })
   .then(res => res.json())
   .then((responseJson) => {
-      //console.log(responseJson.courses)
+      console.log(responseJson.courses)
       dispatch({ type: ActionTypes.GET_MY_COURSES, payload: responseJson.courses})
-      //alert(responseJson);
+      // alert(responseJson.courses);
       // dispatch({ type:ActionTypes.ERRORS, responseJson})
     
   })

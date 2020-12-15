@@ -36,6 +36,15 @@ class Login extends Component {
     if (localStorage.getItem("user") === null) {
       localStorage.setItem("user", JSON.stringify(userDetails));
     }
+
+    
+
+      // if (localStorage.getItem("user") === null) {
+      //     localStorage.setItem("user", JSON.stringify(userDetails));
+      //   }
+      // if (localStorage.getItem("roleid") === null) {
+      //   localStorage.setItem("roleid", JSON.stringify(roleID));
+      // }
   }
 
   handleInput(e) {

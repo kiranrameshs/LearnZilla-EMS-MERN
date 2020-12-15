@@ -17,7 +17,7 @@ export default function(state = initialState, action) {
       console.log(action.payload);
       return {
         ...state,
-        courses: action.payload
+        courseState: action.payload
       }
     default:
       return state;
