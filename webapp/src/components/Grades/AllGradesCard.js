@@ -47,7 +47,7 @@ class AllGradesCard extends Component {
 
 }
 
-export default AllGradesCard;
+//export default AllGradesCard;
 
 const reduxProps = state => {
   return ({
