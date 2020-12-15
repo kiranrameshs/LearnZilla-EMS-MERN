@@ -30,7 +30,9 @@ class Profile extends Component {
 		let p = JSON.parse(localStorage.getItem("user"));
         return(
             <>
-		<div className="tab-pane active in" id="home">
+			<br />
+
+		<div className="tab-pane active in updateProfile" id="home">
 			<form id="tab" onSubmit={this.submitForm} >
 				<label>Username</label> <br />
 				<input id="username" type="text" placeholder={p.name} className="input-xlarge" /> <br />
@@ -38,12 +40,12 @@ class Profile extends Component {
 				<input id="email" type="text" placeholder={p.email} className="input-xlarge" /> <br />
 				<label>Address</label><br />
 				<textarea id="address" type="text" placeholder={p.address} rows="7" className="input-xlarge"></textarea> <br />
-				<label>University: </label>
-				<label className="input-xlarge">  {p.university}</label> 
+				{/* <label>University: </label>
+				<label className="input-xlarge">  {p.university}</label>  */}
 				<br />
 				<br />
 				<div>
-					<button className="btn btn-primary">Update</button>
+				<button className="btn btn-lg btn-success pull-right" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Update</button>
 				</div>
 			</form>
 		</div>

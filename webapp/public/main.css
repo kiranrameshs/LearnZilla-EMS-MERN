@@ -107,8 +107,18 @@ body {
   width: 600px; }
 
 .profile {
-  width: 400px;
   height: 400px; }
+
+.profile-work {
+  position: relative;
+  right: 400px;
+  top: 90px; }
+
+.updatePassword {
+  position: absolute; }
+
+.updateProfile {
+  position: fixed; }
 
 .sidebar {
   position: fixed;
