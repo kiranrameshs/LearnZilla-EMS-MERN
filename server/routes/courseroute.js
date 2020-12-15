@@ -17,6 +17,9 @@ router.route('/:id')
 .put(CourseController.update)
 .delete(CourseController.remove);
 
+router.route('/:id/students')
+.get(CourseController.getStudents)
+
 
 
 export default router;
