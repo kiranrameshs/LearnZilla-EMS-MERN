@@ -8,7 +8,7 @@ body {
   padding: 5px; }
 
 .allChildren {
-  margin-left: 150px; }
+  margin-left: 110px; }
 
 a {
   color: grey !important; }
@@ -849,6 +849,12 @@ a {
 
 .chart {
   width: 600px; }
+
+.assignTable {
+  margin-left: 140px; }
+
+.analytics {
+  float: right; }
 
 .profile {
   height: 400px; }
