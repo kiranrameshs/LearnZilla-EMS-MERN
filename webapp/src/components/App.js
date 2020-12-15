@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import NavBar from './NavBar';
+import Home from './Home';
 import Login from './Authentication/Login';
 import Register from './Authentication/Register';
 import CreateCourses from './Courses/CreateCourses';
@@ -14,7 +15,6 @@ import Profile from './Profile/ProfileContainer';
 import SuccessPage from './SuccessPage/SuccessPage';
 
 class App extends Component {
-
   render() {
     return (
     <div className="App">
@@ -28,12 +28,11 @@ class App extends Component {
             <Route path="/home" component={NavBar} />
             <Route path="/grades" component={AllGradesContainer} />
             <Route path="/HW-scores" component={CourseAssignScores} />
-            {/* <Route path="/" component={Dashboard} /> */}
+            <Route path="/" component={Home} />
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/analytics" component={GradeAnalytics} />
             <Route path="/profile" component={Profile} />
             <Route path="/success" component={SuccessPage} />
-
         </Switch>
       </BrowserRouter>
     </div>
