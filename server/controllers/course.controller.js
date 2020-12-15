@@ -1,5 +1,6 @@
 import CourseService from "../services/course.services";
 import StudentService from "../services/student.services"
+import mongoose from 'mongoose';
 
 //fetch all courses
 const index = (request, response) => {
@@ -86,26 +87,28 @@ const getStudents = (request, response) => {
     const id = request.params.id;
     //get all students and add them to a list
     StudentService.search({ })
-   .then( (students) => {
-    
+    .then( (students) => {
     var allStudentList = students.map((c,i) => {
         return c;
     })
-    students.find({courses : {
-        $in: allStudentList.map(function(o){ return mongoose.Types.ObjectId(o); })
-      }}, callback);
-    console.log("all students are "+allStudentList);
+    let mySet = new Set()
+    for (let index = 0; index < allStudentList.length; index++) {
+                for (let index1 = 0; index1 < allStudentList[index].courses.length; index1++) {
+            if(allStudentList[index].courses[index1] == id){
+                //if course id is present then add them to new student list
+                // console.log("match found")
+                mySet.add(allStudentList[index].id)
+            }   
+        }
+    }
+    let studentArray = Array.from(mySet);
+    response.status(200);
+            response.json({
+                students: studentArray
+            });
     
-    //loop through their courses array
-    // allStudentList.forEach(element => {
-    //     element.courses.forEach(course => {
-    //         if(course)
-    //     });
-    // });
    })
    .catch( handleError(response));
-    
-    //if course id is present then add them to new student list
 }
 
 const handleError = (response) => {
