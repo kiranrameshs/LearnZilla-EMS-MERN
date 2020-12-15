@@ -23,16 +23,18 @@ class NavBar extends Component {
       this.props.logoutUser();
       this.deleteSession();
       alert("User Logged Out! Log in here");
-      window.location = '/';
+      window.location = '/login';
 
     }
 
     deleteSession(){
       if (localStorage.getItem("user") === null) {
-       //
+       
       }
       else
         localStorage.removeItem("user");
+        localStorage.removeItem("roleid");
+
     }
 
     routeToGrades(e){

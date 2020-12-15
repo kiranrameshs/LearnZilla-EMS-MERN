@@ -104,8 +104,8 @@ class EditTeacher extends Component {
     let courseid = this.state.courseid;
     let salary = this.state.salary;
     this.updateTeacher(teacherid, courseid, salary);
-    //alert("Course is assigned successfully! Redirect to SuccessPage");
-    this.props.history.push('/success');
+    alert("Course is assigned successfully! Redirect to Dashboard");
+    this.props.history.push('/dashboard');
   }
 
   render(){
