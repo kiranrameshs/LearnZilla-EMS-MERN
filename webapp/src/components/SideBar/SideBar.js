@@ -48,13 +48,11 @@ generateLinks(menuItems){
         return (
           <div class="sidebarLinks">
             <NavItem userid={this.props.auth.user._id} key={i} componentClass='span'>
-              <Link replace to={{pathname: exp.url}}>  {exp.name} </Link>
+              <Link replace to={{pathname: exp.url}} >  {exp.name} </Link>
             </NavItem>
           </div>
         )
-
       }
-
     })
   }
 

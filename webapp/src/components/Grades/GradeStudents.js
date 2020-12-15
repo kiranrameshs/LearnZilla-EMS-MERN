@@ -29,7 +29,6 @@ class GradeStudents extends Component {
   }
 
   getTeacherIdCourseId(url)  {
-    alert("here" + url)
     fetch(url, {
         method: 'GET'
       })
@@ -41,6 +40,7 @@ class GradeStudents extends Component {
             teacherid: result.message[0].id,
             courseid: result.message[0].course
           });
+          this.loadStudents();
         },
         (error) => {
           this.setState({
@@ -53,6 +53,7 @@ class GradeStudents extends Component {
   loadStudents() {
     let id = this.state.courseid;
     let url = "/courses/" + id + "/students";
+    //alert(url);
     fetch(url, {
         method: 'GET'
       })
@@ -61,7 +62,7 @@ class GradeStudents extends Component {
         (result) => {
           this.setState({
             studentLoaded: true,
-            studentList: result
+            studentList: result.students
           });
         },
         (error) => {
@@ -71,38 +72,39 @@ class GradeStudents extends Component {
         });
       }
     )
+
   }
 
   updateStudent(studentid, grade) {
+    alert(studentid + " " + grade);
     let editUrl = "/students/" + studentid;
     fetch(editUrl, {
       method: 'PUT',
       body: JSON.stringify({
-          "grade": grade
+          "finalgrade": grade
         }
       ),
       headers: {"Content-Type": "application/json"}
     })
     .then(res => res.json())
     .then((responseJson) => {
-  //    alert("here")
       console.log(responseJson);
     });
   }
 
   componentDidMount() {
     let id = JSON.parse(localStorage.getItem("user")).id;
-    //console.log(id);
     let url = "/teachers/users/" + id;
+  //  alert(url);
     this.getTeacherIdCourseId(url);
-    this.loadStudents();
+
   }
 
   handleInput(e) {
     let id = e.target.id;
     let val = e.target.value;
-    //console.log(id);
-    //console.log(val);
+    // console.log(id);
+    // console.log(val);
     this.setState({
       [id]: val
     });
@@ -111,29 +113,26 @@ class GradeStudents extends Component {
 
   submitForm(e){
     e.preventDefault();
-    let teacherid = this.state.teacherid;
-    let studentid = this.state.courseid;
-    let grade = this.state.salary;
+    let studentid = this.state.studentid;
+    let grade = this.state.grade;
     this.updateStudent(studentid, grade);
     //alert("Course is assigned successfully! Redirect to SuccessPage");
     this.props.history.push('/success');
   }
 
   render(){
-      //console.log(this.state.courseList);
-      // if (this.state.error) {
-      //   return <div>Error: {this.state.error.message}</div>;
-      // } else if (!this.state.courseLoaded) {
-      // return <div>Loading...</div>;
-      // } else {
+      if (this.state.error) {
+        return <div>Error: {this.state.error.message}</div>;
+      } else if (!this.state.studentLoaded) {
+      return <div>Loading...</div>;
+      } else {
         return(
           <Form onSubmit={this.submitForm}>
-            <FormGroup controlId="teacherid">
+            <FormGroup controlId="studentid">
               <FormLabel>Student Name</FormLabel>
               <FormControl as="select" value={this.state.value} onChange={this.handleInput}>
-                <option>Select Student</option>
-                <option>5fd42d21feb2286945101366</option>
-                {this.state.studentList.map((t, index) => <option key={index} value={t.id} >{t.id}</option>)}
+                <option placeholder="Select Student" > Select Student </option>
+                {this.state.studentList.map((t, index) => <option key={index} value={t} >{t}</option>)}
               </FormControl>
             </FormGroup>
 
@@ -148,7 +147,7 @@ class GradeStudents extends Component {
             </FormGroup>
           </Form>
         )
-      //}
+      }
   }
 }
 

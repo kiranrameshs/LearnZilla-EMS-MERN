@@ -105,8 +105,8 @@ const getStudents = (request, response) => {
     response.status(200);
             response.json({
                 students: studentArray
-                console.log(students);
             });
+            console.log(students);
 
    })
    .catch( handleError(response));
