@@ -51,20 +51,22 @@ class GradeStudents extends Component {
   }
 
   loadStudents() {
-    fetch("/students", {
+    let id = this.state.courseid;
+    let url = "/courses/" + id + "/students";
+    fetch(url, {
         method: 'GET'
       })
       .then(res => res.json())
       .then(
         (result) => {
           this.setState({
-            teacherLoaded: true,
-            teacherList: result
+            studentLoaded: true,
+            studentList: result
           });
         },
         (error) => {
           this.setState({
-            teacherLoaded: false,
+            studentLoaded: false,
             error
         });
       }
