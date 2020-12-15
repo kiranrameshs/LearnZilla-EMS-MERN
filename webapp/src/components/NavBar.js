@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { logoutUser } from '.././store/actions/user.action';
 import { gradeComponent } from './Grades/AllGradesContainer';
 
+
 class NavBar extends Component {
 
     constructor(props){
@@ -21,6 +22,8 @@ class NavBar extends Component {
       this.props.logoutUser();
       this.deleteSession();
       alert("User Logged Out! Log in here");
+      window.location = '/';
+
     }
 
     deleteSession(){
@@ -33,7 +36,7 @@ class NavBar extends Component {
 
     routeToGrades(e){
       e.preventDefault();
-      //pass 
+      //pass
       return ({
 
 

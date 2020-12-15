@@ -17,18 +17,18 @@ class AllGradesCard extends Component {
         const itemKey = event.target.id;
         this.props.history.push('/HW-scores');
         //navigate to CourseAssignScores component passing assignments as props
+        //window.location = '/HW-scores';
         return (
-          <CourseAssignScores courseAssigns={this.props.course.assignment}/>
-
+           <CourseAssignScores courseAssigns={this.props.course.assignment}/>
         );
-        
-         
+
+
       }
         switch(event.target.id){
             default:
             break;
         }
- 
+
     }
 
 
@@ -51,7 +51,7 @@ class AllGradesCard extends Component {
 
 const reduxProps = state => {
   return ({
-      //grades: state.grades.coursesGrades 
+      //grades: state.grades.coursesGrades
   })
 };
 
