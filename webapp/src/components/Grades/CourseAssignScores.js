@@ -3,6 +3,8 @@ import { Table, Button } from 'react-bootstrap';
 import NavBar from '../NavBar';
 import FeedBack from './AssignFeedback';
 import GradeAnalytics from './GradeAnalytics';
+import { Link } from 'react-router-dom';
+
 
 import { connect } from 'react-redux';
 import { getCourseAssigns } from '../../store/actions/grade.action';
@@ -11,52 +13,70 @@ import { getCourseAssigns } from '../../store/actions/grade.action';
 
 class CourseAssignScores extends Component {
 
-  constructor(props){
-    super(props)
+  // constructor(props){
+  //   super(props);
+  //   console.log(props.location.state.courseAssigns);
+  //   this.state = { courseAssigns : props.location.state.courseAssigns}
 
-  }
+  // }
+
+  constructor(props) {
+    super(props);
+
+    console.log(this.props)
+}
 
   componentDidMount() {
     let assigns = ["5fd3b55b14fb9961d1b2857d","5fd3e6120706e37d3720cbdf"]//this.props.courseAssigns;
     assigns.map((aID)=>{
       this.props.getCourseAssigns(aID);
-
     });
     
   }
 
-  handleClick = (event) => {
+  // handleClick = (event) => {
 
-    if (event.target.classList.contains('glyphicon-signal')) {
-      const itemKey = event.target.id;
+  //   if (event.target.classList.contains('glyphicon-signal')) {
+  //     const itemKey = event.target.id;
 
-      let data ={};
-      data.scores = this.props.courseAssignScores.filter(x=>x.id != "").map( (x)=>{ return x.assignmentscrore});
-      data.categories = this.props.courseAssignScores.filter(x=>x.id != "").map( (x)=>{ return x.assignmentname}); 
-      this.props.history.push('/analytics');
-      //navigate to analytics passing data as props
-      return (
-        <GradeAnalytics data={data}/>
-      );
+  //     let data ={};
+  //     data.scores = this.props.courseAssignScores.filter(x=>x.id != "").map( (x)=>{ return x.assignmentscrore});
+  //     data.categories = this.props.courseAssignScores.filter(x=>x.id != "").map( (x)=>{ return x.assignmentname}); 
+  //     this.props.history.push('/analytics');
+  //     //navigate to analytics passing data as props
+  //     return (
+  //       <GradeAnalytics data={data}/>
+  //     );
        
-    }
-      switch(event.target.id){
-          default:
-          break;
-      }
+  //   }
+  //     switch(event.target.id){
+  //         default:
+  //         break;
+  //     }
 
-  }
+  // }
 
   render() {
-    let homeWorks = this.props.courseAssignScores.filter(x=>x.id != "");//   bordered
+    let homeWorks = this.props.courseAssignScores.filter(x=>x.id != "" && x["message"] != "assignment not present");//   bordered
+    let data ={};
+    data.scores = this.props.courseAssignScores.filter(x=>x.id != "").map( (x)=>{ return x.assignmentscrore});
+    data.categories = this.props.courseAssignScores.filter(x=>x.id != "").map( (x)=>{ return x.assignmentname});
     return (
       <>
         <NavBar />
         <>
-         <div> 
-         <a onClick={this.handleClick} className="btn btn-info btn-lg">
-          <span className="glyphicon glyphicon-signal"></span> Analytics 
-        </a>
+         <div className="btn btn-info btn-lg analytics"> 
+         {/* <a onClick={this.handleClick} className="btn btn-info btn-lg"> */}
+         <Link to= {{
+                        pathname: "/analytics",
+                        aboutProps: {
+                            data: data
+                             }
+                    }}>
+                        <span className="glyphicon glyphicon-signal"></span> Analytics 
+          </Link>
+          
+        {/* </a> */}
          </div>
           <Table responsive striped condensed hover>
             <thead>

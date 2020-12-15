@@ -4,6 +4,7 @@ import { Navbar,Nav, NavItem } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { logoutUser } from '.././store/actions/user.action';
 import { gradeComponent } from './Grades/AllGradesContainer';
+import { Link } from 'react-router-dom';
 
 
 class NavBar extends Component {
@@ -22,7 +23,7 @@ class NavBar extends Component {
       this.props.logoutUser();
       this.deleteSession();
       alert("User Logged Out! Log in here");
-      window.location = '/';
+      window.location = '/login';
 
     }
 
@@ -59,7 +60,15 @@ class NavBar extends Component {
                 <ul className="nav navbar-nav">
                   <li className="active"><a href="#"><span className="glyphicon glyphicon-home"></span> Home</a></li>
                   <li><a>Courses</a></li>
-                  <li><a href="/grades" onClick={this.routeToGrades}>Grades</a></li>
+
+                  <li>
+                    {/* <a href="/grades" onClick={this.routeToGrades}>Grades</a> */}
+                    <Link to= {{
+                        pathname: "/grades",
+                        props: {
+                             }
+                    }}>Grades</Link>
+                    </li>
                 </ul>
                 <ul className="nav navbar-nav navbar-right">
                   <li><a href="#"><span className="glyphicon glyphicon-user"></span> My profile</a></li>

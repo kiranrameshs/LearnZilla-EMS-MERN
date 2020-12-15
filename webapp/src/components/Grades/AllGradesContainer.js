@@ -14,8 +14,10 @@ class AllGradesContainer extends Component {
     render() {
         const courseGradeList = this.props.grades.map((c, i) => {
             return (
+                <>
             <CourseGrade key={i} course={c}>
             </CourseGrade>
+         </>
             )
         });
         return (
