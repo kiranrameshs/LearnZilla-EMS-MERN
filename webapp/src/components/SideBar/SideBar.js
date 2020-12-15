@@ -94,7 +94,6 @@ generateLinks(menuItems){
     })
 
     let finalLinks = this.generateLinks(menuItems)
-    // console.log(finalLinks);
 
       return(<Nav>
               {finalLinks}

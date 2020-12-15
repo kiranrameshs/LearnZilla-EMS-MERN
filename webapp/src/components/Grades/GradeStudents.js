@@ -1,6 +1,15 @@
 import React, {Component} from 'react';
 import {Form, FormGroup, FormControl, Button, FormLabel,} from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { createAssignment } from '../../store/actions/assignment.action';
 import { removeError } from '../../store/actions/error.action';
+import { logoutUser } from '../../store/actions/user.action';
+
+const userreduxProps = state => {
+  return ({
+    auth: state.user.authUser
+  })
+};
 
 class GradeStudents extends Component {
 
@@ -10,7 +19,7 @@ class GradeStudents extends Component {
       error: null,
       teacherid: '',
       courseid: '',
-      courseid: '',
+      studentid: '',
       grade: 0,
       studentList: [],
       studentLoaded: false,
@@ -18,6 +27,29 @@ class GradeStudents extends Component {
     };
     this.submitForm = this.submitForm.bind(this);
     this.handleInput = this.handleInput.bind(this);
+    this.getTeacherIdCourseId = this.getTeacherIdCourseId.bind(this);
+  }
+
+  getTeacherIdCourseId(url)  {
+    alert("here" + url)
+    fetch(url, {
+        method: 'GET'
+      })
+      .then(res => res.json())
+      .then(
+        (result) => {
+          //console.log(result.message[0]);
+          this.setState({
+            teacherid: result.message[0].id,
+            courseid: result.message[0].course
+          });
+        },
+        (error) => {
+          this.setState({
+            error
+        });
+      }
+    )
   }
 
   loadStudents() {
@@ -31,7 +63,6 @@ class GradeStudents extends Component {
             teacherLoaded: true,
             teacherList: result
           });
-        //  console.log(this.state.teacherList);
         },
         (error) => {
           this.setState({
@@ -60,8 +91,8 @@ class GradeStudents extends Component {
   }
 
   componentDidMount() {
-    let userState = this.props.auth;
-    let id = userState.user._id;
+    let id = JSON.parse(localStorage.getItem("user")).id;
+    //console.log(id);
     let url = "/teachers/users/" + id;
     this.getTeacherIdCourseId(url);
     this.loadStudents();
@@ -81,8 +112,8 @@ class GradeStudents extends Component {
   submitForm(e){
     e.preventDefault();
     let teacherid = this.state.teacherid;
-    let courseid = this.state.courseid;
-    let salary = this.state.salary;
+    let studentid = this.state.courseid;
+    let grade = this.state.salary;
     this.updateStudent(studentid, grade);
     //alert("Course is assigned successfully! Redirect to SuccessPage");
     this.props.history.push('/success');
@@ -90,33 +121,33 @@ class GradeStudents extends Component {
 
   render(){
       //console.log(this.state.courseList);
-      if (this.state.error) {
-        return <div>Error: {this.state.error.message}</div>;
-      } else if (!this.state.courseLoaded) {
-      return <div>Loading...</div>;
-      } else {
+      // if (this.state.error) {
+      //   return <div>Error: {this.state.error.message}</div>;
+      // } else if (!this.state.courseLoaded) {
+      // return <div>Loading...</div>;
+      // } else {
         return(
           <Form onSubmit={this.submitForm}>
             <FormGroup controlId="teacherid">
               <FormLabel>Student Name</FormLabel>
               <FormControl as="select" value={this.state.value} onChange={this.handleInput}>
                 <option>Select Teacher</option>
-                {this.state.teacherList.map((t, index) => <option key={index} value={t.id} >{t.id}</option>)}
+                {this.state.studentList.map((t, index) => <option key={index} value={t.id} >{t.id}</option>)}
               </FormControl>
             </FormGroup>
 
 
-            <FormGroup controlId="salary">
+            <FormGroup controlId="grade">
               <FormLabel>Student Grade</FormLabel>
               <FormControl type="Number" value={this.state.value} placeholder="Enter Student Grade" onChange={this.handleInput} />
             </FormGroup>
 
             <FormGroup>
-              <Button type="submit">Assign Course</Button>
+              <Button type="submit">Grade Student</Button>
             </FormGroup>
           </Form>
         )
-      }
+      //}
   }
 }
 
