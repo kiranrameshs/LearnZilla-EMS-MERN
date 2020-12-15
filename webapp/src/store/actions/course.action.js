@@ -35,8 +35,8 @@ export const createCourse = courseData => dispatch => {
 // localhost:8080/students/5fd42d21feb2286945101366/courses
 
 export const getMyCourses = (studentId) => dispatch => {
-  let createcourseUrl = `/students/${studentId}/courses`;
-  fetch(createcourseUrl, {
+  let Url = `/students/${studentId}/courses`;
+  fetch(Url, {
     method: 'GET',
     headers: {
       "Content-Type": "application/json"
@@ -44,13 +44,11 @@ export const getMyCourses = (studentId) => dispatch => {
   })
   .then(res => res.json())
   .then((responseJson) => {
-    if (responseJson.status >= 200 && responseJson.status < 300) {
       //console.log(responseJson.courses)
       dispatch({ type: ActionTypes.GET_MY_COURSES, payload: responseJson.courses})
-    } else {
       //alert(responseJson);
-      dispatch({ type:ActionTypes.ERRORS, responseJson})
-    }
+      // dispatch({ type:ActionTypes.ERRORS, responseJson})
+    
   })
   .catch(err =>
     dispatch({

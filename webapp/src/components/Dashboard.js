@@ -6,25 +6,15 @@ import './../styles/Modules/CourseCards.scss'
 import { Navbar,Nav, NavItem } from 'react-bootstrap' ;
 // import './styles/CourseCards.scss'
 import Sidebar from './SideBar/SideBar';
-import Login from './Authentication/Login';
 import './SideBar/SideBar.scss';
-import { BrowserRouter, Route, } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getCoursesDetails } from './../store/actions/grade.action';
+import { getMyCourses } from './../store/actions/course.action';
 
-import { logoutUser } from './../store/actions/user.action';
-
-
-const reduxloginProps = state => {
-  return ({
-    auth: state.user.authUser
-  })
-};
 
 
 const reduxProps = state => {
     return ({
-        courses: state.course.courses
+      courses: state.course.courses
       }
     )
   };
@@ -33,17 +23,16 @@ const reduxProps = state => {
 class Dashboard extends React.Component {
 
     componentDidMount() {
-        this.props.getMyCourses("5fd42d21feb2286945101366");
+
+      this.props.getMyCourses("5fd42d21feb2286945101366");
+      const courseList = this.props.courses.map((c, i) => {
+        return (console.log(c))}
+        )
+          
     }
 
     render(){
 
-        const courseList = this.props.courses.map((c, i) => {
-            return (
-            <CourseContainer key={i} course={c}>
-            </CourseContainer>
-            )
-        });
         return (
         <>
         <NavBar />
@@ -55,7 +44,7 @@ class Dashboard extends React.Component {
         <h1>Dashboard</h1>
         <div className="gridOf4">
         <ul >
-            {courseList}
+            {/* {courseList} */}
         </ul>
         </div>
 
@@ -63,4 +52,4 @@ class Dashboard extends React.Component {
         );
     }
 }
-export default connect(reduxProps, { getCoursesDetails })(Dashboard);
+export default connect(reduxProps, {getMyCourses})(Dashboard);

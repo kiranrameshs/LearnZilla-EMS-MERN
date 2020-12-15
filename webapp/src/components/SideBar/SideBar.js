@@ -47,7 +47,7 @@ generateLinks(menuItems){
       if(this.props.auth){
         return (
           <div class="sidebarLinks">
-            <NavItem userid={this.props.auth.user._id} key={i} componentClass='span'>
+            <NavItem userid={this.props.auth.user._id} key={i} >
               <Link replace to={{pathname: exp.url}}>  {exp.name} </Link>
             </NavItem>
           </div>
@@ -98,7 +98,7 @@ generateLinks(menuItems){
 
       return(<Nav>
               {finalLinks}
-              <NavItem key="logout" componentClass='span'>
+              <NavItem key="logout">
                 <Link replace to="/login" onClick={this.logout}>  Logout </Link>
               </NavItem>
             </Nav>

@@ -1,5 +1,5 @@
 import courseState from '../state';
-import {CREATE_COURSE} from '../actions/action-types';
+import {CREATE_COURSE, GET_MY_COURSES} from '../actions/action-types';
 
 const initialState = courseState;
 
