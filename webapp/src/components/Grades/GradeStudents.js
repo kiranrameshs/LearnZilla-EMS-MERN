@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import {Form, FormGroup, FormControl, Button, FormLabel,} from 'react-bootstrap';
-import { connect } from 'react-redux';
-import { createAssignment } from '../../store/actions/assignment.action';
 import { removeError } from '../../store/actions/error.action';
 import { logoutUser } from '../../store/actions/user.action';
 
@@ -131,7 +129,8 @@ class GradeStudents extends Component {
             <FormGroup controlId="teacherid">
               <FormLabel>Student Name</FormLabel>
               <FormControl as="select" value={this.state.value} onChange={this.handleInput}>
-                <option>Select Teacher</option>
+                <option>Select Student</option>
+                <option>5fd42d21feb2286945101366</option>
                 {this.state.studentList.map((t, index) => <option key={index} value={t.id} >{t.id}</option>)}
               </FormControl>
             </FormGroup>
