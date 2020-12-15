@@ -23,7 +23,7 @@ class AllGradesCard extends Component {
   }
   
 
-    // handleClick = (event) => {
+     handleClick = (event) => {
 
     //   if (event.target.classList.contains('courseGradeCard')) {
     //     const itemKey = event.target.id;
@@ -41,7 +41,7 @@ class AllGradesCard extends Component {
     //         break;
     //     }
 
-    // }
+     }
 
     handleClick(name){
       this.props.history.push({
@@ -63,23 +63,42 @@ class AllGradesCard extends Component {
           perClass += "dark orange";
           
         return (
-          <> <div  onClick={(e) => this.handleClick('/HW-scores', e)} className="courseGradeCard ">
-            <div className="courseHeading">{c.coursename}</div>
-            <br />
-            <div className={perClass}>
-             <span>{c.coursefinalscrore}</span>
-             <div class="slice">
-                 <div class="bar"></div>
-                 <div class="fill"></div>
-             </div>
-         </div>
-         
-          {/* <span class="finalGrade">{c.coursefinalscrore}%</span> */}
-          {/* <button className=" btn btn-primary btn-xs viewCourseScores" id={c.id + "-view"} onClick={this.handleClick}>View More</button> */}
-         </div> <br />
-           {/* </Link> */}
-         
-         </>
+        //   <> <div  onClick={(e) => this.handleClick('/HW-scores', e)} className="courseGradeCard ">
+        //     <div className="courseHeading">{c.coursename}</div>
+        //     <br />
+        //     <div className={perClass}>
+        //      <span>{c.coursefinalscrore}</span>
+        //      <div className="slice">
+        //          <div className="bar"></div>
+        //          <div className="fill"></div>
+        //      </div>
+        //  </div>
+        //  </div> <br />
+
+          <div className="col-xs-3">
+            <div className="project project-default">
+              <div className="shape">
+                <div className="shape-text">
+                  top
+					</div>
+              </div>
+              <div className="project-content">
+                <h3 className="lead">
+                  <div className={perClass}>
+                    <span>{c.coursefinalscrore}</span>
+                    <div className="slice">
+                      <div className="bar"></div>
+                      <div className="fill"></div>
+                    </div>
+                  </div>
+                </h3>
+                <p>
+                  {c.coursename}
+                </p>
+              </div>
+            </div>
+          </div>
+        //  </>
         );
       }
 
