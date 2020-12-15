@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import NavBar from '../NavBar';
 import CourseAssignScores from './CourseAssignScores';
 
-import { connect } from 'react-redux';
 import { getCourseAssigns } from '../../store/actions/grade.action';
+import { Link } from 'react-router-dom';
+//import { Route, Switch, Redirect } from 'react-router';
+ import { withRouter,useHistory } from 'react-router-dom';
+ import { connect } from 'react-redux';
 
 class AllGradesCard extends Component {
 
@@ -59,6 +62,8 @@ class AllGradesCard extends Component {
           <span class="finalGrade">{c.coursefinalscrore}%</span>
           {/* <button className=" btn btn-primary btn-xs viewCourseScores" id={c.id + "-view"} onClick={this.handleClick}>View More</button> */}
          </div> <br />
+           {/* </Link> */}
+         
          </>
         );
       }
