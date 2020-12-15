@@ -4,6 +4,8 @@ import CourseRouter from './courseroute';
 import AssignmentRouter from './assignmentroute';
 import TeacherRouter from './teacherroute';
 import TeacherByUserRouter from './teacherbyuserroute';
+import StudentRouter from './student.route';
+import StudentByUserRouter from './studentbyuser.route';
 
 //exporting the needed routes
 export default (app) => {
@@ -13,4 +15,6 @@ export default (app) => {
     app.use('/assignments', AssignmentRouter );
     app.use('/teachers', TeacherRouter );
     app.use('/teachers/users', TeacherByUserRouter );
+    app.use('/students', StudentRouter );
+    app.use('/students/users', StudentByUserRouter );
 }

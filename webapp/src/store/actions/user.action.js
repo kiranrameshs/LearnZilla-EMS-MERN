@@ -68,3 +68,29 @@ export const registerUser = userData => dispatch => {
     })
   );
 };
+
+export const updateUser = (id,data) => dispatch => {
+  let registerUrl = '/users/'+id;
+  fetch(registerUrl, {
+    method: 'PUT',
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+  .then(res => res.json())
+  .then((responseJson) => {
+    alert("Update Sucessful");
+    if (responseJson.status >= 200 && responseJson.status < 300) {
+      dispatch({ type: ActionTypes.UPDATE_USER, payload: responseJson})
+    } else {
+      dispatch({ type:ActionTypes.ERRORS, responseJson})
+    }
+  })
+  .catch(err =>
+    dispatch({
+      type: ActionTypes.ERRORS,
+      payload: err.responseJson
+    })
+  );
+};

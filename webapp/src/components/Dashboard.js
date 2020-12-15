@@ -31,6 +31,7 @@ const reduxProps = state => {
 
 class Dashboard extends React.Component {
 
+
     componentDidMount() {
         this.props.getCoursesDetails();
     }

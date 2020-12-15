@@ -3,13 +3,15 @@ import profile from '../assets/profile.png'
 import { Navbar,Nav, NavItem } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { logoutUser } from '.././store/actions/user.action';
-import {Redirect} from 'react-router-dom';
+import { gradeComponent } from './Grades/AllGradesContainer';
+
 
 class NavBar extends Component {
 
     constructor(props){
         super(props);
         this.logout = this.logout.bind(this);
+        this.deleteSession = this.deleteSession.bind(this);
         // this.state=props;
         // need to change this. can't directly assign props to the state. bad practice
     }
@@ -18,10 +20,29 @@ class NavBar extends Component {
       // alert("Logout");
       e.preventDefault();
       this.props.logoutUser();
+      this.deleteSession();
       alert("User Logged Out! Log in here");
       window.location = '/';
 
     }
+
+    deleteSession(){
+      if (localStorage.getItem("user") === null) {
+       //
+      }
+      else
+        localStorage.removeItem("user");
+    }
+
+    routeToGrades(e){
+      e.preventDefault();
+      //pass
+      return ({
+
+
+      });
+    }
+
 
     componentDidMount() {
 
@@ -38,7 +59,7 @@ class NavBar extends Component {
                 <ul className="nav navbar-nav">
                   <li className="active"><a href="#"><span className="glyphicon glyphicon-home"></span> Home</a></li>
                   <li><a>Courses</a></li>
-                  <li><a>Grade</a></li>
+                  <li><a href="/grades" onClick={this.routeToGrades}>Grades</a></li>
                 </ul>
                 <ul className="nav navbar-nav navbar-right">
                   <li><a href="#"><span className="glyphicon glyphicon-user"></span> My profile</a></li>

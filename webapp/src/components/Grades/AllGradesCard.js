@@ -19,9 +19,9 @@ class AllGradesCard extends Component {
 
     handleClick = (event) => {
 
-      if (event.target.classList.contains('viewCourseScores')) {
+      if (event.target.classList.contains('courseGradeCard')) {
         const itemKey = event.target.id;
-
+        this.props.history.push('/HW-scores');
         //navigate to CourseAssignScores component passing assignments as props
         //window.location = '/HW-scores';
         return (
@@ -42,10 +42,10 @@ class AllGradesCard extends Component {
       render() {
           let c = this.props.course;
         return (
-          <> <div className="courseFinalGrade">
-          <h2>{c.coursename}</h2>
-          <span className="finalGrade">{c.coursefinalscrore}</span>
-          <span className="viewCourseScores" id={c.id + "-view"} onClick={this.handleClick}>View More..</span>
+          <> <div onClick={this.handleClick} className="courseGradeCard ">
+            <div className="courseHeading">{c.coursename}</div>
+          <span class="finalGrade">{c.coursefinalscrore}%</span>
+          {/* <button className=" btn btn-primary btn-xs viewCourseScores" id={c.id + "-view"} onClick={this.handleClick}>View More</button> */}
          </div> <br />
          </>
         );
