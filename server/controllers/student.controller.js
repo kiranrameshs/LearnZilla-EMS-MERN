@@ -91,6 +91,8 @@ const getCourses = (request, response) => {
             response.json({
                 courses: studentCourseList
             });
+            console.log(courses);
+
         })
 };
 
