@@ -68,7 +68,7 @@ class Profile extends Component {
                             <a href="">PHP, .Net</a><br/>
                         </div>
                     </div>
-                    <div id="myTabContent" className="tab-content">
+                    <div className="tab-content">
 
                       <UpdateProfile />
                       <UpdatePassword />
