@@ -20,19 +20,26 @@ class App extends Component {
     <div className="App">
       <BrowserRouter>
         <Switch>
-            <Route path="/login" key="login" component={Login} />
+        <Route path='/grades'>        
+            {(props) => <AllGradesContainer {...props}/>}
+        </Route> 
+        <Route path='/HW-scores'>        
+            {(props) => <CourseAssignScores {...props}/>}
+        </Route> 
             <Route path="/register" component={Register} />
             <Route path="/courses/create" component={CreateCourses} />
             <Route path="/teachers/edit" component={EditTeacher} />
             <Route path="/assignments/create" component={CreateAssignments} />
             <Route path="/home" component={NavBar} />
-            <Route path="/grades" component={AllGradesContainer} />
-            <Route path="/HW-scores" component={CourseAssignScores} />
-            <Route path="/" component={Home} />
+            {/* <Route path="/grades" component={AllGradesContainer} /> */}
+            {/* <Route path="/HW-scores" component={CourseAssignScores} /> */}
+            {/* <Route path="/" component={Home} /> */}
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/analytics" component={GradeAnalytics} />
             <Route path="/profile" component={Profile} />
             <Route path="/success" component={SuccessPage} />
+            <Route path="/login" key="login" component={Login} />
+            <Route exact path="/" component={Home} />
         </Switch>
       </BrowserRouter>
     </div>
