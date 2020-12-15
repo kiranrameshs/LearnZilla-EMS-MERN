@@ -10,6 +10,9 @@ class GradeAnalytics extends Component {
 
     constructor(props){
         super(props);
+        this.state = {
+          data: props.location.aboutProps.data
+      }
         
     }
 

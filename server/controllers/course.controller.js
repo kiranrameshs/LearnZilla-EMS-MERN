@@ -1,4 +1,5 @@
 import CourseService from "../services/course.services";
+import StudentService from "../services/student.services"
 
 //fetch all courses
 const index = (request, response) => {
@@ -81,6 +82,32 @@ const remove = (request, response) => {
 
 };
 
+const getStudents = (request, response) => {
+    const id = request.params.id;
+    //get all students and add them to a list
+    StudentService.search({ })
+   .then( (students) => {
+    
+    var allStudentList = students.map((c,i) => {
+        return c;
+    })
+    students.find({courses : {
+        $in: allStudentList.map(function(o){ return mongoose.Types.ObjectId(o); })
+      }}, callback);
+    console.log("all students are "+allStudentList);
+    
+    //loop through their courses array
+    // allStudentList.forEach(element => {
+    //     element.courses.forEach(course => {
+    //         if(course)
+    //     });
+    // });
+   })
+   .catch( handleError(response));
+    
+    //if course id is present then add them to new student list
+}
+
 const handleError = (response) => {
     return (error) => {
         response.status(500);
@@ -98,5 +125,6 @@ export default {
     get: get,
     create: create,
     update: update,
-    remove: remove
+    remove: remove,
+    getStudents : getStudents
 }

@@ -1,20 +1,42 @@
-//For width and height
-@mixin width-height($width, $height) {
-    width: $width;
-    height: $height;
-    
+// mixins
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
 }
 
-//To give padding
-@mixin padding($r,$l,$t,$b) {
-    padding-right: $r;
-    padding-left: $l;
-    padding-top: $t;
-    padding-bottom: $b;
-    
+@mixin rotate($rotation) {
+    -webkit-transform: rotate($rotation);
+    -moz-transform: rotate($rotation);
+    -ms-transform: rotate($rotation);
+    -o-transform: rotate($rotation);
+    transform: rotate($rotation);
 }
 
-//to give padding in all directions without passing 4 params
-@mixin allSidePadding($val) {
-    @include padding($val,$val ,$val ,$val);
+@mixin box-sizing($box-sizing) {
+    -webkit-box-sizing: $box-sizing;
+    -moz-box-sizing: $box-sizing;
+    box-sizing: $box-sizing;
+}
+@mixin transition-property($transition) {
+    -webkit-transition-property: $transition;
+    -moz-transition-property:$transition;
+    -o-transition-property:$transition;
+    transition-property: $transition;
+}
+
+@mixin transition-duration($duration) {
+    -webkit-transition-duration: $duration;
+    -moz-transition-duration:$duration;
+    -o-transition-duration: $duration;
+    transition-duration: $duration;
+}
+
+@mixin transition-timing-function($timing){
+    -webkit-transition-timing-function: $timing;
+    -moz-transition-timing-function: $timing;
+    -o-transition-timing-function: $timing;
+    transition-timing-function: $timing;
 }
