@@ -11,11 +11,18 @@ body{
 }
 
 .allChildren {
-   margin-left: 150px;
+   margin-left: 130px;
 
 
 }
 
 a{
-   color:grey !important
+   color:cornsilk !important;
+   font-weight: bold;
+}
+
+a:hover{
+  background-color: none !important;
+  color:white !important;
+
 }

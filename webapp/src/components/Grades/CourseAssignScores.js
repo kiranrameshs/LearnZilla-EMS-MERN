@@ -4,7 +4,8 @@ import NavBar from '../NavBar';
 import FeedBack from './AssignFeedback';
 import GradeAnalytics from './GradeAnalytics';
 import { Link } from 'react-router-dom';
-
+import { Navbar,Nav, NavItem } from 'react-bootstrap' ;
+import Sidebar from '../SideBar/SideBar';
 
 import { connect } from 'react-redux';
 import { getCourseAssigns } from '../../store/actions/grade.action';
@@ -64,6 +65,11 @@ class CourseAssignScores extends Component {
     return (
       <>
         <NavBar />
+        <Navbar className="sidebar">
+              <Navbar.Collapse>
+                <Sidebar />
+              </Navbar.Collapse>
+        </Navbar>
         <>
          <div className="btn btn-info btn-lg analytics"> 
          {/* <a onClick={this.handleClick} className="btn btn-info btn-lg"> */}
@@ -78,7 +84,10 @@ class CourseAssignScores extends Component {
           
         {/* </a> */}
          </div>
-          <Table responsive striped condensed hover>
+         <br />
+         <h1>Assignment Scores</h1>
+         <div className="assignTable">
+         <Table responsive striped condensed hover >
             <thead>
               <tr>
                 <th> </th>
@@ -103,7 +112,10 @@ class CourseAssignScores extends Component {
 
               })}
             </tbody>
-          </Table></>
+          </Table>
+
+         </div>
+         </>
 
 
       </>
