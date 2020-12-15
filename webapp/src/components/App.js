@@ -15,7 +15,6 @@ import Profile from './Profile/ProfileContainer';
 import SuccessPage from './SuccessPage/SuccessPage';
 
 class App extends Component {
-
   render() {
     return (
     <div className="App">
@@ -34,7 +33,6 @@ class App extends Component {
             <Route path="/analytics" component={GradeAnalytics} />
             <Route path="/profile" component={Profile} />
             <Route path="/success" component={SuccessPage} />
-
         </Switch>
       </BrowserRouter>
     </div>
