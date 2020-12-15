@@ -56,10 +56,25 @@ class AllGradesCard extends Component {
           let c = this.props.course;
           console.log("c is "+c);
           console.log("props is "+this.props);
+          let perClass = "c100 p25 ";
+          if(c.coursefinalscrore > 90)
+            perClass += "dark green";
+          else if(c.coursefinalscrore < 80)
+          perClass += "dark orange";
+          
         return (
           <> <div  onClick={(e) => this.handleClick('/HW-scores', e)} className="courseGradeCard ">
             <div className="courseHeading">{c.coursename}</div>
-          <span class="finalGrade">{c.coursefinalscrore}%</span>
+            <br />
+            <div className={perClass}>
+             <span>{c.coursefinalscrore}</span>
+             <div class="slice">
+                 <div class="bar"></div>
+                 <div class="fill"></div>
+             </div>
+         </div>
+         
+          {/* <span class="finalGrade">{c.coursefinalscrore}%</span> */}
           {/* <button className=" btn btn-primary btn-xs viewCourseScores" id={c.id + "-view"} onClick={this.handleClick}>View More</button> */}
          </div> <br />
            {/* </Link> */}

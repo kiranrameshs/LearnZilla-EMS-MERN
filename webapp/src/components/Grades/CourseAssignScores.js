@@ -57,7 +57,7 @@ class CourseAssignScores extends Component {
   // }
 
   render() {
-    let homeWorks = this.props.courseAssignScores.filter(x=>x.id != "");//   bordered
+    let homeWorks = this.props.courseAssignScores.filter(x=>x.id != "" && x["message"] != "assignment not present");//   bordered
     let data ={};
     data.scores = this.props.courseAssignScores.filter(x=>x.id != "").map( (x)=>{ return x.assignmentscrore});
     data.categories = this.props.courseAssignScores.filter(x=>x.id != "").map( (x)=>{ return x.assignmentname});
@@ -65,7 +65,7 @@ class CourseAssignScores extends Component {
       <>
         <NavBar />
         <>
-         <div> 
+         <div className="btn btn-info btn-lg analytics"> 
          {/* <a onClick={this.handleClick} className="btn btn-info btn-lg"> */}
          <Link to= {{
                         pathname: "/analytics",
