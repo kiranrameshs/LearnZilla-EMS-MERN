@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import NavBar from '../NavBar';
 import CourseAssignScores from './CourseAssignScores';
 
-import { connect } from 'react-redux';
 import { getCourseAssigns } from '../../store/actions/grade.action';
+import { Link } from 'react-router-dom';
+//import { Route, Switch, Redirect } from 'react-router';
+ import { withRouter,useHistory } from 'react-router-dom';
+ import { connect } from 'react-redux';
 
 class AllGradesCard extends Component {
 
@@ -15,11 +18,12 @@ class AllGradesCard extends Component {
 
       if (event.target.classList.contains('courseGradeCard')) {
         const itemKey = event.target.id;
-        this.props.history.push('/HW-scores');
+        // const { history } = this.props;
+        // history.push("/AssignScores")
+
         //navigate to CourseAssignScores component passing assignments as props
         return (
-          <CourseAssignScores courseAssigns={this.props.course.assignment}/>
-
+          <div></div>// <Redirect to="/AssignScores"/>
         );
         
          
@@ -36,11 +40,15 @@ class AllGradesCard extends Component {
       render() {
           let c = this.props.course;
         return (
-          <> <div onClick={this.handleClick} className="courseGradeCard ">
+          <> 
+          {/* <Link to={`/AAssignScores/${c._id}`}> */}
+          <div onClick={this.handleClick} className="courseGradeCard ">
             <div className="courseHeading">{c.coursename}</div>
           <span class="finalGrade">{c.coursefinalscrore}%</span>
           {/* <button className=" btn btn-primary btn-xs viewCourseScores" id={c.id + "-view"} onClick={this.handleClick}>View More</button> */}
          </div> <br />
+           {/* </Link> */}
+         
          </>
         );
       }
@@ -56,4 +64,4 @@ const reduxProps = state => {
 };
 
 
-export default connect(reduxProps, { getCourseAssigns })(AllGradesCard);
+export default connect(reduxProps, { getCourseAssigns,withRouter })(AllGradesCard);

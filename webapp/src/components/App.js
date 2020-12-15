@@ -27,7 +27,7 @@ class App extends Component {
             <Route path="/assignments/create" component={CreateAssignments} />
             <Route path="/home" component={NavBar} />
             <Route path="/grades" component={AllGradesContainer} />
-            <Route path="/HW-scores" component={CourseAssignScores} />
+            <Route path="/AssignScores" component={CourseAssignScores} />
             {/* <Route path="/" component={Dashboard} /> */}
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/analytics" component={GradeAnalytics} />
