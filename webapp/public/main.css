@@ -875,7 +875,7 @@ a {
   position: fixed; }
 
 .sidebar {
-  position: fixed;
+  position: absolute;
   top: 54px;
   bottom: 10px;
   left: 5px;

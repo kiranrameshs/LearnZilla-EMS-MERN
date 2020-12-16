@@ -67,32 +67,19 @@ class CourseAssignScores extends Component {
     let filename = 'scores.csv';
     let csv = [];
     let rows = document.querySelectorAll("table tr");
-
+  
     for (let i = 0; i < rows.length; i++) {
       let row = [];
-      if (i > 0) {
-        let cols = rows[i].querySelectorAll("td");
-        for (let j = 0; j <= cols.length; j++) {
-          if (j > 0) {
-            cols = rows[i].querySelectorAll("td input");
-            row.push(cols[j - 1].value);
-          } else {
-            row.push(cols[j].innerText);
-          }
-        }
-      }
-      else {
-        let cols = rows[i].querySelectorAll("th");
-        for (let j = 0; j < cols.length; j++) {
-          row.push(cols[j].innerText);
-        }
+      let cols = i===0?rows[i].querySelectorAll("th"):rows[i].querySelectorAll("td");
+      for (let j = 0; j < cols.length; j++) {
+        row.push(cols[j].innerText);
       }
       csv.push(row.join(","));
     }
-
+  
     // Download CSV file
     this.downloadCSV(csv.join("\n"), filename);
-
+  
   }
 
   //Export to CSV Functions
