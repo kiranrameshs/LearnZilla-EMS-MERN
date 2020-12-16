@@ -1,10 +1,10 @@
 export default {
     coursesGrades: [
-        {
-            id:"",
-            title: "",
-            FinalGrade: ""
-        }
+        // {
+        //     id:"",
+        //     title: "",
+        //     FinalGrade: ""
+        // }
     ],
     CourseAssigns: [
         {

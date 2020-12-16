@@ -9,19 +9,30 @@ import { getMyCourses } from '../../store/actions/course.action';
 
 class AllGradesContainer extends Component {
 
+    constructor(props){
+        super(props);
+
+
+    }
     componentDidMount() {
-        this.props.getCoursesGrades();
+        this.props.getCoursesGrades(localStorage.getItem("roleid"));
     }
 
+
     render() {
-        const courseGradeList = this.props.grades.map((c, i) => {
-            return (
-                <>
-            <CourseGrade key={i} course={c}>
-            </CourseGrade>
-         </>
-            )
-        });
+        let courses = this.props.grades;// [];// this.getAllCourseDetails(this.props.grades);
+        let courseGradeList = <div></div>;
+        if(courses.length !== 0){
+             courseGradeList = courses.map((c, i) => {
+                return (
+                    <>
+                <CourseGrade key={i} course={c}>
+                </CourseGrade>
+             </>
+                )
+            });
+        }
+        
         return (
         <> 
         <NavBar />
@@ -30,8 +41,9 @@ class AllGradesContainer extends Component {
                 <Sidebar />
               </Navbar.Collapse>
         </Navbar>
+       
         <ul className="allChildren">
-            {courseGradeList}
+            {courseGradeList }
         </ul>
         </>
         );
