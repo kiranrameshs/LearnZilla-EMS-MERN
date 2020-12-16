@@ -24,6 +24,7 @@ class Profile extends Component {
   // }
 
     render() {
+      let p = JSON.parse(localStorage.getItem("user"));
         return(
             <>
             <NavBar />
@@ -43,12 +44,8 @@ class Profile extends Component {
                 </div>
                 <div class="col-md-6">
                   <div class="profile-head">
-                    <h5>
-                      Kshiti Ghelani
-                                    </h5>
-                    <h6>
-                      Web Developer and Designer
-                                    </h6>
+                    <h5>{p.name}</h5>
+                    <h6>{p.university}</h6>
                     <p class="proile-rating">RANKINGS : <span>8/10</span></p>
                     <ul className="nav nav-tabs ">
                       <li className="active"><a href="#home" data-toggle="tab">Profile</a></li>
@@ -74,15 +71,6 @@ class Profile extends Component {
                       <UpdatePassword />
 
                     </div>
-                   
-                    {/* <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
-                                </li>
-                            </ul> */}
                   </div>
                 </div>
               </div>
