@@ -29,6 +29,7 @@ class Sidebar extends Component {
       {name: "Evaluate Student Final Grade", url: "/students/finalgrade", role: 1},
       {name: "Edit Teacher ", url: "/teachers/edit", role: 1},
       {name: "Create User", url: "/register", role: 1},
+      {name: "Deregister Teacher", url: "/teacher/deregister", role: 1},
       {name: "Deregister Student", url: "/deregister", role: 1},
       {name: "Create Assignment", url: "/assignments/create", role: 3},
       {name: "Grade Assignment", url: "/students/edit", role: 3},

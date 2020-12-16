@@ -35,8 +35,8 @@ class AssignmentContainer extends Component {
 
     componentDidMount() {
 
-      let assigns =  this.props.location.aboutProps.assignment
-        // let assigns = ["5fd97f752e2da92eb49db7f4","5fd9972ba4f11ed95cc1c108"]//this.props.courseAssigns;
+      // let assigns =  this.props.location.aboutProps.assignment
+        let assigns = ["5fd97f752e2da92eb49db7f4","5fd9972ba4f11ed95cc1c108"]//this.props.courseAssigns;
         assigns.map((aID)=>{
           this.props.getCourseAssigns(aID);
         });
