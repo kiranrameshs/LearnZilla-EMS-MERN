@@ -22,10 +22,16 @@ class Home extends React.Component {
               <ul className="nav navbar-nav navbar-right">
                 <li className="active"><a href="/login"><span className="glyphicon glyphicon-log-in"></span> LOG IN</a></li>
               </ul>
+              
             </div>
+
           </nav>
           <section>
+          
           </section>
+          <div>
+          <a class="twitter-timeline" href="https://twitter.com/kiranrs2?ref_src=twsrc%5Etfw">Tweets by kiranrs2</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+          </div>
         </div>
       )
     }

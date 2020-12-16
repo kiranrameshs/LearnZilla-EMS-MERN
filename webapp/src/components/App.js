@@ -4,6 +4,8 @@ import NavBar from './NavBar';
 import Login from './Authentication/Login';
 import Register from './Authentication/Register';
 import CreateCourses from './Courses/CreateCourses';
+import EnrollCourses from './Courses/EnrollCourses';
+
 import EditTeacher from './Teachers/EditTeacher';
 import CreateAssignments from './Assignments/CreateAssignments';
 import AllGradesContainer from './Grades/AllGradesContainer';
@@ -12,6 +14,7 @@ import Dashboard from './Dashboard';
 import GradeAnalytics from './Grades/GradeAnalytics';
 import Profile from './Profile/ProfileContainer';
 import SuccessPage from './SuccessPage/SuccessPage';
+import Home from './Home';
 
 class App extends Component {
 
@@ -26,7 +29,8 @@ class App extends Component {
         <Route path='/HW-scores'>        
             {(props) => <CourseAssignScores {...props}/>}
         </Route> 
-            <Route path="/register" component={Register} />
+            <Route path="/register" component={Register} />   
+            <Route path="/enrollcourses" component={EnrollCourses} />
             <Route path="/courses/create" component={CreateCourses} />
             <Route path="/teachers/edit" component={EditTeacher} />
             <Route path="/assignments/create" component={CreateAssignments} />
@@ -39,7 +43,7 @@ class App extends Component {
             <Route path="/profile" component={Profile} />
             <Route path="/success" component={SuccessPage} />
             <Route path="/login" key="login" component={Login} />
-            {/* <Route exact path="/" component={Home} /> */}
+            <Route exact path="/" component={Home} />
         </Switch>
       </BrowserRouter>
     </div>
