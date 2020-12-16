@@ -6,7 +6,7 @@ import { logoutUser } from '../../store/actions/user.action';
 import NavBar from '../NavBar';
 import { Navbar,Nav, NavItem } from 'react-bootstrap' ;
 import Sidebar from '../SideBar/SideBar';
-import './GradeStudents.scss';
+// import './GradeStudents.scss';
 
 const userreduxProps = state => {
   return ({
@@ -129,7 +129,7 @@ class GradeCourse extends Component {
     let grade = this.state.grade;
     this.updateStudent(courseid, grade);
     //alert("Course is assigned successfully! Redirect to SuccessPage");
-    this.props.history.push('/success');
+    this.props.history.push('/dashboard');
   }
 
 

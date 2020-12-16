@@ -10,6 +10,7 @@ import { logoutUser } from '../../store/actions/user.action';
 import { Navbar,Nav, NavItem } from 'react-bootstrap' ;
 import Sidebar from '../SideBar/SideBar';
 
+//fetch user details
 const userreduxProps = state => {
   return ({
     auth: state.user.authUser
@@ -17,12 +18,7 @@ const userreduxProps = state => {
 };
 
 class Profile extends Component {
-
-  // componentDidMount(){
-  //   let userState = JSON.parse(localStorage.getItem("user"));
-  //   let id = userState.user._id;
-  // }
-
+   // render forms for updatinf user details
     render() {
       let p = JSON.parse(localStorage.getItem("user"));
         return(
@@ -36,17 +32,17 @@ class Profile extends Component {
             <br />
             <div className="profile allChildren">
 
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="profile-img">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt="" />
+              <div className="row">
+                <div className="col-md-4">
+                  <div>
+                    <img className="profile-img" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="" />
                   </div>
                 </div>
-                <div class="col-md-6">
-                  <div class="profile-head">
-                    <h5>{p.name}</h5>
+                <div className="col-md-6">
+                  <div className="profile-head">
+                    <h5 className="pHeading">{p.name}</h5>
                     <h6>{p.university}</h6>
-                    <p class="proile-rating">RANKINGS : <span>8/10</span></p>
+                    <p className="proile-rating">RANKINGS : <span>8/10</span></p>
                     <ul className="nav nav-tabs ">
                       <li className="active"><a href="#home" data-toggle="tab">Profile</a></li>
                       <li><a href="#profile" data-toggle="tab">Password</a></li>
@@ -54,15 +50,15 @@ class Profile extends Component {
                     <div className="col-md-4">
                         <div className="profile-work">
                             <p>WORK LINK</p>
-                            <a href="">Website Link</a><br/>
-                            <a href="">Bootsnipp Profile</a><br/>
-                            <a href="">Bootply Profile</a>
+                            <label href="">Website Link</label><br/>
+                            <label href="">Bootsnipp Profile</label><br/>
+                            <label href="">Bootply Profile</label>
                             <p>SKILLS</p>
-                            <a href="">Web Designer</a><br/>
-                            <a href="">Web Developer</a><br/>
-                            <a href="">WordPress</a><br/>
-                            <a href="">WooCommerce</a><br/>
-                            <a href="">PHP, .Net</a><br/>
+                            <label href="">Web Designer</label><br/>
+                            <label href="">Web Developer</label><br/>
+                            <label href="">WordPress</label><br/>
+                            <label href="">WooCommerce</label><br/>
+                            <label href="">PHP, .Net</label><br/>
                         </div>
                     </div>
                     <div className="tab-content">
@@ -83,14 +79,5 @@ class Profile extends Component {
     }
 }
 
-
-//export default Profile;
-// const reduxProps = state => {
-// 	return ({
-//    // profile: state.user.authUser,
-//     auth: state.user.authUser
-// 	})
-//   };
-  
   
 export default connect(userreduxProps, { registerUser,logoutUser })(Profile);
