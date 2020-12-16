@@ -24,12 +24,23 @@ class GradeStudents extends Component {
       studentid: '',
       grade: 0,
       studentList: [],
+      courseData: null,
+      assignmentList: [],
       studentLoaded: false,
-      teacherLoaded: false
+      teacherLoaded: false,
+      courseLoaded: false
     };
     this.submitForm = this.submitForm.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this.getTeacherIdCourseId = this.getTeacherIdCourseId.bind(this);
+    this.updateAssignmentScore = this.updateAssignmentScore.bind(this);
+  }
+
+  componentDidMount() {
+    let id = JSON.parse(localStorage.getItem("user")).id;
+    let url = "/teachers/users/" + id;
+  //  alert(url);
+    this.getTeacherIdCourseId(url);
   }
 
   getTeacherIdCourseId(url)  {
@@ -44,6 +55,7 @@ class GradeStudents extends Component {
             teacherid: result.message[0].id,
             courseid: result.message[0].course
           });
+          this.loadCourses();
           this.loadStudents();
         },
         (error) => {
@@ -54,10 +66,35 @@ class GradeStudents extends Component {
     )
   }
 
+  loadCourses() {
+    let id = this.state.courseid;
+    let url = "/courses/" + id;
+    fetch(url, {
+        method: 'GET'
+      })
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            courseLoaded: true,
+            courseData: result,
+            assignmentList: result.assignment
+          });
+          console.log(this.state.assignmentList);
+        },
+        (error) => {
+          this.setState({
+            courseLoaded: false,
+            error
+        });
+      }
+    )
+
+  }
+
   loadStudents() {
     let id = this.state.courseid;
     let url = "/courses/" + id + "/students";
-    //alert(url);
     fetch(url, {
         method: 'GET'
       })
@@ -76,7 +113,6 @@ class GradeStudents extends Component {
         });
       }
     )
-
   }
 
   updateStudent(studentid, grade) {
@@ -96,11 +132,7 @@ class GradeStudents extends Component {
     });
   }
 
-  componentDidMount() {
-    let id = JSON.parse(localStorage.getItem("user")).id;
-    let url = "/teachers/users/" + id;
-  //  alert(url);
-    this.getTeacherIdCourseId(url);
+  updateAssignmentScore() {
 
   }
 
@@ -119,7 +151,8 @@ class GradeStudents extends Component {
     e.preventDefault();
     let studentid = this.state.studentid;
     let grade = this.state.grade;
-    this.updateStudent(studentid, grade);
+    this.updateAssignmentScore();
+    //this.updateStudent(studentid, grade);
     //alert("Course is assigned successfully! Redirect to SuccessPage");
     this.props.history.push('/success');
   }
@@ -127,7 +160,7 @@ class GradeStudents extends Component {
   render(){
       if (this.state.error) {
         return <div>Error: {this.state.error.message}</div>;
-      } else if (!this.state.studentLoaded) {
+      } else if (!this.state.studentLoaded || !this.state.courseLoaded) {
       return <div>Loading...</div>;
       } else {
         return(
@@ -141,6 +174,14 @@ class GradeStudents extends Component {
           <Form className="formclass" onSubmit={this.submitForm}>
             <FormGroup controlId="studentid">
               <FormLabel>Student ID</FormLabel>
+              <FormControl as="select" value={this.state.value} onChange={this.handleInput}>
+                <option placeholder="Select Student" > Select Student </option>
+                {this.state.studentList.map((t, index) => <option key={index} value={t} >{t}</option>)}
+              </FormControl>
+            </FormGroup>
+
+            <FormGroup controlId="studentid">
+              <FormLabel>Assignment ID</FormLabel>
               <FormControl as="select" value={this.state.value} onChange={this.handleInput}>
                 <option placeholder="Select Student" > Select Student </option>
                 {this.state.studentList.map((t, index) => <option key={index} value={t} >{t}</option>)}
