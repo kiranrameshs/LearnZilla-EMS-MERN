@@ -1,9 +1,11 @@
+// Import statements
 import React, { Component } from 'react';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import NavBar from './NavBar';
 import Login from './Authentication/Login';
 import Register from './Authentication/Register';
 import Deregister from './Authentication/Deregister';
+import DeregisterTeacher from './Authentication/DeregisterTeacher';
 import CreateCourses from './Courses/CreateCourses';
 import EditTeacher from './Teachers/EditTeacher';
 import CreateAssignments from './Assignments/CreateAssignments';
@@ -16,7 +18,7 @@ import SuccessPage from './SuccessPage/SuccessPage';
 import GradeStudents from './Grades/GradeStudents';
 import AssignmentContainer from './Assignments/AssignmentContainer';
 import GradeCourse from './Grades/GradeCourse';
-import AssignmentContainer from './AssignmentContainer';
+//import AssignmentContainer from './AssignmentContainer';
 import TeacherViewGrades from './Teachers/ViewGrades';
 import EvaluateStudFinalGrade from './Grades/EvaluateStudFinalGrade';
 
@@ -24,6 +26,7 @@ import EvaluateStudFinalGrade from './Grades/EvaluateStudFinalGrade';
 
 class App extends Component {
 
+  // List of paths with component mapping
   render() {
     return (
     <div className="App">
@@ -37,6 +40,7 @@ class App extends Component {
         </Route>
             <Route path="/register" component={Register} />
             <Route path="/deregister" component={Deregister} />
+            <Route path="/teacher/deregister" component={DeregisterTeacher} />
             <Route path="/courses/create" component={CreateCourses} />
             <Route path="/courses/Assignments" component={AssignmentContainer} />
             <Route path="/teachers/edit" component={EditTeacher} />

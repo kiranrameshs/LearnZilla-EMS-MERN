@@ -30,6 +30,7 @@ class Sidebar extends Component {
       {name: "Edit Teacher ", url: "/teachers/edit", role: 1},
       {name: "Create User", url: "/register", role: 1},
       {name: "Deregister Student", url: "/deregister", role: 1},
+      {name: "Deregister Teacher", url: "/teacher/deregister", role: 1},
       {name: "Create Assignment", url: "/assignments/create", role: 3},
       {name: "Grade Assignment", url: "/students/edit", role: 3},
       {name: "Grade Course", url: "/students/grade", role: 3},
@@ -44,7 +45,7 @@ logout(e){
   this.props.logoutUser()
 }
 
-/** Generating asll links depending on user role*/
+/** Generating all links depending on user role*/
 generateLinks(menuItems){
     return menuItems.map((exp,i) => {
       if(this.props.auth){
@@ -62,12 +63,14 @@ generateLinks(menuItems){
   render() {
     let userState;
     let role;
-    /*role --> admin = 1, student = 2, teacher = 3*/
+
+    // Implemented Role based authorization
+    // role --> admin = 1, student = 2, teacher = 3
 
     if (this.props.auth === undefined) {
         role = "Admin"
     } else {
-      userState = this.props.auth.user
+      userState = this.props.auth.user;
       role = this.props.auth.user.role
     //  console.log(userState);
     }
