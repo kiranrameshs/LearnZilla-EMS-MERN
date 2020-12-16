@@ -1,3 +1,4 @@
+// Import statements
 import React, {Component} from 'react';
 import {Form, FormGroup, FormControl, Button, FormLabel,} from 'react-bootstrap';
 import { connect } from 'react-redux';
@@ -10,6 +11,7 @@ import './CreateCourses.scss';
 
 class CreateCourses extends Component {
 
+  // constructor
   constructor(props) {
     super(props);
     this.state = {
@@ -48,6 +50,7 @@ class CreateCourses extends Component {
     this.props.createCourse(this.state);
   }
 
+  // Render form for createcourse
   render(){
     return(
       <div>

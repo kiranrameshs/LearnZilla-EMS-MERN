@@ -1,3 +1,4 @@
+// Import Statements
 import React, {Component} from 'react';
 import {
   Form,
@@ -15,6 +16,7 @@ import { Navbar,Nav, NavItem } from 'react-bootstrap' ;
 import Sidebar from '../SideBar/SideBar';
 
 class Register extends Component {
+  // Constructor
   constructor(props) {
     super(props);
     this.state = {
@@ -53,6 +55,7 @@ class Register extends Component {
     //alert("done")
   }
 
+  // Render Registration Form
   render(){
     return(
       <div>

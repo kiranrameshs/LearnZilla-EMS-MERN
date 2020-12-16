@@ -3,6 +3,7 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 import NavBar from './NavBar';
 import Login from './Authentication/Login';
 import Register from './Authentication/Register';
+import Deregister from './Authentication/Deregister';
 import CreateCourses from './Courses/CreateCourses';
 import EditTeacher from './Teachers/EditTeacher';
 import CreateAssignments from './Assignments/CreateAssignments';
@@ -13,9 +14,12 @@ import GradeAnalytics from './Grades/GradeAnalytics';
 import Profile from './Profile/ProfileContainer';
 import SuccessPage from './SuccessPage/SuccessPage';
 import GradeStudents from './Grades/GradeStudents';
+import AssignmentContainer from './Assignments/AssignmentContainer';
 import GradeCourse from './Grades/GradeCourse';
-import AssignmentContainer from './AssignmentContainer';
+// import AssignmentContainer from './AssignmentContainer';
 import TeacherViewGrades from './Teachers/ViewGrades';
+import EvaluateStudFinalGrade from './Grades/EvaluateStudFinalGrade';
+
 
 
 class App extends Component {
@@ -32,8 +36,9 @@ class App extends Component {
             {(props) => <CourseAssignScores {...props}/>}
         </Route>
             <Route path="/register" component={Register} />
+            <Route path="/deregister" component={Deregister} />
             <Route path="/courses/create" component={CreateCourses} />
-            <Route path="/courses/Assignments" component={AssignmentContainer} />            
+            <Route path="/courses/Assignments" component={AssignmentContainer} />
             <Route path="/teachers/edit" component={EditTeacher} />
             <Route path="/students/edit" component={GradeStudents} />
             <Route path="/assignments/create" component={CreateAssignments} />
@@ -49,6 +54,7 @@ class App extends Component {
             <Route path="/login" key="login" component={Login} />
             {/* <Route exact path="/" component={Home} /> */}
             <Route path="/viewGrades" component={TeacherViewGrades} />
+            <Route path="/students/finalgrade" component={EvaluateStudFinalGrade} />
         </Switch>
       </BrowserRouter>
     </div>
