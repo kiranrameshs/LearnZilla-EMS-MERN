@@ -80,7 +80,7 @@ class Dashboard extends React.Component {
       //     )});
         
       let courses = this.props.grades;// [];// this.getAllCourseDetails(this.props.grades);
-      let courseList ;
+      let courseList  = <div></div>;
       if(courses.length !== 0){
            courseList = courses.map((c, i) => {
               return (
@@ -102,7 +102,7 @@ class Dashboard extends React.Component {
         </Navbar>
         <h1>Dashboard</h1>
         <div className="gridOf4">
-        <ul >
+        <ul>
             {courseList}
         </ul>
         </div>

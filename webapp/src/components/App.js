@@ -16,9 +16,10 @@ import SuccessPage from './SuccessPage/SuccessPage';
 import GradeStudents from './Grades/GradeStudents';
 import AssignmentContainer from './Assignments/AssignmentContainer';
 import GradeCourse from './Grades/GradeCourse';
-import AssignmentContainer from './AssignmentContainer';
 import TeacherViewGrades from './Teachers/ViewGrades';
 import EvaluateStudFinalGrade from './Grades/EvaluateStudFinalGrade';
+import EnrollCourses from './Courses/EnrollCourses';
+import Deregister from './Authentication/Deregister';
 
 
 
@@ -44,6 +45,8 @@ class App extends Component {
             <Route path="/assignments/create" component={CreateAssignments} />
             <Route path="/home" component={NavBar} />
             <Route path="/students/grade" component={GradeCourse} />
+            <Route path="/enrollcourses" component={EnrollCourses} />
+            <Route path="/teacher/deregister" component={DeregisterTeacher} />
             {/* <Route path="/grades" component={AllGradesContainer} /> */}
             {/* <Route path="/HW-scores" component={CourseAssignScores} /> */}
             {/* <Route path="/" component={Home} /> */}

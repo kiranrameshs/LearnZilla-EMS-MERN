@@ -10,9 +10,9 @@ class CourseContainer extends Component {
 
     constructor(props){
         super(props);
-        this.state={
-            assignmentID: []
-        }
+        // this.state={
+        //     assignmentID: []
+        // }
         // this.handleClick = this.handleClick.bind(this);
     //     let courseID= props.courseID
 
@@ -49,13 +49,13 @@ class CourseContainer extends Component {
           
     }
 
-componentDidMount(){
-    this.setState({
-        assignmentID: ["5fd97f752e2da92eb49db7f4"]
-    })
-}
+// componentDidMount(){
+//     this.setState({
+//         assignmentID: ["5fd97f752e2da92eb49db7f4"]
+//     })
+// }
     handleClick(name){
-        alert("clicked")
+        // alert("clicked")
         // this.props.history.push({
         //   pathname: name,
         //   state: { courseAssigns: this.props.course.assignment }
@@ -65,6 +65,7 @@ componentDidMount(){
     render() {
         let c = this.props.course;      
         let courseAssignments = c.assignment;
+        
         // let courseAssignmentList = <div></div>;
         // if(courseAssignments.length !== 0){
         //     courseAssignmentList = courseAssignments.map((a, i) => {
@@ -91,15 +92,17 @@ componentDidMount(){
         return(
             //handleClick = (event) => {
             <>
+           
+
                 <Link to= {{
                         pathname: "/courses/Assignments",
                         aboutProps: {
                             key : c.id,
                             assignment : c.assignment
                              }
-                    }}><div>
-            <h2> {c.coursename}</h2>
-            <p>{c.coursedesc}</p></div></Link>
+                    }}><div> <h2> {c[0].coursename}</h2>
+            <p>{c[0].coursedesc}</p>
+            </div></Link>
             
             </>
         )
