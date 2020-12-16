@@ -61,22 +61,18 @@ class Dashboard extends React.Component {
 
   }
 
-  componentDidMount() {
-
-    }
-
-    openCourse=(c)=>{
-      console.log(c)
-    }
-
     render(){
     
       let courses = this.props.courses.courses!==undefined? this.props.courses.courses: this.props.courses
       
       const courseList = courses.map((c, i ) =>{
         return (
-          <CourseContainer key={i} courseID={c} openCourse={this.openCourse}>
+          <>
+          <CourseContainer key={i} courseID={c} >
           </CourseContainer>
+             {/* <CourseContainer key={i} courseID={c} >
+             </CourseContainer> */}
+             </>
           )});
         
         return (
