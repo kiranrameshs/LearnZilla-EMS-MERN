@@ -10,7 +10,7 @@ export default function(state = initialState, action) {
     case GET_COURSE_GRADES:
       return {
         ...state,
-        coursesGrades: action.payload
+        coursesGrades: [...state.coursesGrades, action.payload]
       };
     case GET_COURSE_ASSIGN_GRADES:
       return { 

@@ -1,12 +1,19 @@
 import React, {Component} from 'react';
 import {Form, FormGroup, FormControl, Button, FormLabel,} from 'react-bootstrap';
 import { removeError } from '../../store/actions/error.action';
+import { logoutUser } from '../../store/actions/user.action';
 import NavBar from '../NavBar';
 import { Navbar,Nav, NavItem } from 'react-bootstrap' ;
 import Sidebar from '../SideBar/SideBar';
-import './EditTeacher.scss';
+import './GradeStudents.scss';
 
-class EditTeacher extends Component {
+const userreduxProps = state => {
+  return ({
+    auth: state.user.authUser
+  })
+};
+
+class GradeCourse extends Component {
 
   constructor(props) {
     super(props);
@@ -14,88 +21,97 @@ class EditTeacher extends Component {
       error: null,
       teacherid: '',
       courseid: '',
-      salary: 0,
-      teacherList: [],
-      courseList: [],
-      courseLoaded: false,
-      teacherLoaded: false
+      studentid: '',
+      assignmentid: '',
+      grade: 0,
+      feedback: '',
+      studentList: [],
+      courseData: null,
+      assignmentList: [],
+      studentLoaded: false,
+      teacherLoaded: false,
+      courseLoaded: false
     };
     this.submitForm = this.submitForm.bind(this);
     this.handleInput = this.handleInput.bind(this);
+    this.getTeacherIdCourseId = this.getTeacherIdCourseId.bind(this);
+    this.updateStudent = this.updateStudent.bind(this);
   }
 
-  loadCourses() {
-    fetch("/courses", {
+  componentDidMount() {
+    let id = JSON.parse(localStorage.getItem("user")).id;
+    let url = "/teachers/users/" + id;
+  //  alert(url);
+    this.getTeacherIdCourseId(url);
+  }
+
+  getTeacherIdCourseId(url)  {
+    fetch(url, {
         method: 'GET'
       })
       .then(res => res.json())
       .then(
         (result) => {
+          //console.log(result.message[0]);
           this.setState({
-            courseLoaded: true,
-            courseList: result
+            teacherid: result.message[0].id,
+            courseid: result.message[0].course
           });
+          this.loadStudents();
         },
         (error) => {
           this.setState({
-            courseLoaded: false,
-            error
-        });
-      }
-    )
-    //console.log(this.state.courseList);
-  }
-
-  loadTeachers() {
-    fetch("/teachers", {
-        method: 'GET'
-      })
-      .then(res => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            teacherLoaded: true,
-            teacherList: result
-          });
-        //  console.log(this.state.teacherList);
-        },
-        (error) => {
-          this.setState({
-            teacherLoaded: false,
             error
         });
       }
     )
   }
 
-  updateTeacher(teacherid, courseid, salary) {
-    let editUrl = "/teachers/" + teacherid;
+  loadStudents() {
+    let id = this.state.courseid;
+    let url = "/courses/" + id + "/students";
+    fetch(url, {
+        method: 'GET'
+      })
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            studentLoaded: true,
+            studentList: result.students
+          });
+        },
+        (error) => {
+          this.setState({
+            studentLoaded: false,
+            error
+        });
+      }
+    )
+  }
+
+  updateStudent(courseid, grade) {
+    //alert(courseid + " " + grade);
+    let editUrl = "/courses/" + courseid;
     fetch(editUrl, {
       method: 'PUT',
       body: JSON.stringify({
-          "course": courseid,
-          "salary": salary
+          "coursefinalscrore": grade
         }
       ),
       headers: {"Content-Type": "application/json"}
     })
     .then(res => res.json())
     .then((responseJson) => {
-  //    alert("here")
       console.log(responseJson);
     });
   }
 
-  componentDidMount() {
-    this.loadTeachers();
-    this.loadCourses();
-  }
+
 
   handleInput(e) {
     let id = e.target.id;
     let val = e.target.value;
-    //console.log(id);
-    //console.log(val);
     this.setState({
       [id]: val
     });
@@ -104,19 +120,17 @@ class EditTeacher extends Component {
 
   submitForm(e){
     e.preventDefault();
-    let teacherid = this.state.teacherid;
     let courseid = this.state.courseid;
-    let salary = this.state.salary;
-    this.updateTeacher(teacherid, courseid, salary);
-    alert("Course is assigned successfully! Redirect to Dashboard");
-    this.props.history.push('/dashboard');
+    let grade = this.state.grade;
+    this.updateStudent(courseid, grade);
+    //alert("Course is assigned successfully! Redirect to SuccessPage");
+    this.props.history.push('/success');
   }
 
   render(){
-      //console.log(this.state.courseList);
       if (this.state.error) {
         return <div>Error: {this.state.error.message}</div>;
-      } else if (!this.state.courseLoaded) {
+      } else if (!this.state.studentLoaded) {
       return <div>Loading...</div>;
       } else {
         return(
@@ -128,36 +142,28 @@ class EditTeacher extends Component {
                 </Navbar.Collapse>
           </Navbar>
           <Form className="formclass" onSubmit={this.submitForm}>
-            <FormGroup controlId="teacherid">
-              <FormLabel>Teacher Name</FormLabel>
+            <FormGroup controlId="studentid">
+              <FormLabel>Student ID</FormLabel>
               <FormControl as="select" value={this.state.value} onChange={this.handleInput}>
-                <option>Select Teacher</option>
-                {this.state.teacherList.map((t, index) => <option key={index} value={t.id} >{t.id}</option>)}
+                <option placeholder="Select Student" > Select Student </option>
+                {this.state.studentList.map((t, index) => <option key={index} value={t} >{t}</option>)}
               </FormControl>
             </FormGroup>
 
-            <FormGroup controlId="courseid">
-              <FormLabel>Course Name</FormLabel>
-              <FormControl as="select" value={this.state.value} onChange={this.handleInput}>
-                <option>Select Course</option>
-                {this.state.courseList.map((c, index) => <option key={index} value={c.id} >{c.coursename}</option>)}
-              </FormControl>
-            </FormGroup>
-
-            <FormGroup controlId="salary">
-              <FormLabel>Salary</FormLabel>
-              <FormControl type="Number" value={this.state.value} placeholder="Enter Salary" onChange={this.handleInput} />
+            <FormGroup controlId="grade">
+              <FormLabel>Student Grade</FormLabel>
+              <FormControl type="Number" value={this.state.value} placeholder="Enter Student Grade" onChange={this.handleInput} />
             </FormGroup>
 
             <FormGroup>
-              <Button type="submit">Assign Course</Button>
+              <Button type="submit">Grade Course</Button>
             </FormGroup>
           </Form>
-        </div>
+          </div>
         )
       }
   }
 }
 
 
-export default EditTeacher;
+export default GradeCourse;

@@ -24,14 +24,19 @@ export const loginUser = userData => dispatch => {
     if (responseJson.status >= 200 && responseJson.status < 300) {
       dispatch({ type: ActionTypes.LOGIN_USER, payload: responseJson})
     } else {
+      alert(JSON.stringify(responseJson.status + " : " + responseJson.message));
       dispatch({ type:ActionTypes.ERRORS, responseJson})
     }
   })
   .catch(err =>
-    dispatch({
-      type: ActionTypes.ERRORS,
-      payload: err.response
-    })
+    {
+      alert(JSON.stringify(err));
+      dispatch({
+        type: ActionTypes.ERRORS,
+        payload: err.response
+      })
+    }
+
   );
 };
 
