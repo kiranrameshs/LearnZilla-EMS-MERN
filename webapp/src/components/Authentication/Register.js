@@ -10,6 +10,9 @@ import { connect } from 'react-redux';
 import './Authentication.scss';
 import { registerUser } from '../../store/actions/user.action';
 import { removeError } from '../../store/actions/error.action';
+import NavBar from '../NavBar';
+import { Navbar,Nav, NavItem } from 'react-bootstrap' ;
+import Sidebar from '../SideBar/SideBar';
 
 class Register extends Component {
   constructor(props) {
@@ -52,42 +55,50 @@ class Register extends Component {
 
   render(){
     return(
-      <Form onSubmit={this.submitForm}>
-      <FormGroup controlId="name">
-        <FormLabel>Name</FormLabel>
-        <FormControl type="text" value={this.state.value} placeholder="Enter name" onChange={this.handleInput} />
-      </FormGroup>
-      <FormGroup controlId="address">
-        <FormLabel>Address</FormLabel>
-        <FormControl type="text" value={this.state.value} placeholder="Enter address" onChange={this.handleInput} />
-      </FormGroup>
-        <FormGroup controlId="email">
-          <FormLabel>Email</FormLabel>
-          <FormControl type="text" value={this.state.value} placeholder="Enter email" onChange={this.handleInput} />
-        </FormGroup>
-        <FormGroup controlId="password">
-          <FormLabel>Password</FormLabel>
-          <FormControl type="password" value={this.state.value} placeholder="Enter password" onChange={this.handleInput} />
-        </FormGroup>
-        <FormGroup controlId="university">
-          <FormLabel>University</FormLabel>
-          <FormControl type="text" value={this.state.value} placeholder="Enter university" onChange={this.handleInput} />
-        </FormGroup>
-        <FormGroup controlId="role">
-          <FormLabel>Role</FormLabel>
-          <FormControl as="select" value={this.state.value} onChange={this.handleInput}>
-            <option>Enter Role</option>
-            <option>Teacher</option>
-            <option>Student</option>
-            <option>Admin</option>
-          </FormControl>
-        </FormGroup>
+      <div>
+        <NavBar />
+        <Navbar className="sidebar">
+            <Navbar.Collapse>
+              <Sidebar />
+            </Navbar.Collapse>
+        </Navbar>
+        <Form className="formclass" onSubmit={this.submitForm}>
+          <FormGroup controlId="name">
+            <FormLabel>Name</FormLabel>
+            <FormControl type="text" value={this.state.value} placeholder="Enter name" onChange={this.handleInput} />
+          </FormGroup>
+          <FormGroup controlId="address">
+            <FormLabel>Address</FormLabel>
+            <FormControl type="text" value={this.state.value} placeholder="Enter address" onChange={this.handleInput} />
+          </FormGroup>
+          <FormGroup controlId="email">
+            <FormLabel>Email</FormLabel>
+            <FormControl type="text" value={this.state.value} placeholder="Enter email" onChange={this.handleInput} />
+          </FormGroup>
+          <FormGroup controlId="password">
+            <FormLabel>Password</FormLabel>
+            <FormControl type="password" value={this.state.value} placeholder="Enter password" onChange={this.handleInput} />
+          </FormGroup>
+          <FormGroup controlId="university">
+            <FormLabel>University</FormLabel>
+            <FormControl type="text" value={this.state.value} placeholder="Enter university" onChange={this.handleInput} />
+          </FormGroup>
+          <FormGroup controlId="role">
+            <FormLabel>Role</FormLabel>
+            <FormControl as="select" value={this.state.value} onChange={this.handleInput}>
+              <option>Enter Role</option>
+              <option>Teacher</option>
+              <option>Student</option>
+              <option>Admin</option>
+            </FormControl>
+          </FormGroup>
 
-        <FormGroup>
-          <Button type="submit" >Register</Button>
-        </FormGroup>
-      </Form>
-  )
+          <FormGroup>
+            <Button type="submit" >Register</Button>
+          </FormGroup>
+        </Form>
+    </div>
+    )
   }
 }
 
