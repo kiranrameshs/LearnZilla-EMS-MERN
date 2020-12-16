@@ -95,9 +95,6 @@ generateLinks(menuItems){
 
       return(<Nav>
               {finalLinks}
-              // <NavItem key="logout">
-              //   <Link replace to="/login" onClick={this.logout}>  Logout </Link>
-              // </NavItem>
             </Nav>
           )
   }
