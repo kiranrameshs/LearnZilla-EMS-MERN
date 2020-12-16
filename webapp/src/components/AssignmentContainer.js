@@ -5,9 +5,9 @@ class AssignmentContainer extends Component {
     constructor(props){
         super(props);
         // console.log(props.location.aboutprops.CourseID.c)
-        this.state = {
-            data: props.location.aboutprops.CourseID
-        }
+        // this.state = {
+        //     data: props.location.aboutprops.course
+        // }
 
     }
 
@@ -17,7 +17,8 @@ class AssignmentContainer extends Component {
         // const c = this.props.c
         return (
             <div>
-               AssignmentContainer  + " " + {this.state.data.c}
+               AssignmentContainer  
+               
             </div>
         )
     }
