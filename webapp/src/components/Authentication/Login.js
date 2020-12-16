@@ -1,7 +1,7 @@
 // Import Statements
 import React, {Component} from 'react';
 import {Form, FormGroup, FormControl, Button, FormLabel,} from 'react-bootstrap';
-import './Authentication.scss';
+// import './Authentication.scss';
 import { connect } from 'react-redux';
 import { loginUser } from '../../store/actions/user.action';
 import { removeError } from '../../store/actions/error.action';

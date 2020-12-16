@@ -6,7 +6,7 @@ import { logoutUser } from '../../store/actions/user.action';
 import NavBar from '../NavBar';
 import { Navbar,Nav, NavItem } from 'react-bootstrap' ;
 import Sidebar from '../SideBar/SideBar';
-import './Authentication.scss';
+// import './Authentication.scss';
 
 const userreduxProps = state => {
   return ({

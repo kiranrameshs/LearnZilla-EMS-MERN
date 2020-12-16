@@ -9,7 +9,7 @@ class UpdatePassword extends Component {
         this.submitForm = this.submitForm.bind(this);
       }
 
-
+    //validating and updating password
     submitForm(e){
         e.preventDefault();
         let pwd1 = document.getElementById('pwd1').value;
@@ -27,7 +27,7 @@ class UpdatePassword extends Component {
     }
 
     
-
+    //rendering password form
     render() {
         return(
             <>

@@ -15,12 +15,15 @@ class AllGradesContainer extends Component {
 
     }
     componentDidMount() {
+        // fetch course grades for loggedin user
         this.props.getCoursesGrades(localStorage.getItem("roleid"));
     }
 
-
+    
     render() {
         let courses = this.props.grades;
+
+        //form grade cards if course is present
         let courseGradeList = <div></div>;
         if(courses.length !== 0){
              courseGradeList = courses[0].map((c, i) => {

@@ -31,7 +31,7 @@ class CreateCourses extends Component {
     } else {
       alert("Course is added successfully!");
       alert("Redirect to SuccessPage");
-      this.props.history.push('/success')
+      this.props.history.push('/dashboard')
     }
     // if (Object.keys(newProps.auth).length > 0 ) {
     //   alert(newProps.auth);

@@ -18,22 +18,7 @@ class AllGradesCard extends Component {
       this.handleClick = this.handleClick.bind(this);
   }
   
-
-    // handleClick = (event) => {
-
-      // if (event.target.classList.contains('project')) {
-        //        const itemKey = event.target.id;
-    //     this.props.history.push('/HW-scores');
-    //     //navigate to CourseAssignScores component passing assignments as props
-        // window.location = '/HW-scores';
-    //     return (
-    //       <CourseAssignScores courseAssigns={this.props.course.assignment}/>
-    //    );
-
-    //   }
- 
-   //  }
-
+  //navigate to CourseAssignScores component passing assignments as props
     handleClick(e){
       window.location.href = '/HW-scores';
       // this.props.history.push({
@@ -45,6 +30,7 @@ class AllGradesCard extends Component {
 
 
       render() {
+        //changing css classes according to score
           let c = this.props.course;
           console.log("c is "+c);
           console.log("props is "+this.props);
@@ -59,7 +45,7 @@ class AllGradesCard extends Component {
             cardClass += "project-info";
           }
          
-          
+          //render each grade card
         return (
           <div className="col-xs-3">
             <div onClick={this.handleClick} className={cardClass}>
@@ -88,7 +74,7 @@ class AllGradesCard extends Component {
 
 }
 
-//export default AllGradesCard;
+//fetching data from parent component itself
 
 const reduxProps = state => {
   // return ({
