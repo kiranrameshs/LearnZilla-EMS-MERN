@@ -134,13 +134,14 @@ class GradeStudents extends Component {
     });
   }
 
-  updateAssignmentScore(assignmentid, grade) {
-    alert(assignmentid + " " + grade);
+  updateAssignmentScore(assignmentid, grade, feedback) {
+    alert(assignmentid + " " + grade + " " + feedback);
     let editUrl = "/assignments/" + assignmentid;
     fetch(editUrl, {
       method: 'PUT',
       body: JSON.stringify({
-          "assignmentscrore": grade
+          "assignmentscrore": grade,
+          "feedback": feedback
         }
       ),
       headers: {"Content-Type": "application/json"}
@@ -166,8 +167,9 @@ class GradeStudents extends Component {
     e.preventDefault();
     let studentid = this.state.studentid;
     let grade = this.state.grade;
+    let feedback = this.state.feedback;
     let assignmentid = this.state.assignmentid;
-    this.updateAssignmentScore(assignmentid, grade);
+    this.updateAssignmentScore(assignmentid, grade, feedback);
     //this.updateStudent(studentid, grade);
     //alert("Course is assigned successfully! Redirect to SuccessPage");
     this.props.history.push('/success');
@@ -218,7 +220,7 @@ class GradeStudents extends Component {
 
 
             <FormGroup>
-              <Button type="submit">Grade Student</Button>
+              <Button type="submit">Evaluate Student</Button>
             </FormGroup>
           </Form>
           </div>
