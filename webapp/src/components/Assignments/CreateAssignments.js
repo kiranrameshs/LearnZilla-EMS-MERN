@@ -4,6 +4,10 @@ import { connect } from 'react-redux';
 import { createAssignment } from '../../store/actions/assignment.action';
 import { removeError } from '../../store/actions/error.action';
 import { logoutUser } from '../../store/actions/user.action';
+import NavBar from '../NavBar';
+import { Navbar,Nav, NavItem } from 'react-bootstrap' ;
+import Sidebar from '../SideBar/SideBar';
+import './CreateAssignments.scss';
 
 const userreduxProps = state => {
   return ({
@@ -90,7 +94,14 @@ class CreateAssignments extends Component {
   render(){
 
     return(
-      <Form onSubmit={this.submitForm}>
+      <div>
+      <NavBar />
+      <Navbar className="sidebar">
+            <Navbar.Collapse>
+              <Sidebar />
+            </Navbar.Collapse>
+      </Navbar>
+      <Form className="formclass" onSubmit={this.submitForm}>
         <FormGroup controlId="assignmentname">
           <FormLabel>Assignment Name</FormLabel>
           <FormControl type="text" value={this.state.value} placeholder="Enter Assignment Name" onChange={this.handleInput} />
@@ -115,7 +126,7 @@ class CreateAssignments extends Component {
           <Button type="submit">Add Assignment</Button>
         </FormGroup>
       </Form>
-
+      </div>
     )
   }
 }

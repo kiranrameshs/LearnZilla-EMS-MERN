@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 import {Form, FormGroup, FormControl, Button, FormLabel,} from 'react-bootstrap';
 import { removeError } from '../../store/actions/error.action';
+import NavBar from '../NavBar';
+import { Navbar,Nav, NavItem } from 'react-bootstrap' ;
+import Sidebar from '../SideBar/SideBar';
+import './EditTeacher.scss';
 
 class EditTeacher extends Component {
 
@@ -116,7 +120,14 @@ class EditTeacher extends Component {
       return <div>Loading...</div>;
       } else {
         return(
-          <Form onSubmit={this.submitForm}>
+          <div>
+          <NavBar />
+          <Navbar className="sidebar">
+                <Navbar.Collapse>
+                  <Sidebar />
+                </Navbar.Collapse>
+          </Navbar>
+          <Form className="formclass" onSubmit={this.submitForm}>
             <FormGroup controlId="teacherid">
               <FormLabel>Teacher Name</FormLabel>
               <FormControl as="select" value={this.state.value} onChange={this.handleInput}>
@@ -142,6 +153,7 @@ class EditTeacher extends Component {
               <Button type="submit">Assign Course</Button>
             </FormGroup>
           </Form>
+        </div>
         )
       }
   }
