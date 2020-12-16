@@ -22,6 +22,7 @@ class GradeStudents extends Component {
       teacherid: '',
       courseid: '',
       studentid: '',
+      assignmentid: '',
       grade: 0,
       studentList: [],
       courseData: null,
@@ -151,6 +152,7 @@ class GradeStudents extends Component {
     e.preventDefault();
     let studentid = this.state.studentid;
     let grade = this.state.grade;
+    let assignmentid = this.state.assignmentid;
     this.updateAssignmentScore();
     //this.updateStudent(studentid, grade);
     //alert("Course is assigned successfully! Redirect to SuccessPage");
@@ -180,11 +182,11 @@ class GradeStudents extends Component {
               </FormControl>
             </FormGroup>
 
-            <FormGroup controlId="studentid">
+            <FormGroup controlId="assignmentid">
               <FormLabel>Assignment ID</FormLabel>
               <FormControl as="select" value={this.state.value} onChange={this.handleInput}>
-                <option placeholder="Select Student" > Select Student </option>
-                {this.state.studentList.map((t, index) => <option key={index} value={t} >{t}</option>)}
+                <option placeholder="Select Assignment" > Select Assignment </option>
+                {this.state.assignmentList.map((t, index) => <option key={index} value={t} >{t}</option>)}
               </FormControl>
             </FormGroup>
 
