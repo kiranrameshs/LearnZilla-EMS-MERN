@@ -60,6 +60,7 @@ class NavBar extends Component {
                         props: {
                              }
                     }}>Grades</Link>
+                    
                     </li>
                 </ul>
                 <ul className="nav navbar-nav navbar-right">

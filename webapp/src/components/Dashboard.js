@@ -51,7 +51,8 @@ class Dashboard extends React.Component {
           if (localStorage.getItem("roleid") === null) {
             localStorage.setItem("roleid", (roleID));
           }
-          this.props.getMyCourses(roleID);
+          if(role==="Student"){this.props.getMyCourses(roleID);}
+          
 
       })
       .catch(err => alert(err)
@@ -62,15 +63,22 @@ class Dashboard extends React.Component {
   
   componentDidMount() {
 
+    }
 
+    openCourse=(c)=>{
+      console.log(c)
     }
 
     render(){
-    let courses = this.props.courses.courses!==undefined? this.props.courses.courses: this.props.courses
-      // console.log(this.props.courses[0])
-      const CourseList = courses.map((c, i ) =>{
-        return(console.log(c) );
-      })
+    
+      let courses = this.props.courses.courses!==undefined? this.props.courses.courses: this.props.courses
+      
+      const courseList = courses.map((c, i ) =>{
+        return (
+          <CourseContainer key={i} courseID={c} openCourse={this.openCourse}>
+          </CourseContainer>
+          )});
+        
         return (
         <>
         <NavBar />
@@ -82,7 +90,7 @@ class Dashboard extends React.Component {
         <h1>Dashboard</h1>
         <div className="gridOf4">
         <ul >
-            {/* {courseList} */}
+            {courseList}
         </ul>
         </div>
 
