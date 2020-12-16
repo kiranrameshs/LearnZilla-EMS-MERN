@@ -54,7 +54,7 @@ class NavBar extends Component {
         let fname = "Ron";//this.props.fname;
         return (
           <>
-            <nav className="navbar navbar-inverse">
+            <nav className="navbar navbar-fixed">
               <div className="container-fluid">
                 <div className="navbar-header">
                   <a className="navbar-brand" href="#"> <span className="glyphicon glyphicon-education"></span> LearnZilla</a>

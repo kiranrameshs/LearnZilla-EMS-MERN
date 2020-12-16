@@ -7,6 +7,9 @@ import { connect } from 'react-redux';
 import { registerUser } from '../../store/actions/user.action';
 import { logoutUser } from '../../store/actions/user.action';
 
+import { Navbar,Nav, NavItem } from 'react-bootstrap' ;
+import Sidebar from '../SideBar/SideBar';
+
 const userreduxProps = state => {
   return ({
     auth: state.user.authUser
@@ -24,8 +27,13 @@ class Profile extends Component {
         return(
             <>
             <NavBar />
+            <Navbar className="sidebar">
+              <Navbar.Collapse>
+                <Sidebar />
+              </Navbar.Collapse>
+            </Navbar>
             <br />
-            <div className="profile">
+            <div className="profile allChildren">
 
               <div class="row">
                 <div class="col-md-4">
@@ -60,7 +68,7 @@ class Profile extends Component {
                             <a href="">PHP, .Net</a><br/>
                         </div>
                     </div>
-                    <div id="myTabContent" className="tab-content">
+                    <div className="tab-content">
 
                       <UpdateProfile />
                       <UpdatePassword />

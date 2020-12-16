@@ -44,11 +44,11 @@ logout(e){
 generateLinks(menuItems){
     return menuItems.map((exp,i) => {
         return (
-          <div class="sidebarLinks">
-            <NavItem key={i} >
+          <li class="sidebarLinks">
+            <a key={i} componentClass='span'>
               <Link replace to={{pathname: exp.url}}>  {exp.name} </Link>
-            </NavItem>
-          </div>
+            </a>
+          </li>
         )
     })
   }
@@ -90,12 +90,13 @@ generateLinks(menuItems){
     let finalLinks = this.generateLinks(menuItems)
     // console.log(finalLinks);
 
-      return(<Nav>
+      return(
+            <ul>
               {finalLinks}
               <NavItem key="logout" >
                 <Link replace to="/login" onClick={this.logout}>  Logout </Link>
               </NavItem>
-            </Nav>
+            </ul>
           )
   }
 }
