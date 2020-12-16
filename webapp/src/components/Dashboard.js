@@ -1,10 +1,8 @@
 import React from 'react';
 import NavBar from './NavBar';
-//import Sidebar from './SideBar';
 import CourseContainer from './CourseContainer'
 import './../styles/Modules/CourseCards.scss'
 import { Navbar,Nav, NavItem } from 'react-bootstrap' ;
-// import './styles/CourseCards.scss'
 import Sidebar from './SideBar/SideBar';
 import './SideBar/SideBar.scss';
 import { connect } from 'react-redux';
@@ -82,9 +80,9 @@ class Dashboard extends React.Component {
       //     )});
         
       let courses = this.props.grades;// [];// this.getAllCourseDetails(this.props.grades);
-      let courseGradeList = <div></div>;
+      let courseList ;
       if(courses.length !== 0){
-           courseGradeList = courses.map((c, i) => {
+           courseList = courses.map((c, i) => {
               return (
                   <>
               <CourseContainer key={i} course={c}>
@@ -105,7 +103,7 @@ class Dashboard extends React.Component {
         <h1>Dashboard</h1>
         <div className="gridOf4">
         <ul >
-            {courseGradeList}
+            {courseList}
         </ul>
         </div>
 

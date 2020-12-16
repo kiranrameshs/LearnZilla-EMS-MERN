@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import CourseCards from './CourseCards'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import AssignmentContainer from './Assignments/AssignmentContainer';
 
 
 class CourseContainer extends Component {
@@ -9,6 +10,9 @@ class CourseContainer extends Component {
 
     constructor(props){
         super(props);
+        this.state={
+            assignmentID: []
+        }
         // this.handleClick = this.handleClick.bind(this);
     //     let courseID= props.courseID
 
@@ -45,9 +49,13 @@ class CourseContainer extends Component {
           
     }
 
-
+componentDidMount(){
+    this.setState({
+        assignmentID: ["5fd97f752e2da92eb49db7f4"]
+    })
+}
     handleClick(name){
-        // alert(this.props)
+        alert("clicked")
         // this.props.history.push({
         //   pathname: name,
         //   state: { courseAssigns: this.props.course.assignment }
@@ -55,11 +63,50 @@ class CourseContainer extends Component {
       }
 
     render() {
-        let c = this.props.course;
+        let c = this.props.course;      
+        let courseAssignments = c.assignment;
+        // let courseAssignmentList = <div></div>;
+        // if(courseAssignments.length !== 0){
+        //     courseAssignmentList = courseAssignments.map((a, i) => {
+        //         return (
+        //             <>
+        //             <AssignmentContainer key={i} assignment={a}>
+        //             </AssignmentContainer>
+        //          </>
+        //         )
+        //     });
+        // }
+
+        // if(courseAssignments.length !== 0){
+        //     courseAssignmentList = courseAssignments.map((a, i) => {
+        //         return (
+        //             <>
+        //             <AssignmentContainer key={i} assignment={a}>
+        //             </AssignmentContainer>
+        //          </>
+        //         )
+        //     });
+        // }
 
         return(
+            //handleClick = (event) => {
             <>
-            <h2 onClick={this.handleClick.bind(this)}> {c.coursename}
+                <Link to= {{
+                        pathname: "/courses/Assignments",
+                        aboutProps: {
+                            key : c.id,
+                            assignment : c.assignment
+                             }
+                    }}><div>
+            <h2> {c.coursename}</h2>
+            <p>{c.coursedesc}</p></div></Link>
+            
+            </>
+        )
+      
+    }
+}
+
                 {/* <Link to= {{
                         pathname: "/courses/Assignments",
                         aboutprops: {
@@ -67,11 +114,4 @@ class CourseContainer extends Component {
                             course : c.coursename
                              }
                     }}>{c}</Link> */}
-            </h2>
-            </>
-        )
-      
-    }
-}
-
 export default CourseContainer
