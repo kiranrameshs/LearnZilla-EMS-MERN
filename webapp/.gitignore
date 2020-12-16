@@ -31,6 +31,7 @@
 .DS_Store
 **/npm-cache
 /node_modules
+/build
 /tmp
 .idea/
 .idea/workspace.xml
