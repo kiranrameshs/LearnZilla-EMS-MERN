@@ -4,7 +4,8 @@ import NavBar from '../NavBar';
 import FeedBack from './AssignFeedback';
 import GradeAnalytics from './GradeAnalytics';
 import { Link } from 'react-router-dom';
-
+import { Navbar,Nav, NavItem } from 'react-bootstrap' ;
+import Sidebar from '../SideBar/SideBar';
 
 import { connect } from 'react-redux';
 import { getCourseAssigns } from '../../store/actions/grade.action';
@@ -13,13 +14,6 @@ import { getCourseAssigns } from '../../store/actions/grade.action';
 
 class CourseAssignScores extends Component {
 
-  // constructor(props){
-  //   super(props);
-  //   console.log(props.location.state.courseAssigns);
-  //   this.state = { courseAssigns : props.location.state.courseAssigns}
-
-  // }
-
   constructor(props) {
     super(props);
 
@@ -27,58 +21,105 @@ class CourseAssignScores extends Component {
 }
 
   componentDidMount() {
-    let assigns = ["5fd3b55b14fb9961d1b2857d","5fd3e6120706e37d3720cbdf"]//this.props.courseAssigns;
-    assigns.map((aID)=>{
-      this.props.getCourseAssigns(aID);
-    });
+    let assigns = this.props.courseAssignScores; //["5fd97f752e2da92eb49db7f4", "5fd9972ba4f11ed95cc1c108"]//this.props.courseAssigns;
+    if(assigns){
+      assigns = assigns.filter(x=>x.id != "");
+      assigns.map((aID)=>{
+        this.props.getCourseAssigns(aID);
+      });
+    }
+    
     
   }
 
-  // handleClick = (event) => {
+   handleClick = (event) => {
 
-  //   if (event.target.classList.contains('glyphicon-signal')) {
-  //     const itemKey = event.target.id;
+   
+    if (event.target.classList.contains('export')){
+      this.exportTableToCSV();
 
-  //     let data ={};
-  //     data.scores = this.props.courseAssignScores.filter(x=>x.id != "").map( (x)=>{ return x.assignmentscrore});
-  //     data.categories = this.props.courseAssignScores.filter(x=>x.id != "").map( (x)=>{ return x.assignmentname}); 
-  //     this.props.history.push('/analytics');
-  //     //navigate to analytics passing data as props
-  //     return (
-  //       <GradeAnalytics data={data}/>
-  //     );
-       
-  //   }
-  //     switch(event.target.id){
-  //         default:
-  //         break;
-  //     }
+    }
+  }
 
-  // }
+  exportTableToCSV() {
+    let filename = 'scores.csv';
+    let csv = [];
+    let rows = document.querySelectorAll("table tr");
+  
+    for (let i = 0; i < rows.length; i++) {
+      let row = [];
+      let cols = i===0?rows[i].querySelectorAll("th"):rows[i].querySelectorAll("td");
+      for (let j = 0; j < cols.length; j++) {
+        row.push(cols[j].innerText);
+      }
+      csv.push(row.join(","));
+    }
+  
+    // Download CSV file
+    this.downloadCSV(csv.join("\n"), filename);
+  
+  }
+
+  //Export to CSV Functions
+downloadCSV(csv, filename) {
+  let csvFile;
+  let downloadFile;
+
+  // CSV file
+  csvFile = new Blob([csv], {
+      type: "text/csv"
+  });
+  if (navigator.msSaveBlob) {    
+      navigator.msSaveBlob(csvFile, filename);
+  }
+  else
+  {
+      downloadFile = document.createElement("a");      // Download link
+      downloadFile.download = filename;// File name    
+      downloadFile.href = window.URL.createObjectURL(csvFile);// Create a link to the file    
+      downloadFile.style.display = "none";// Hide download link    
+      document.body.appendChild(downloadFile);// Add the link to DOM   
+      downloadFile.click(); // Click download link
+  }
+}
+  
 
   render() {
-    let homeWorks = this.props.courseAssignScores.filter(x=>x.id != "");//   bordered
+    //pass scores to analytics tab
+    let homeWorks = this.props.courseAssignScores.filter(x=>x.id != "" && x["message"] != "assignment not present");//   bordered
     let data ={};
     data.scores = this.props.courseAssignScores.filter(x=>x.id != "").map( (x)=>{ return x.assignmentscrore});
     data.categories = this.props.courseAssignScores.filter(x=>x.id != "").map( (x)=>{ return x.assignmentname});
     return (
       <>
         <NavBar />
+        <Navbar className="sidebar">
+              <Navbar.Collapse>
+                <Sidebar />
+              </Navbar.Collapse>
+        </Navbar>
         <>
-         <div> 
-         {/* <a onClick={this.handleClick} className="btn btn-info btn-lg"> */}
-         <Link to= {{
-                        pathname: "/analytics",
-                        aboutProps: {
-                            data: data
-                             }
-                    }}>
-                        <span className="glyphicon glyphicon-signal"></span> Analytics 
-          </Link>
-          
-        {/* </a> */}
-         </div>
-          <Table responsive striped condensed hover>
+          <div className="btnServices">
+          <a href="https://arcane-depths-71476.herokuapp.com/" class="btn btn-info btn-lg todo">
+              <span class="glyphicon glyphicon glyphicon-bookmark"></span> ADD TODO</a>
+            <a onClick={this.handleClick} href="#" class="btn btn-info btn-lg export">
+              <span class="glyphicon glyphicon-download-alt"></span> EXPORT</a>
+            <div className="btn btn-info btn-lg analytics">
+              <Link to={{
+                pathname: "/analytics",
+                aboutProps: {
+                  data: data
+                }
+              }}>
+                <span className="glyphicon glyphicon-signal"></span> ANALYTICS </Link>
+            </div>
+        </div>
+        
+         <br />
+         <h1>Assignment Scores</h1>
+         <br />
+         <div className="assignTable">
+         <Table responsive striped condensed hover >
             <thead>
               <tr>
                 <th> </th>
@@ -95,7 +136,7 @@ class CourseAssignScores extends Component {
                   <td> {c.assignmentname}</td>
                   <td> {c.assignmentenddate}</td>
                   <td> {c.assignmentscrore}</td>
-                  <td> <Button data-toggle="tooltip" data-toggle="modal" data-target="#feedbackModal" data-placement="bottom" title="See FeedBack"><span class="glyphicon glyphicon-comment"></span></Button> <Button> Add Sticky</Button>
+                  <td> <Button data-toggle="tooltip" data-toggle="modal" data-target="#feedbackModal" data-placement="bottom" title="See FeedBack"><span class="glyphicon glyphicon-comment"></span></Button> 
                        <FeedBack />
                       
                   </td>
@@ -103,7 +144,10 @@ class CourseAssignScores extends Component {
 
               })}
             </tbody>
-          </Table></>
+          </Table>
+
+         </div>
+         </>
 
 
       </>

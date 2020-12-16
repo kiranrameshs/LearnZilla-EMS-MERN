@@ -1,9 +1,15 @@
+// Import statements
 import React, {Component} from 'react';
 import {Form, FormGroup, FormControl, Button, FormLabel,} from 'react-bootstrap';
 import { removeError } from '../../store/actions/error.action';
+import NavBar from '../NavBar';
+import { Navbar,Nav, NavItem } from 'react-bootstrap' ;
+import Sidebar from '../SideBar/SideBar';
+import './EditTeacher.scss';
 
 class EditTeacher extends Component {
 
+  // constructor
   constructor(props) {
     super(props);
     this.state = {
@@ -20,6 +26,7 @@ class EditTeacher extends Component {
     this.handleInput = this.handleInput.bind(this);
   }
 
+  // Fetch all courses
   loadCourses() {
     fetch("/courses", {
         method: 'GET'
@@ -42,6 +49,7 @@ class EditTeacher extends Component {
     //console.log(this.state.courseList);
   }
 
+  // fetch all teachers
   loadTeachers() {
     fetch("/teachers", {
         method: 'GET'
@@ -64,6 +72,7 @@ class EditTeacher extends Component {
     )
   }
 
+  // Assign teacher with course
   updateTeacher(teacherid, courseid, salary) {
     let editUrl = "/teachers/" + teacherid;
     fetch(editUrl, {
@@ -104,10 +113,11 @@ class EditTeacher extends Component {
     let courseid = this.state.courseid;
     let salary = this.state.salary;
     this.updateTeacher(teacherid, courseid, salary);
-    //alert("Course is assigned successfully! Redirect to SuccessPage");
-    this.props.history.push('/success');
+    alert("Course is assigned successfully! Redirect to Dashboard");
+    this.props.history.push('/dashboard');
   }
 
+  // render course teacher assignment form
   render(){
       //console.log(this.state.courseList);
       if (this.state.error) {
@@ -116,7 +126,14 @@ class EditTeacher extends Component {
       return <div>Loading...</div>;
       } else {
         return(
-          <Form onSubmit={this.submitForm}>
+          <div>
+          <NavBar />
+          <Navbar className="sidebar">
+                <Navbar.Collapse>
+                  <Sidebar />
+                </Navbar.Collapse>
+          </Navbar>
+          <Form className="formclass" onSubmit={this.submitForm}>
             <FormGroup controlId="teacherid">
               <FormLabel>Teacher Name</FormLabel>
               <FormControl as="select" value={this.state.value} onChange={this.handleInput}>
@@ -142,6 +159,7 @@ class EditTeacher extends Component {
               <Button type="submit">Assign Course</Button>
             </FormGroup>
           </Form>
+        </div>
         )
       }
   }

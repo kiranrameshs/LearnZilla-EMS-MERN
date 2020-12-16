@@ -1,5 +1,4 @@
-import todo from "../../dist/models/todo";
-import todos from "../models/todo"
+import todos from "../models/sticky"
 
 //Methods to perform CRUD actions on todo collection
 

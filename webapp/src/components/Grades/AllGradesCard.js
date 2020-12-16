@@ -10,10 +10,6 @@ import { Link } from 'react-router-dom';
 
 class AllGradesCard extends Component {
 
-    // constructor(props){
-    //     super(props);
-    //     this.handleClick = this.handleClick.bind(this);
-    // }
 
     constructor(props) {
       super(props);
@@ -22,55 +18,63 @@ class AllGradesCard extends Component {
       this.handleClick = this.handleClick.bind(this);
   }
   
-
-    // handleClick = (event) => {
-
-    //   if (event.target.classList.contains('courseGradeCard')) {
-    //     const itemKey = event.target.id;
-    //     this.props.history.push('/HW-scores');
-    //     //navigate to CourseAssignScores component passing assignments as props
-    //     //window.location = '/HW-scores';
-    //     return (
-    //       <CourseAssignScores courseAssigns={this.props.course.assignment}/>
-    //    );
-
-
-    //   }
-    //     switch(event.target.id){
-    //         default:
-    //         break;
-    //     }
-
-    // }
-
-    handleClick(name){
-      this.props.history.push({
-        pathname: name,
-        state: { courseAssigns: this.props.course.assignment }
-      })
+  //navigate to CourseAssignScores component passing assignments as props
+    handleClick(e){
+      window.location.href = '/HW-scores';
+      // this.props.history.push({
+      //   pathname: 'HW-scores',
+      //   state: { courseAssigns: this.props.course.assignment }
+      // })
     }
 
 
 
       render() {
+        //changing css classes according to score
           let c = this.props.course;
           console.log("c is "+c);
           console.log("props is "+this.props);
-        return (
-          <> <div  onClick={(e) => this.handleClick('/HW-scores', e)} className="courseGradeCard ">
-            <div className="courseHeading">{c.coursename}</div>
-          <span class="finalGrade">{c.coursefinalscrore}%</span>
-          {/* <button className=" btn btn-primary btn-xs viewCourseScores" id={c.id + "-view"} onClick={this.handleClick}>View More</button> */}
-         </div> <br />
-           {/* </Link> */}
+          let perClass = "c100 p25 ";
+          let cardClass = "project ";
+          if(c.coursefinalscrore >= 90){
+            perClass += "dark green";
+            cardClass += "project-success";
+          }
+          else if(c.coursefinalscrore <= 80){
+            perClass += "dark orange";
+            cardClass += "project-info";
+          }
          
-         </>
+          //render each grade card
+        return (
+          <div className="col-xs-3">
+            <div onClick={this.handleClick} className={cardClass}>
+              <div className="shape">
+                <div className="shape-text"></div>
+              </div>
+              <div className="project-content">
+                <h3 className="lead">
+                  <div className={perClass}>
+                    <span>{c.coursefinalscrore}</span>
+                    <div className="slice">
+                      <div className="bar"></div>
+                      <div className="fill"></div>
+                    </div>
+                  </div>
+                </h3>
+                <p>
+                  {c.coursename}
+                </p>
+              </div>
+            </div>
+          </div>
+        //  </>
         );
       }
 
 }
 
-//export default AllGradesCard;
+//fetching data from parent component itself
 
 const reduxProps = state => {
   // return ({

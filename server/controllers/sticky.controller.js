@@ -1,5 +1,4 @@
-import todoServices from "../services/todo.services";
-import todoService from "../services/todo.services";
+import todoService from "../services/sticky.services";
 
 //fetch all todos
 const index = (request, response) => {

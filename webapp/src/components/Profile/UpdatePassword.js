@@ -9,7 +9,7 @@ class UpdatePassword extends Component {
         this.submitForm = this.submitForm.bind(this);
       }
 
-
+    //validating and updating password
     submitForm(e){
         e.preventDefault();
         let pwd1 = document.getElementById('pwd1').value;
@@ -27,11 +27,11 @@ class UpdatePassword extends Component {
     }
 
     
-
+    //rendering password form
     render() {
         return(
             <>
-           <div className="tab-pane fade" id="profile">
+           <div className="tab-pane fade updatePassword" id="profile">
             <br />
 			<form id="tab2" onSubmit={this.submitForm}>
 				<label>New Password</label> <br />
@@ -40,7 +40,7 @@ class UpdatePassword extends Component {
 				<input id="pwd2" onChange={this.handleInput} type="password" className="input-xlarge" /><br />
                 <br />
 				<div>
-					<button className="btn btn-primary">Update</button>
+                <button className="btn btn-lg btn-success pull-right" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Update</button>
 				</div><br />
 			</form>
 		  </div>

@@ -60,7 +60,6 @@ const update = (request, response) => {
 
         })
         .catch(handleError(response));
-
 };
 
 //delete a course
@@ -98,7 +97,7 @@ const getStudents = (request, response) => {
                 //if course id is present then add them to new student list
                 // console.log("match found")
                 mySet.add(allStudentList[index].id)
-            }   
+            }
         }
     }
     let studentArray = Array.from(mySet);
@@ -106,7 +105,8 @@ const getStudents = (request, response) => {
             response.json({
                 students: studentArray
             });
-    
+            console.log(students);
+
    })
    .catch( handleError(response));
 }

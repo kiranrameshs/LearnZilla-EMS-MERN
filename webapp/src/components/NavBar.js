@@ -13,65 +13,42 @@ class NavBar extends Component {
         super(props);
         this.logout = this.logout.bind(this);
         this.deleteSession = this.deleteSession.bind(this);
-        // this.state=props;
-        // need to change this. can't directly assign props to the state. bad practice
     }
-
+    
+    
     logout(e){
-      // alert("Logout");
       e.preventDefault();
       this.props.logoutUser();
       this.deleteSession();
       alert("User Logged Out! Log in here");
-      window.location = '/';
+      window.location = '/login';
 
     }
 
+
+    // clear session when logged out
     deleteSession(){
       if (localStorage.getItem("user") === null) {
-       //
+       
       }
       else
         localStorage.removeItem("user");
-    }
-
-    routeToGrades(e){
-      e.preventDefault();
-      //pass
-      return ({
-
-
-      });
-    }
-
-
-    componentDidMount() {
+        localStorage.removeItem("roleid");
 
     }
+
       render(props) {
-        let fname = "Ron";//this.props.fname;
+        let fname = JSON.parse(localStorage.getItem('user')).name;
         return (
           <>
-            <nav className="navbar navbar-inverse">
+            <nav className="navbar navbar-fixed">
               <div className="container-fluid">
                 <div className="navbar-header">
                   <a className="navbar-brand" href="#"> <span className="glyphicon glyphicon-education"></span> LearnZilla</a>
                 </div>
-                <ul className="nav navbar-nav">
-                  <li className="active"><a href="#"><span className="glyphicon glyphicon-home"></span> Home</a></li>
-                  <li><a>Courses</a></li>
-
-                  <li>
-                    {/* <a href="/grades" onClick={this.routeToGrades}>Grades</a> */}
-                    <Link to= {{
-                        pathname: "/grades",
-                        props: {
-                             }
-                    }}>Grades</Link>
-                    </li>
-                </ul>
+               <label className="welcome">Welcome back {fname} !!</label>
                 <ul className="nav navbar-nav navbar-right">
-                  <li><a href="#"><span className="glyphicon glyphicon-user"></span> My profile</a></li>
+                  <li><a href="/profile"><span className="glyphicon glyphicon-user"></span> My profile</a></li>
                   <li><a href="/login" onClick={this.logout}><span className="glyphicon glyphicon-log-out"></span> LOGOUT</a></li>
                 </ul>
               </div>

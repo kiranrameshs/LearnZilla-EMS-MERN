@@ -1,49 +1,97 @@
-import React from 'react'
-import NavBar from './NavBar'
-//import Sidebar from './SideBar';
+import React from 'react';
+import NavBar from './NavBar';
 import CourseContainer from './CourseContainer'
 import './../styles/Modules/CourseCards.scss'
 import { Navbar,Nav, NavItem } from 'react-bootstrap' ;
-// import './styles/CourseCards.scss'
 import Sidebar from './SideBar/SideBar';
-import Login from './Authentication/Login';
 import './SideBar/SideBar.scss';
-import { BrowserRouter, Route, } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getCoursesDetails } from './../store/actions/grade.action';
-import { logoutUser } from './../store/actions/user.action';
+import {BrowserRouter, Route, Switch} from "react-router-dom";
+
+import { getMyCourses } from './../store/actions/course.action';
+import { getCoursesGrades } from './../store/actions/grade.action';
 
 
-const reduxloginProps = state => {
+
+
+// const reduxProps = state => {
+//     return ({
+//       courses: state.course.courseState
+//       }
+//     )
+//   };
+
+const reduxProps = state => {
   return ({
-    auth: state.user.authUser
+      grades: state.grades.coursesGrades 
   })
 };
 
 
-const reduxProps = state => {
-    return ({
-        courses: state.grades.courses
-      }
-    )
-  };
-
-
 class Dashboard extends React.Component {
 
-
-    componentDidMount() {
-        this.props.getCoursesDetails();
+  constructor(props){
+    super(props);
+    let userState = JSON.parse(localStorage.getItem("user"));
+    let id = userState._id;
+    console.log("userId is " + id)
+    let role = userState.role;
+    let URL;
+    if(role==="Teacher"){
+      URL = "/teachers/users/"
+    } else if(role==="Student"){
+      URL = "/students/users/"
     }
 
-    render(){
+  let roleID;
+    fetch(URL+id, {
+        method: 'GET',
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+      .then(res => res.json())
+      .then((responseJson) => {
+          console.log("Role id is " + responseJson.message[0].id);
+          roleID =  (responseJson.message[0].id);
+          if (localStorage.getItem("roleid") === null) {
+            localStorage.setItem("roleid", (roleID));
+          }
+          // if(role==="Student"){this.props.getMyCourses(roleID);}
+          if(role==="Student"){this.props.getCoursesGrades(roleID);}
 
-        const courseList = this.props.courses.map((c, i) => {
-            return (
-            <CourseContainer key={i} course={c}>
-            </CourseContainer>
-            )
-        });
+      })
+      .catch(err => console.log(err)
+      );
+  }
+
+    render(){
+    
+      // let courses = this.props.courses.courses!==undefined? this.props.courses.courses: this.props.courses
+      
+      // const courseList = courses.map((c, i ) =>{
+      //   return (
+      //     <>
+      //     <CourseContainer key={i} courseID={c} >
+      //     </CourseContainer>
+      //        {/* <CourseContainer key={i} courseID={c} >
+      //        </CourseContainer> */}
+      //        </>
+      //     )});
+        
+      let courses = this.props.grades;// [];// this.getAllCourseDetails(this.props.grades);
+      let courseList ;
+      if(courses.length !== 0){
+           courseList = courses.map((c, i) => {
+              return (
+                  <>
+              <CourseContainer key={i} course={c}>
+              </CourseContainer>
+           </>
+              )
+          });
+      }
+      
         return (
         <>
         <NavBar />
@@ -63,4 +111,4 @@ class Dashboard extends React.Component {
         );
     }
 }
-export default connect(reduxProps, { getCoursesDetails })(Dashboard);
+export default connect(reduxProps, { getCoursesGrades,getMyCourses })(Dashboard);

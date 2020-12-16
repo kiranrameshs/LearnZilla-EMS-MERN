@@ -1,11 +1,17 @@
+// Import statements
 import React, {Component} from 'react';
 import {Form, FormGroup, FormControl, Button, FormLabel,} from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { createCourse } from '../../store/actions/course.action';
 import { removeError } from '../../store/actions/error.action';
+import NavBar from '../NavBar';
+import { Navbar,Nav, NavItem } from 'react-bootstrap' ;
+import Sidebar from '../SideBar/SideBar';
+import './CreateCourses.scss';
 
 class CreateCourses extends Component {
 
+  // constructor
   constructor(props) {
     super(props);
     this.state = {
@@ -25,7 +31,7 @@ class CreateCourses extends Component {
     } else {
       alert("Course is added successfully!");
       alert("Redirect to SuccessPage");
-      this.props.history.push('/success')
+      this.props.history.push('/dashboard')
     }
     // if (Object.keys(newProps.auth).length > 0 ) {
     //   alert(newProps.auth);
@@ -44,9 +50,17 @@ class CreateCourses extends Component {
     this.props.createCourse(this.state);
   }
 
+  // Render form for createcourse
   render(){
     return(
-      <Form onSubmit={this.submitForm}>
+      <div>
+      <NavBar />
+      <Navbar className="sidebar">
+            <Navbar.Collapse>
+              <Sidebar />
+            </Navbar.Collapse>
+      </Navbar>
+      <Form className="formclass" onSubmit={this.submitForm}>
         <FormGroup controlId="coursename">
           <FormLabel>Course Name</FormLabel>
           <FormControl type="text" value={this.state.value} placeholder="Enter Course Name" onChange={this.handleInput} />
@@ -71,7 +85,7 @@ class CreateCourses extends Component {
           <Button type="submit">Add Course</Button>
         </FormGroup>
       </Form>
-
+      </div>
     )
   }
 }

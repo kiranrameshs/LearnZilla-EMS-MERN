@@ -327,7 +327,7 @@ class EnrollCourses extends Component {
             ) : (
               ''
             )} */}
-             <div>
+             {/* <div>
                  <h3>Current Courses are </h3>
              </div>
                <Table responsive striped condensed hover>
@@ -369,7 +369,7 @@ class EnrollCourses extends Component {
             </tr>
           })}
         </tbody>
-        </Table>
+        </Table> */}
             </div>
         
         )

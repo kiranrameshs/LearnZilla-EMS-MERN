@@ -12,9 +12,8 @@
     background-color: whitesmoke;
     text-align: center;
     padding: 5px;
-    box-shadow: 3px 3px lavenderblush;
     cursor: pointer;
-    border-radius: 25px;
+  //  border-radius: 25px;
 }
 
 .courseHeading {
@@ -23,7 +22,7 @@
     font-size: large;
     font-family: sans-serif;
     font-weight: bolder;
-    border-radius: 25px;
+    //border-radius: 25px;
 }
 
 .finalGrade{
@@ -42,4 +41,29 @@
 
 .chart {
     width: 600px;
+}
+
+.assignTable{
+    margin-left: 140px;
+}
+
+.analytics{
+    float: right;
+}
+
+.export{
+    
+    position: relative;
+    left: 800px;
+
+}
+
+.todo{
+    position: relative;
+    left: 770px;
+}
+
+.btnServices{
+    justify-content: space-between;
+    padding: 10px;
 }
