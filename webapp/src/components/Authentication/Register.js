@@ -8,7 +8,7 @@ import {
   FormLabel,
 } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import './Authentication.scss';
+// import './Authentication.scss';
 import { registerUser } from '../../store/actions/user.action';
 import { removeError } from '../../store/actions/error.action';
 import NavBar from '../NavBar';

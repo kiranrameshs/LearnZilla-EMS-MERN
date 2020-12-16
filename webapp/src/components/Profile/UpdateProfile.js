@@ -11,7 +11,7 @@ class Profile extends Component {
         this.submitForm = this.submitForm.bind(this);
       }
 
-
+    //updating profile details
     submitForm(e){
 		e.preventDefault();
 		let name = document.getElementById('username').value;
@@ -22,6 +22,7 @@ class Profile extends Component {
 		data.email = email;
 		data.address = address;
 		let id = JSON.parse(localStorage.getItem("user")).id;
+		//calling API to update
 		this.props.updateUser(id, data);
         
     }
@@ -40,8 +41,6 @@ class Profile extends Component {
 				<input id="email" type="text" placeholder={p.email} className="input-xlarge" /> <br />
 				<label>Address</label><br />
 				<textarea id="address" type="text" placeholder={p.address} rows="7" className="input-xlarge"></textarea> <br />
-				{/* <label>University: </label>
-				<label className="input-xlarge">  {p.university}</label>  */}
 				<br />
 				<br />
 				<div>

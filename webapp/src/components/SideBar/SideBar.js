@@ -34,6 +34,7 @@ class Sidebar extends Component {
       {name: "Create Assignment", url: "/assignments/create", role: 3},
       {name: "Grade Assignment", url: "/students/edit", role: 3},
       {name: "Grade Course", url: "/students/grade", role: 3},
+      {name: "View Grades", url: "/viewGrades", role: 3},
     ]}
 
     this.logout = this.logout.bind(this);

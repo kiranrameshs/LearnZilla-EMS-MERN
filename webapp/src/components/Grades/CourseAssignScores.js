@@ -14,13 +14,6 @@ import { getCourseAssigns } from '../../store/actions/grade.action';
 
 class CourseAssignScores extends Component {
 
-  // constructor(props){
-  //   super(props);
-  //   console.log(props.location.state.courseAssigns);
-  //   this.state = { courseAssigns : props.location.state.courseAssigns}
-
-  // }
-
   constructor(props) {
     super(props);
 
@@ -28,10 +21,14 @@ class CourseAssignScores extends Component {
 }
 
   componentDidMount() {
-    let assigns = ["5fd97f752e2da92eb49db7f4", "5fd9972ba4f11ed95cc1c108"]//this.props.courseAssigns;
-    assigns.map((aID)=>{
-      this.props.getCourseAssigns(aID);
-    });
+    let assigns = this.props.courseAssignScores; //["5fd97f752e2da92eb49db7f4", "5fd9972ba4f11ed95cc1c108"]//this.props.courseAssigns;
+    if(assigns){
+      assigns = assigns.filter(x=>x.id != "");
+      assigns.map((aID)=>{
+        this.props.getCourseAssigns(aID);
+      });
+    }
+    
     
   }
 
@@ -103,8 +100,10 @@ downloadCSV(csv, filename) {
         </Navbar>
         <>
           <div className="btnServices">
+          <a href="https://arcane-depths-71476.herokuapp.com/" class="btn btn-info btn-lg todo">
+              <span class="glyphicon glyphicon glyphicon-bookmark"></span> ADD TODO</a>
             <a onClick={this.handleClick} href="#" class="btn btn-info btn-lg export">
-              <span class="glyphicon glyphicon-download-alt"></span> Export</a>
+              <span class="glyphicon glyphicon-download-alt"></span> EXPORT</a>
             <div className="btn btn-info btn-lg analytics">
               <Link to={{
                 pathname: "/analytics",
@@ -112,7 +111,7 @@ downloadCSV(csv, filename) {
                   data: data
                 }
               }}>
-                <span className="glyphicon glyphicon-signal"></span> Analytics </Link>
+                <span className="glyphicon glyphicon-signal"></span> ANALYTICS </Link>
             </div>
         </div>
         
@@ -137,7 +136,7 @@ downloadCSV(csv, filename) {
                   <td> {c.assignmentname}</td>
                   <td> {c.assignmentenddate}</td>
                   <td> {c.assignmentscrore}</td>
-                  <td> <Button data-toggle="tooltip" data-toggle="modal" data-target="#feedbackModal" data-placement="bottom" title="See FeedBack"><span class="glyphicon glyphicon-comment"></span></Button> <Button> Add Sticky</Button>
+                  <td> <Button data-toggle="tooltip" data-toggle="modal" data-target="#feedbackModal" data-placement="bottom" title="See FeedBack"><span class="glyphicon glyphicon-comment"></span></Button> 
                        <FeedBack />
                       
                   </td>

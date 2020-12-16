@@ -88,7 +88,7 @@ class CreateAssignments extends Component {
     e.preventDefault();
     console.log(this.state);
     this.props.createAssignment(this.state);
-    this.props.history.push('/success');
+    this.props.history.push('/dashboard');
   }
 
   render(){
