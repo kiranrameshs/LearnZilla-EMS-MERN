@@ -51,6 +51,7 @@ const update = (request, response) => {
         .then((assignment) => {
             response.status(200);
             response.json(assignment == null? {message:"assignment not present"}: assignment);
+          //  response.json(assignment);
         })
         .catch(handleError(response));
 

@@ -60,7 +60,6 @@ const update = (request, response) => {
 
         })
         .catch(handleError(response));
-
 };
 
 //delete a course
