@@ -10,10 +10,6 @@ import { Link } from 'react-router-dom';
 
 class AllGradesCard extends Component {
 
-    // constructor(props){
-    //     super(props);
-    //     this.handleClick = this.handleClick.bind(this);
-    // }
 
     constructor(props) {
       super(props);
@@ -23,31 +19,27 @@ class AllGradesCard extends Component {
   }
   
 
-     handleClick = (event) => {
+    // handleClick = (event) => {
 
-    //   if (event.target.classList.contains('courseGradeCard')) {
-    //     const itemKey = event.target.id;
+      // if (event.target.classList.contains('project')) {
+        //        const itemKey = event.target.id;
     //     this.props.history.push('/HW-scores');
     //     //navigate to CourseAssignScores component passing assignments as props
-    //     //window.location = '/HW-scores';
+        // window.location = '/HW-scores';
     //     return (
     //       <CourseAssignScores courseAssigns={this.props.course.assignment}/>
     //    );
 
-
     //   }
-    //     switch(event.target.id){
-    //         default:
-    //         break;
-    //     }
+ 
+   //  }
 
-     }
-
-    handleClick(name){
-      this.props.history.push({
-        pathname: name,
-        state: { courseAssigns: this.props.course.assignment }
-      })
+    handleClick(e){
+      window.location.href = '/HW-scores';
+      // this.props.history.push({
+      //   pathname: 'HW-scores',
+      //   state: { courseAssigns: this.props.course.assignment }
+      // })
     }
 
 
@@ -57,30 +49,22 @@ class AllGradesCard extends Component {
           console.log("c is "+c);
           console.log("props is "+this.props);
           let perClass = "c100 p25 ";
-          if(c.coursefinalscrore > 90)
+          let cardClass = "project ";
+          if(c.coursefinalscrore >= 90){
             perClass += "dark green";
-          else if(c.coursefinalscrore < 80)
-          perClass += "dark orange";
+            cardClass += "project-success";
+          }
+          else if(c.coursefinalscrore <= 80){
+            perClass += "dark orange";
+            cardClass += "project-info";
+          }
+         
           
         return (
-        //   <> <div  onClick={(e) => this.handleClick('/HW-scores', e)} className="courseGradeCard ">
-        //     <div className="courseHeading">{c.coursename}</div>
-        //     <br />
-        //     <div className={perClass}>
-        //      <span>{c.coursefinalscrore}</span>
-        //      <div className="slice">
-        //          <div className="bar"></div>
-        //          <div className="fill"></div>
-        //      </div>
-        //  </div>
-        //  </div> <br />
-
           <div className="col-xs-3">
-            <div className="project project-default">
+            <div onClick={this.handleClick} className={cardClass}>
               <div className="shape">
-                <div className="shape-text">
-                  top
-					</div>
+                <div className="shape-text"></div>
               </div>
               <div className="project-content">
                 <h3 className="lead">

@@ -20,10 +20,10 @@ class AllGradesContainer extends Component {
 
 
     render() {
-        let courses = this.props.grades;// [];// this.getAllCourseDetails(this.props.grades);
+        let courses = this.props.grades;
         let courseGradeList = <div></div>;
         if(courses.length !== 0){
-             courseGradeList = courses.map((c, i) => {
+             courseGradeList = courses[0].map((c, i) => {
                 return (
                     <>
                 <CourseGrade key={i} course={c}>

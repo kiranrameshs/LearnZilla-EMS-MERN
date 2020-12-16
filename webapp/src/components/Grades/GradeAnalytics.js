@@ -18,8 +18,8 @@ class GradeAnalytics extends Component {
     }
 
     render() {
-        let scores = [93, 95, 84, 100, 76, 80]; //this.props.Scores 
-        let categories = ['Assign1', 'Assign2', 'Assign3','4','5','6'] //this.props.categories 
+        let scores = this.props.location.aboutProps.data.scores;//[93, 95, 84, 100, 76, 80]; //this.props.Scores 
+        let categories = this.props.location.aboutProps.data.categories;//['Assign1', 'Assign2', 'Assign3','4','5','6'] //this.props.categories 
         let options = {
             chart: {
               type: 'spline'

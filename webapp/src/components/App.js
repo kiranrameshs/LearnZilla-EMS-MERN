@@ -14,6 +14,10 @@ import Profile from './Profile/ProfileContainer';
 import SuccessPage from './SuccessPage/SuccessPage';
 import GradeStudents from './Grades/GradeStudents';
 import AssignmentContainer from './Assignments/AssignmentContainer';
+import GradeCourse from './Grades/GradeCourse';
+import AssignmentContainer from './AssignmentContainer';
+import TeacherViewGrades from './Teachers/ViewGrades';
+
 
 class App extends Component {
 
@@ -35,6 +39,7 @@ class App extends Component {
             <Route path="/students/edit" component={GradeStudents} />
             <Route path="/assignments/create" component={CreateAssignments} />
             <Route path="/home" component={NavBar} />
+            <Route path="/students/grade" component={GradeCourse} />
             {/* <Route path="/grades" component={AllGradesContainer} /> */}
             {/* <Route path="/HW-scores" component={CourseAssignScores} /> */}
             {/* <Route path="/" component={Home} /> */}
@@ -44,6 +49,7 @@ class App extends Component {
             <Route path="/success" component={SuccessPage} />
             <Route path="/login" key="login" component={Login} />
             {/* <Route exact path="/" component={Home} /> */}
+            <Route path="/viewGrades" component={TeacherViewGrades} />
         </Switch>
       </BrowserRouter>
     </div>
