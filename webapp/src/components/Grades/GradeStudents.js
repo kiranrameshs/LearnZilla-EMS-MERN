@@ -5,6 +5,7 @@ import { logoutUser } from '../../store/actions/user.action';
 import NavBar from '../NavBar';
 import { Navbar,Nav, NavItem } from 'react-bootstrap' ;
 import Sidebar from '../SideBar/SideBar';
+import './GradeStudents.scss';
 
 const userreduxProps = state => {
   return ({
@@ -138,7 +139,7 @@ class GradeStudents extends Component {
                   <Sidebar />
                 </Navbar.Collapse>
           </Navbar>
-          <Form onSubmit={this.submitForm}>
+          <Form className="gradeclass" onSubmit={this.submitForm}>
             <FormGroup controlId="studentid">
               <FormLabel>Student Name</FormLabel>
               <FormControl as="select" value={this.state.value} onChange={this.handleInput}>

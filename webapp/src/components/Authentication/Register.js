@@ -10,6 +10,9 @@ import { connect } from 'react-redux';
 import './Authentication.scss';
 import { registerUser } from '../../store/actions/user.action';
 import { removeError } from '../../store/actions/error.action';
+import NavBar from '../NavBar';
+import { Navbar,Nav, NavItem } from 'react-bootstrap' ;
+import Sidebar from '../SideBar/SideBar';
 
 class Register extends Component {
   constructor(props) {
@@ -52,6 +55,13 @@ class Register extends Component {
 
   render(){
     return(
+      <div>
+      <NavBar />
+      <Navbar className="sidebar">
+            <Navbar.Collapse>
+              <Sidebar />
+            </Navbar.Collapse>
+      </Navbar>
       <div className="container register">
         <div className="row">
           <div className="col-md-3 register-left">
@@ -105,6 +115,7 @@ class Register extends Component {
             </div>
           </div>
         </div>
+      </div>
       </div>
     )
   }
