@@ -1,3 +1,4 @@
+// Import statements
 import React, {Component} from 'react';
 import {Form, FormGroup, FormControl, Button, FormLabel,} from 'react-bootstrap';
 import { removeError } from '../../store/actions/error.action';
@@ -15,6 +16,7 @@ const userreduxProps = state => {
 
 class GradeStudents extends Component {
 
+  // constructor
   constructor(props) {
     super(props);
     this.state = {
@@ -45,6 +47,7 @@ class GradeStudents extends Component {
     this.getTeacherIdCourseId(url);
   }
 
+  // Get teacher and course id from userid
   getTeacherIdCourseId(url)  {
     fetch(url, {
         method: 'GET'
@@ -68,6 +71,7 @@ class GradeStudents extends Component {
     )
   }
 
+  // Load assignments details for a particular course
   loadCourses() {
     let id = this.state.courseid;
     let url = "/courses/" + id;
@@ -94,6 +98,7 @@ class GradeStudents extends Component {
 
   }
 
+  // load all students for a particular course
   loadStudents() {
     let id = this.state.courseid;
     let url = "/courses/" + id + "/students";
@@ -117,6 +122,7 @@ class GradeStudents extends Component {
     )
   }
 
+
   updateStudent(studentid, grade) {
     alert(studentid + " " + grade);
     let editUrl = "/students/" + studentid;
@@ -134,6 +140,7 @@ class GradeStudents extends Component {
     });
   }
 
+    // update assignment score
   updateAssignmentScore(assignmentid, grade, feedback) {
     alert(assignmentid + " " + grade + " " + feedback);
     let editUrl = "/assignments/" + assignmentid;
@@ -175,6 +182,7 @@ class GradeStudents extends Component {
     this.props.history.push('/success');
   }
 
+  // Render grade assignment form
   render(){
       if (this.state.error) {
         return <div>Error: {this.state.error.message}</div>;

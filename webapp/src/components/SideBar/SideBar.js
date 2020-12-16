@@ -20,14 +20,16 @@ class Sidebar extends Component {
     super(props);
 
     this.state = {menu: [
-      {name: "Home", url: "/", role: 0},
+      // {name: "Home", url: "/", role: 0},
       //{name: "All Courses", url: "/courses", role: 0},
       // {name: "All Users", url: "/all-users", role: 1},
       // {name: "My Courses", url: "/dashboard", role: 0},
-      // {name: "My Profile", url: "/profile", role: 0},
+      // {name: "My Profile", url: "/profile", role: 0},EvaluateStudFinalGrade
       {name: "Create Course", url: "/courses/create", role: 1},
+      {name: "Evaluate Student Final Grade", url: "/students/finalgrade", role: 1},
       {name: "Edit Teacher ", url: "/teachers/edit", role: 1},
       {name: "Create User", url: "/register", role: 1},
+      {name: "Deregister Student", url: "/deregister", role: 1},
       {name: "Create Assignment", url: "/assignments/create", role: 3},
       {name: "Grade Assignment", url: "/students/edit", role: 3},
       {name: "Grade Course", url: "/students/grade", role: 3},
