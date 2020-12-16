@@ -52,5 +52,13 @@
 }
 
 .export{
-    float: right;
+    
+    position: relative;
+    left: 1000px;
+
+}
+
+.btnServices{
+    justify-content: space-between;
+    padding: 10px;
 }

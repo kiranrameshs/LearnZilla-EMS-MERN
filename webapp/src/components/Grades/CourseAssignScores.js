@@ -28,7 +28,7 @@ class CourseAssignScores extends Component {
 }
 
   componentDidMount() {
-    let assigns = ["5fd3b55b14fb9961d1b2857d","5fd3e6120706e37d3720cbdf"]//this.props.courseAssigns;
+    let assigns = ["5fd97f752e2da92eb49db7f4", "5fd9972ba4f11ed95cc1c108"]//this.props.courseAssigns;
     assigns.map((aID)=>{
       this.props.getCourseAssigns(aID);
     });
@@ -42,25 +42,6 @@ class CourseAssignScores extends Component {
       this.exportTableToCSV();
 
     }
-
-  //   if (event.target.classList.contains('glyphicon-signal')) {
-  //     const itemKey = event.target.id;
-
-  //     let data ={};
-  //     data.scores = this.props.courseAssignScores.filter(x=>x.id != "").map( (x)=>{ return x.assignmentscrore});
-  //     data.categories = this.props.courseAssignScores.filter(x=>x.id != "").map( (x)=>{ return x.assignmentname}); 
-  //     this.props.history.push('/analytics');
-  //     //navigate to analytics passing data as props
-  //     return (
-  //       <GradeAnalytics data={data}/>
-  //     );
-       
-  //   }
-  //     switch(event.target.id){
-  //         default:
-  //         break;
-  //     }
-
   }
 
   exportTableToCSV() {
@@ -121,24 +102,23 @@ downloadCSV(csv, filename) {
               </Navbar.Collapse>
         </Navbar>
         <>
-        <a onClick={this.handleClick} href="#" class="btn btn-info btn-lg export">
-          <span class="glyphicon glyphicon-download-alt"></span> Export
-        </a>
-         <div className="btn btn-info btn-lg analytics"> 
-         {/* <a onClick={this.handleClick} className="btn btn-info btn-lg"> */}
-         <Link to= {{
-                        pathname: "/analytics",
-                        aboutProps: {
-                            data: data
-                             }
-                    }}>
-                        <span className="glyphicon glyphicon-signal"></span> Analytics 
-          </Link>
-          
-        {/* </a> */}
-         </div>
+          <div className="btnServices">
+            <a onClick={this.handleClick} href="#" class="btn btn-info btn-lg export">
+              <span class="glyphicon glyphicon-download-alt"></span> Export</a>
+            <div className="btn btn-info btn-lg analytics">
+              <Link to={{
+                pathname: "/analytics",
+                aboutProps: {
+                  data: data
+                }
+              }}>
+                <span className="glyphicon glyphicon-signal"></span> Analytics </Link>
+            </div>
+        </div>
+        
          <br />
          <h1>Assignment Scores</h1>
+         <br />
          <div className="assignTable">
          <Table responsive striped condensed hover >
             <thead>

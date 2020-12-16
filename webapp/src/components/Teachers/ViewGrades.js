@@ -91,20 +91,23 @@ render() {
     homeWorks= [
       {
         "id":"5fd97cfa2e2da92eb49db7f1",
-        "studentFinalScore":"86.76",
+        "studentFinalScore":"86",
         "studentName": "student1"
       },
       {
        "id":" 5fd97cfa2e2da92eb49db7f1",
-       "studentFinalScore":"94.57",
+       "studentFinalScore":"94",
        "studentName": "student2"
      },
      {
        "id":"5fd97c672e2da92eb49db7ec",
-       "studentFinalScore":"96.57",
+       "studentFinalScore":"96",
        "studentName": "student3"
      }
     ]
+    data.scores = homeWorks.filter(x=>x.id != "").map( (x)=>{ return x.studentFinalScore});
+    data.categories = homeWorks.filter(x=>x.id != "").map( (x)=>{ return x.studentName});
+    
     return (
       <>
         <NavBar />
@@ -132,6 +135,7 @@ render() {
          </div>
          <br />
          <h1>Assignment Scores</h1>
+         <br />
          <div className="assignTable">
          <Table responsive striped condensed hover >
             <thead>
