@@ -172,7 +172,7 @@ class GradeStudents extends Component {
     this.updateAssignmentScore(assignmentid, grade, feedback);
     //this.updateStudent(studentid, grade);
     //alert("Course is assigned successfully! Redirect to SuccessPage");
-    this.props.history.push('/success');
+    this.props.history.push('/dashboard');
   }
 
   render(){

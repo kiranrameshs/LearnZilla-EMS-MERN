@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import NavBar from '../NavBar';
 
 class AssignFeedback extends Component {
-
+    
+    //rendering feedback modal.
     render() {
+       //received feedback data from parent
         let feedback = this.props.feedback;
         return(
             <>

@@ -1,8 +1,8 @@
 # Final Project Group-4
-The goal of this assignment is to learn about Nodejs and REST API
 
-# Education Management Application
- A MERN app
+
+# Education Management Application - LearnZilla
+ A MERN stack app
 
 # Application Description
  * CRUD Rest APIs
@@ -10,6 +10,14 @@ The goal of this assignment is to learn about Nodejs and REST API
 # Tools Used
 Visual Studio Code
 Mongo Atlas
+Postman
+Aasana
+Miro Board
+
+# Languages Used
+* Javascript
+* HTML
+* SCSS
 
 # Installations
  * Node.JS
@@ -18,6 +26,9 @@ Mongo Atlas
  * Mongo Compass
  * Postman
  
+# Libraries Used
+ * Bootstrap
+ * Concurrently
 # Run Project Commands
 
 --> Server Dependencies

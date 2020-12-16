@@ -10,6 +10,7 @@ import { logoutUser } from '../../store/actions/user.action';
 import { Navbar,Nav, NavItem } from 'react-bootstrap' ;
 import Sidebar from '../SideBar/SideBar';
 
+//fetch user details
 const userreduxProps = state => {
   return ({
     auth: state.user.authUser
@@ -17,12 +18,7 @@ const userreduxProps = state => {
 };
 
 class Profile extends Component {
-
-  // componentDidMount(){
-  //   let userState = JSON.parse(localStorage.getItem("user"));
-  //   let id = userState.user._id;
-  // }
-
+   // render forms for updatinf user details
     render() {
       let p = JSON.parse(localStorage.getItem("user"));
         return(
@@ -54,15 +50,15 @@ class Profile extends Component {
                     <div className="col-md-4">
                         <div className="profile-work">
                             <p>WORK LINK</p>
-                            <a href="">Website Link</a><br/>
-                            <a href="">Bootsnipp Profile</a><br/>
-                            <a href="">Bootply Profile</a>
+                            <label href="">Website Link</label><br/>
+                            <label href="">Bootsnipp Profile</label><br/>
+                            <label href="">Bootply Profile</label>
                             <p>SKILLS</p>
-                            <a href="">Web Designer</a><br/>
-                            <a href="">Web Developer</a><br/>
-                            <a href="">WordPress</a><br/>
-                            <a href="">WooCommerce</a><br/>
-                            <a href="">PHP, .Net</a><br/>
+                            <label href="">Web Designer</label><br/>
+                            <label href="">Web Developer</label><br/>
+                            <label href="">WordPress</label><br/>
+                            <label href="">WooCommerce</label><br/>
+                            <label href="">PHP, .Net</label><br/>
                         </div>
                     </div>
                     <div className="tab-content">
@@ -83,14 +79,5 @@ class Profile extends Component {
     }
 }
 
-
-//export default Profile;
-// const reduxProps = state => {
-// 	return ({
-//    // profile: state.user.authUser,
-//     auth: state.user.authUser
-// 	})
-//   };
-  
   
 export default connect(userreduxProps, { registerUser,logoutUser })(Profile);

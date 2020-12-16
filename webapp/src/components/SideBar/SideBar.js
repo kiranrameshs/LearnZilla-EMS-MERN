@@ -19,8 +19,7 @@ class Sidebar extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {menu: [
-      {name: "Home", url: "/", role: 0},
+    this.state = {menu: [+
       //{name: "All Courses", url: "/courses", role: 0},
       // {name: "All Users", url: "/all-users", role: 1},
       // {name: "My Courses", url: "/dashboard", role: 0},
@@ -31,6 +30,7 @@ class Sidebar extends Component {
       {name: "Create Assignment", url: "/assignments/create", role: 3},
       {name: "Grade Assignment", url: "/students/edit", role: 3},
       {name: "Grade Course", url: "/students/grade", role: 3},
+      {name: "View Grades", url: "/viewGrades", role: 3},
     ]}
 
     this.logout = this.logout.bind(this);

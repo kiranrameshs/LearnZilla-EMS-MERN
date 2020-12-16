@@ -8,8 +8,6 @@ import Sidebar from '../SideBar/SideBar';
 
 import { connect } from 'react-redux';
 import { getCourseAssigns } from '../../store/actions/grade.action';
-//import { getAvailableCourseAssigns } from '../../store/selectors/grade.selectors';
-
 
 class ViewGrades extends Component {
 
@@ -19,7 +17,7 @@ class ViewGrades extends Component {
 
 }
 componentDidMount() {
-   // this.props.getCoursesGrades(localStorage.getItem("roleid"));
+   this.props.getCoursesGrades(localStorage.getItem("roleid"));
    
 }
 
@@ -81,32 +79,14 @@ render() {
     let data ={};
     let homeWorks = [];
     if(this.props.courseAssignScores){
-     homeWorks = this.props.courseAssignScores.filter(x=>x.id != "" && x["message"] != "assignment not present");//   bordered
+     homeWorks = this.props.courseAssignScores.filter(x=>x.id != "");
     
-    data.scores = this.props.courseAssignScores.filter(x=>x.id != "").map( (x)=>{ return x.assignmentscrore});
-    data.categories = this.props.courseAssignScores.filter(x=>x.id != "").map( (x)=>{ return x.assignmentname});
+    data.scores = this.props.courseAssignScores.filter(x=>x.id != "").map( (x)=>{ return x.studentFinalScore});
+    data.categories = this.props.courseAssignScores.filter(x=>x.id != "").map( (x)=>{ return x.studentName});
     
 
     }
-    homeWorks= [
-      {
-        "id":"5fd97cfa2e2da92eb49db7f1",
-        "studentFinalScore":"86",
-        "studentName": "student1"
-      },
-      {
-       "id":" 5fd97cfa2e2da92eb49db7f1",
-       "studentFinalScore":"94",
-       "studentName": "student2"
-     },
-     {
-       "id":"5fd97c672e2da92eb49db7ec",
-       "studentFinalScore":"96",
-       "studentName": "student3"
-     }
-    ]
-    data.scores = homeWorks.filter(x=>x.id != "").map( (x)=>{ return x.studentFinalScore});
-    data.categories = homeWorks.filter(x=>x.id != "").map( (x)=>{ return x.studentName});
+    
     
     return (
       <>
@@ -121,7 +101,6 @@ render() {
           <span class="glyphicon glyphicon-download-alt"></span> Export
         </a>
          <div className="btn btn-info btn-lg analytics"> 
-         {/* <a onClick={this.handleClick} className="btn btn-info btn-lg"> */}
          <Link to= {{
                         pathname: "/analytics",
                         aboutProps: {
@@ -131,7 +110,6 @@ render() {
                         <span className="glyphicon glyphicon-signal"></span> Analytics 
           </Link>
           
-        {/* </a> */}
          </div>
          <br />
          <h1>Assignment Scores</h1>

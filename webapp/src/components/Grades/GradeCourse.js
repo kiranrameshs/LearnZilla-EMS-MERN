@@ -124,7 +124,7 @@ class GradeCourse extends Component {
     let grade = this.state.grade;
     this.updateStudent(courseid, grade);
     //alert("Course is assigned successfully! Redirect to SuccessPage");
-    this.props.history.push('/success');
+    this.props.history.push('/dashboard');
   }
 
   render(){

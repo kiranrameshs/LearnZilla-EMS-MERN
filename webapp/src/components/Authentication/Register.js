@@ -7,7 +7,7 @@ import {
   FormLabel,
 } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import './Authentication.scss';
+// import './Authentication.scss';
 import { registerUser } from '../../store/actions/user.action';
 import { removeError } from '../../store/actions/error.action';
 import NavBar from '../NavBar';
@@ -37,7 +37,7 @@ class Register extends Component {
 
     if (Object.keys(newProps.auth).length > 0 ) {
       //alert(newProps.auth);
-      this.props.history.push('/success')
+      this.props.history.push('/dashboard')
     }
   }
 
