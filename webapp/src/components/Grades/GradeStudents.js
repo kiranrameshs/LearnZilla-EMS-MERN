@@ -132,16 +132,15 @@ class GradeStudents extends Component {
       } else {
         return(
           <div>
-
           <NavBar />
           <Navbar className="sidebar">
                 <Navbar.Collapse>
                   <Sidebar />
                 </Navbar.Collapse>
           </Navbar>
-          <Form className="gradeclass" onSubmit={this.submitForm}>
+          <Form className="formclass" onSubmit={this.submitForm}>
             <FormGroup controlId="studentid">
-              <FormLabel>Student Name</FormLabel>
+              <FormLabel>Student ID</FormLabel>
               <FormControl as="select" value={this.state.value} onChange={this.handleInput}>
                 <option placeholder="Select Student" > Select Student </option>
                 {this.state.studentList.map((t, index) => <option key={index} value={t} >{t}</option>)}

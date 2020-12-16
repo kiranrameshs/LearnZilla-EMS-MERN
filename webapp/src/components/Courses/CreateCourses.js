@@ -3,6 +3,10 @@ import {Form, FormGroup, FormControl, Button, FormLabel,} from 'react-bootstrap'
 import { connect } from 'react-redux';
 import { createCourse } from '../../store/actions/course.action';
 import { removeError } from '../../store/actions/error.action';
+import NavBar from '../NavBar';
+import { Navbar,Nav, NavItem } from 'react-bootstrap' ;
+import Sidebar from '../SideBar/SideBar';
+import './CreateCourses.scss';
 
 class CreateCourses extends Component {
 
@@ -46,7 +50,14 @@ class CreateCourses extends Component {
 
   render(){
     return(
-      <Form onSubmit={this.submitForm}>
+      <div>
+      <NavBar />
+      <Navbar className="sidebar">
+            <Navbar.Collapse>
+              <Sidebar />
+            </Navbar.Collapse>
+      </Navbar>
+      <Form className="formclass" onSubmit={this.submitForm}>
         <FormGroup controlId="coursename">
           <FormLabel>Course Name</FormLabel>
           <FormControl type="text" value={this.state.value} placeholder="Enter Course Name" onChange={this.handleInput} />
@@ -71,7 +82,7 @@ class CreateCourses extends Component {
           <Button type="submit">Add Course</Button>
         </FormGroup>
       </Form>
-
+      </div>
     )
   }
 }
