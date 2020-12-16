@@ -13,7 +13,7 @@ import GradeAnalytics from './Grades/GradeAnalytics';
 import Profile from './Profile/ProfileContainer';
 import SuccessPage from './SuccessPage/SuccessPage';
 import GradeStudents from './Grades/GradeStudents';
-import AssignmentContainer from './AssignmentContainer';
+import AssignmentContainer from './Assignments/AssignmentContainer';
 
 class App extends Component {
 
