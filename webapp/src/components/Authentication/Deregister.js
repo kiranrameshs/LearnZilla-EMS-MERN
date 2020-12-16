@@ -1,4 +1,4 @@
-// Import statements
+// Import statement
 import React, {Component} from 'react';
 import {Form, FormGroup, FormControl, Button, FormLabel,} from 'react-bootstrap';
 import { removeError } from '../../store/actions/error.action';
@@ -6,7 +6,7 @@ import { logoutUser } from '../../store/actions/user.action';
 import NavBar from '../NavBar';
 import { Navbar,Nav, NavItem } from 'react-bootstrap' ;
 import Sidebar from '../SideBar/SideBar';
-import './GradeStudents.scss';
+import './Authentication.scss';
 
 const userreduxProps = state => {
   return ({
@@ -14,96 +14,60 @@ const userreduxProps = state => {
   })
 };
 
-class GradeCourse extends Component {
+
+
+class Deregister extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
       error: null,
-      teacherid: '',
-      courseid: '',
       studentid: '',
-      assignmentid: '',
       grade: 0,
-      feedback: '',
       studentList: [],
-      courseData: null,
-      assignmentList: [],
       studentLoaded: false,
-      teacherLoaded: false,
       courseLoaded: false
     };
     this.submitForm = this.submitForm.bind(this);
     this.handleInput = this.handleInput.bind(this);
-    this.getTeacherIdCourseId = this.getTeacherIdCourseId.bind(this);
-    this.updateStudent = this.updateStudent.bind(this);
+    this.deleteStudent = this.deleteStudent.bind(this);
   }
 
   componentDidMount() {
-    let id = JSON.parse(localStorage.getItem("user")).id;
-    let url = "/teachers/users/" + id;
-  //  alert(url);
-    this.getTeacherIdCourseId(url);
+    let url = "/students";
+    this.getStudentList(url);
+    console.log(this.state.studentList);
   }
 
-
-// Get teacher id and course id from user id.
-  getTeacherIdCourseId(url)  {
+  // Get student list
+  getStudentList(url)  {
     fetch(url, {
         method: 'GET'
       })
       .then(res => res.json())
       .then(
         (result) => {
-          //console.log(result.message[0]);
-          this.setState({
-            teacherid: result.message[0].id,
-            courseid: result.message[0].course
-          });
-          this.loadStudents();
-        },
-        (error) => {
-          this.setState({
-            error
-        });
-      }
-    )
-  }
 
-  // Load all students for that particular course
-  loadStudents() {
-    let id = this.state.courseid;
-    let url = "/courses/" + id + "/students";
-    fetch(url, {
-        method: 'GET'
-      })
-      .then(res => res.json())
-      .then(
-        (result) => {
           this.setState({
             studentLoaded: true,
-            studentList: result.students
+            studentList: result
           });
+
         },
         (error) => {
           this.setState({
-            studentLoaded: false,
             error
         });
       }
     )
   }
 
-  // Update final grade for students for that particular course
-  updateStudent(courseid, grade) {
-    //alert(courseid + " " + grade);
-    let editUrl = "/courses/" + courseid;
+  // Deregister student
+  deleteStudent(studentid) {
+    //alert(studentid);
+    let editUrl = "/students/" + studentid;
     fetch(editUrl, {
-      method: 'PUT',
-      body: JSON.stringify({
-          "coursefinalscrore": grade
-        }
-      ),
+      method: 'DELETE',
       headers: {"Content-Type": "application/json"}
     })
     .then(res => res.json())
@@ -112,11 +76,11 @@ class GradeCourse extends Component {
     });
   }
 
-
-
   handleInput(e) {
     let id = e.target.id;
     let val = e.target.value;
+    // console.log(id);
+    // console.log(val);
     this.setState({
       [id]: val
     });
@@ -125,16 +89,16 @@ class GradeCourse extends Component {
 
   submitForm(e){
     e.preventDefault();
-    let courseid = this.state.courseid;
-    let grade = this.state.grade;
-    this.updateStudent(courseid, grade);
+
+    let studentid = this.state.studentid;
+    this.deleteStudent(studentid);
     //alert("Course is assigned successfully! Redirect to SuccessPage");
-    this.props.history.push('/success');
+    this.props.history.push('/dashboard');
   }
 
-
-  // Rendering Grade course form
+  // Render deregister form
   render(){
+      //console.log(this.state.studentList)
       if (this.state.error) {
         return <div>Error: {this.state.error.message}</div>;
       } else if (!this.state.studentLoaded) {
@@ -153,17 +117,13 @@ class GradeCourse extends Component {
               <FormLabel>Student ID</FormLabel>
               <FormControl as="select" value={this.state.value} onChange={this.handleInput}>
                 <option placeholder="Select Student" > Select Student </option>
-                {this.state.studentList.map((t, index) => <option key={index} value={t} >{t}</option>)}
+                {this.state.studentList.map((t, index) => <option key={index} value={t.id} >{t.id}</option>)}
               </FormControl>
             </FormGroup>
 
-            <FormGroup controlId="grade">
-              <FormLabel>Student Grade</FormLabel>
-              <FormControl type="Number" value={this.state.value} placeholder="Enter Student Grade" onChange={this.handleInput} />
-            </FormGroup>
 
             <FormGroup>
-              <Button type="submit">Grade Course</Button>
+              <Button type="submit">Deregister Student</Button>
             </FormGroup>
           </Form>
           </div>
@@ -173,4 +133,4 @@ class GradeCourse extends Component {
 }
 
 
-export default GradeCourse;
+export default Deregister;

@@ -1,3 +1,4 @@
+// Import Statements
 import React, {Component} from 'react';
 import {Form, FormGroup, FormControl, Button, FormLabel,} from 'react-bootstrap';
 import './Authentication.scss';
@@ -6,7 +7,7 @@ import { loginUser } from '../../store/actions/user.action';
 import { removeError } from '../../store/actions/error.action';
 
 class Login extends Component {
-
+  // constructor
   constructor(props) {
     super(props);
     this.state = {
@@ -31,13 +32,14 @@ class Login extends Component {
     }
   }
 
+  // Save user in localstorage
   createSession(userDetails) {
     //first time add
     if (localStorage.getItem("user") === null) {
       localStorage.setItem("user", JSON.stringify(userDetails));
     }
 
-    
+
 
       // if (localStorage.getItem("user") === null) {
       //     localStorage.setItem("user", JSON.stringify(userDetails));
@@ -58,9 +60,10 @@ class Login extends Component {
     this.props.loginUser(this.state);
   }
 
+  // Render Login Form
   render(){
     return(
-      
+
       <>
 
 {/* <Form onSubmit={this.submitForm}>
@@ -135,7 +138,7 @@ class Login extends Component {
         </div>
 
   </>
-    
+
 
 
   )

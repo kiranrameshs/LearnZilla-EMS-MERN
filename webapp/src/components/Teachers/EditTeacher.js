@@ -1,3 +1,4 @@
+// Import statements
 import React, {Component} from 'react';
 import {Form, FormGroup, FormControl, Button, FormLabel,} from 'react-bootstrap';
 import { removeError } from '../../store/actions/error.action';
@@ -8,6 +9,7 @@ import './EditTeacher.scss';
 
 class EditTeacher extends Component {
 
+  // constructor
   constructor(props) {
     super(props);
     this.state = {
@@ -24,6 +26,7 @@ class EditTeacher extends Component {
     this.handleInput = this.handleInput.bind(this);
   }
 
+  // Fetch all courses
   loadCourses() {
     fetch("/courses", {
         method: 'GET'
@@ -46,6 +49,7 @@ class EditTeacher extends Component {
     //console.log(this.state.courseList);
   }
 
+  // fetch all teachers
   loadTeachers() {
     fetch("/teachers", {
         method: 'GET'
@@ -68,6 +72,7 @@ class EditTeacher extends Component {
     )
   }
 
+  // Assign teacher with course
   updateTeacher(teacherid, courseid, salary) {
     let editUrl = "/teachers/" + teacherid;
     fetch(editUrl, {
@@ -112,6 +117,7 @@ class EditTeacher extends Component {
     this.props.history.push('/dashboard');
   }
 
+  // render course teacher assignment form
   render(){
       //console.log(this.state.courseList);
       if (this.state.error) {
