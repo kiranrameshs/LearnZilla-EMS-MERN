@@ -1,5 +1,5 @@
-import React from 'react'
-import NavBar from './NavBar'
+import React from 'react';
+import NavBar from './NavBar';
 //import Sidebar from './SideBar';
 import CourseContainer from './CourseContainer'
 import './../styles/Modules/CourseCards.scss'
@@ -16,7 +16,7 @@ import { getMyCourses } from './../store/actions/course.action';
 
 const reduxProps = state => {
     return ({
-      courses: state.course.courseState      
+      courses: state.course.courseState
       }
     )
   };
@@ -54,12 +54,12 @@ class Dashboard extends React.Component {
           this.props.getMyCourses(roleID);
 
       })
-      .catch(err => alert(err)
+      .catch(err => console.log(err)
       );
-    
-    
+
+
   }
-  
+
   componentDidMount() {
 
 

@@ -30,7 +30,7 @@ export const loginUser = userData => dispatch => {
   })
   .catch(err =>
     {
-      console.log(JSON.stringify(err));
+      alert(JSON.stringify(err));
       dispatch({
         type: ActionTypes.ERRORS,
         payload: err.response

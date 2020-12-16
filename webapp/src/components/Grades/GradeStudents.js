@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import {Form, FormGroup, FormControl, Button, FormLabel,} from 'react-bootstrap';
 import { removeError } from '../../store/actions/error.action';
 import { logoutUser } from '../../store/actions/user.action';
+import NavBar from '../NavBar';
+import { Navbar,Nav, NavItem } from 'react-bootstrap' ;
+import Sidebar from '../SideBar/SideBar';
 
 const userreduxProps = state => {
   return ({
@@ -127,6 +130,14 @@ class GradeStudents extends Component {
       return <div>Loading...</div>;
       } else {
         return(
+          <div>
+
+          <NavBar />
+          <Navbar className="sidebar">
+                <Navbar.Collapse>
+                  <Sidebar />
+                </Navbar.Collapse>
+          </Navbar>
           <Form onSubmit={this.submitForm}>
             <FormGroup controlId="studentid">
               <FormLabel>Student Name</FormLabel>
@@ -146,6 +157,7 @@ class GradeStudents extends Component {
               <Button type="submit">Grade Student</Button>
             </FormGroup>
           </Form>
+          </div>
         )
       }
   }
