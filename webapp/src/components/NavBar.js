@@ -37,16 +37,6 @@ class NavBar extends Component {
 
     }
 
-    routeToGrades(e){
-      e.preventDefault();
-      //pass
-      return ({
-
-
-      });
-    }
-
-
     componentDidMount() {
 
     }
@@ -60,8 +50,8 @@ class NavBar extends Component {
                   <a className="navbar-brand" href="#"> <span className="glyphicon glyphicon-education"></span> LearnZilla</a>
                 </div>
                 <ul className="nav navbar-nav">
-                  <li className="active"><a href="#"><span className="glyphicon glyphicon-home"></span> Home</a></li>
-                  <li><a>Courses</a></li>
+                  {/* <li className="active"><a href="#"><span className="glyphicon glyphicon-home"></span> Home</a></li>
+                  <li><a>Courses</a></li> */}
 
                   <li>
                     {/* <a href="/grades" onClick={this.routeToGrades}>Grades</a> */}
@@ -70,6 +60,7 @@ class NavBar extends Component {
                         props: {
                              }
                     }}>Grades</Link>
+                    
                     </li>
                 </ul>
                 <ul className="nav navbar-nav navbar-right">

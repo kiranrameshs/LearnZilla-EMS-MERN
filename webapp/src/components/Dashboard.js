@@ -11,15 +11,23 @@ import { connect } from 'react-redux';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 import { getMyCourses } from './../store/actions/course.action';
+import { getCoursesGrades } from './../store/actions/grade.action';
 
 
+
+
+// const reduxProps = state => {
+//     return ({
+//       courses: state.course.courseState
+//       }
+//     )
+//   };
 
 const reduxProps = state => {
-    return ({
-      courses: state.course.courseState
-      }
-    )
-  };
+  return ({
+      grades: state.grades.coursesGrades 
+  })
+};
 
 
 class Dashboard extends React.Component {
@@ -51,26 +59,41 @@ class Dashboard extends React.Component {
           if (localStorage.getItem("roleid") === null) {
             localStorage.setItem("roleid", (roleID));
           }
-          this.props.getMyCourses(roleID);
+          // if(role==="Student"){this.props.getMyCourses(roleID);}
+          if(role==="Student"){this.props.getCoursesGrades(roleID);}
 
       })
       .catch(err => console.log(err)
       );
-
-
   }
 
-  componentDidMount() {
-
-
-    }
-
     render(){
-    let courses = this.props.courses.courses!==undefined? this.props.courses.courses: this.props.courses
-      // console.log(this.props.courses[0])
-      const CourseList = courses.map((c, i ) =>{
-        return(console.log(c) );
-      })
+    
+      // let courses = this.props.courses.courses!==undefined? this.props.courses.courses: this.props.courses
+      
+      // const courseList = courses.map((c, i ) =>{
+      //   return (
+      //     <>
+      //     <CourseContainer key={i} courseID={c} >
+      //     </CourseContainer>
+      //        {/* <CourseContainer key={i} courseID={c} >
+      //        </CourseContainer> */}
+      //        </>
+      //     )});
+        
+      let courses = this.props.grades;// [];// this.getAllCourseDetails(this.props.grades);
+      let courseGradeList = <div></div>;
+      if(courses.length !== 0){
+           courseGradeList = courses.map((c, i) => {
+              return (
+                  <>
+              <CourseContainer key={i} course={c}>
+              </CourseContainer>
+           </>
+              )
+          });
+      }
+      
         return (
         <>
         <NavBar />
@@ -82,7 +105,7 @@ class Dashboard extends React.Component {
         <h1>Dashboard</h1>
         <div className="gridOf4">
         <ul >
-            {/* {courseList} */}
+            {courseGradeList}
         </ul>
         </div>
 
@@ -90,4 +113,4 @@ class Dashboard extends React.Component {
         );
     }
 }
-export default connect(reduxProps, {getMyCourses})(Dashboard);
+export default connect(reduxProps, { getCoursesGrades,getMyCourses })(Dashboard);
