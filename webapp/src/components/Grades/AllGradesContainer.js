@@ -5,6 +5,7 @@ import { Navbar,Nav, NavItem } from 'react-bootstrap' ;
 import Sidebar from '../SideBar/SideBar';
 import { connect } from 'react-redux';
 import { getCoursesGrades } from '../../store/actions/grade.action';
+import { getMyCourses } from '../../store/actions/course.action';
 
 class AllGradesContainer extends Component {
 
@@ -45,4 +46,4 @@ const reduxProps = state => {
   };
   
   
-export default connect(reduxProps, { getCoursesGrades })(AllGradesContainer);
+export default connect(reduxProps, { getCoursesGrades,getMyCourses })(AllGradesContainer);
