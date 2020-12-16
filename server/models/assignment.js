@@ -20,6 +20,10 @@ const assignmentSchema = new mongoose.Schema({
       required: [true, "Please check your data entry, no assignment end date specified!"]
   },
   assignmentscrore: Number,
+  feedback: {
+    type: String,
+    default: ''
+  },
   course: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Course'

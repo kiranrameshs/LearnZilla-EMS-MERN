@@ -24,6 +24,7 @@ class GradeStudents extends Component {
       studentid: '',
       assignmentid: '',
       grade: 0,
+      feedback: '',
       studentList: [],
       courseData: null,
       assignmentList: [],
@@ -133,8 +134,21 @@ class GradeStudents extends Component {
     });
   }
 
-  updateAssignmentScore() {
-
+  updateAssignmentScore(assignmentid, grade) {
+    alert(assignmentid + " " + grade);
+    let editUrl = "/assignments/" + assignmentid;
+    fetch(editUrl, {
+      method: 'PUT',
+      body: JSON.stringify({
+          "assignmentscrore": grade
+        }
+      ),
+      headers: {"Content-Type": "application/json"}
+    })
+    .then(res => res.json())
+    .then((responseJson) => {
+      console.log(responseJson);
+    });
   }
 
   handleInput(e) {
@@ -153,7 +167,7 @@ class GradeStudents extends Component {
     let studentid = this.state.studentid;
     let grade = this.state.grade;
     let assignmentid = this.state.assignmentid;
-    this.updateAssignmentScore();
+    this.updateAssignmentScore(assignmentid, grade);
     //this.updateStudent(studentid, grade);
     //alert("Course is assigned successfully! Redirect to SuccessPage");
     this.props.history.push('/success');
@@ -195,6 +209,13 @@ class GradeStudents extends Component {
               <FormLabel>Student Grade</FormLabel>
               <FormControl type="Number" value={this.state.value} placeholder="Enter Student Grade" onChange={this.handleInput} />
             </FormGroup>
+
+            <FormGroup controlId="feedback">
+              <FormLabel>Feedback</FormLabel>
+              <FormControl type="text" value={this.state.value} placeholder="Enter Feedback" onChange={this.handleInput} />
+            </FormGroup>
+
+
 
             <FormGroup>
               <Button type="submit">Grade Student</Button>
