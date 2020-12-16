@@ -46,7 +46,7 @@ class NavBar extends Component {
                 <div className="navbar-header">
                   <a className="navbar-brand" href="#"> <span className="glyphicon glyphicon-education"></span> LearnZilla</a>
                 </div>
-               <label>Welcome {fname}</label>
+               <label className="welcome">Welcome back {fname} !!</label>
                 <ul className="nav navbar-nav navbar-right">
                   <li><a href="/profile"><span className="glyphicon glyphicon-user"></span> My profile</a></li>
                   <li><a href="/login" onClick={this.logout}><span className="glyphicon glyphicon-log-out"></span> LOGOUT</a></li>
