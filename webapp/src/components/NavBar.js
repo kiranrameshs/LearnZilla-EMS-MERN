@@ -20,7 +20,7 @@ class NavBar extends Component {
       e.preventDefault();
       this.props.logoutUser();
       this.deleteSession();
-      alert("User Logged Out! Log in here");
+     // alert("User Logged Out! Log in here");
       window.location = '/login';
 
     }

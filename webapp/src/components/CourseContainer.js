@@ -65,44 +65,36 @@ class CourseContainer extends Component {
     render() {
         let c = this.props.course;      
         let courseAssignments = c.assignment;
-        
-        // let courseAssignmentList = <div></div>;
-        // if(courseAssignments.length !== 0){
-        //     courseAssignmentList = courseAssignments.map((a, i) => {
-        //         return (
-        //             <>
-        //             <AssignmentContainer key={i} assignment={a}>
-        //             </AssignmentContainer>
-        //          </>
-        //         )
-        //     });
-        // }
-
-        // if(courseAssignments.length !== 0){
-        //     courseAssignmentList = courseAssignments.map((a, i) => {
-        //         return (
-        //             <>
-        //             <AssignmentContainer key={i} assignment={a}>
-        //             </AssignmentContainer>
-        //          </>
-        //         )
-        //     });
-        // }
-
+  console.log(c);
+      
         return(
             //handleClick = (event) => {
             <>
-           
-
-                <Link to= {{
+             
+            
+             <div className="col-xs-3">
+            <div className="project project-info">
+              <div className="shape">
+                <div className="shape-text"></div>
+              </div>
+              <div className="project-content courseCard">
+                <div>
+                  {c.coursename}
+                  <Link to= {{
                         pathname: "/courses/Assignments",
                         aboutProps: {
                             key : c.id,
                             assignment : c.assignment
                              }
                     }}><div> <h2> {c[0].coursename}</h2>
-            <p>{c[0].coursedesc}</p>
             </div></Link>
+                </div>
+              </div>
+              <div className="crsDesc">{c[0].coursedesc}</div>
+            </div>
+          </div>
+
+              
             
             </>
         )

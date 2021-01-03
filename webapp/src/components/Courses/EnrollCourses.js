@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 // import './enrollCourses.scss';
 import { Redirect } from "react-router-dom";
-import { Table, Button } from 'react-bootstrap';
-
+import { Table, Button, Alert } from 'react-bootstrap';
+import { Navbar,Nav, NavItem } from 'react-bootstrap' ;
+import Sidebar from '../SideBar/SideBar';
+import NavBar from '../NavBar';
 class EnrollCourses extends Component {
 
   constructor(props) {
@@ -93,7 +95,9 @@ class EnrollCourses extends Component {
   }
 
   loadCurrentCourses() {
-    const studentID = '5fd42e98feb2286945101368';
+    const studentID = '5fd97cfa2e2da92eb49db7f2';
+    // const studentID = localStorage.getItem("roleid");
+    console.log("studentID fetched from roleID is "+studentID)
     fetch(`/students/${studentID}/courses`, {
         method: 'GET'
       })
@@ -117,9 +121,11 @@ class EnrollCourses extends Component {
     console.log(this.state.currentCourseList);
   }
 
-  updateStudentCourseList() {
-      const studentid = '5fd42e98feb2286945101368';
-      const courseid = '5fd45523feb2286945101382';
+  updateStudentCourseList(courseid) {
+      const studentid = '5fd97cfa2e2da92eb49db7f2';
+      // const studentid = localStorage.getItem("roleid");
+      console.log("studentID fetched from roleID is "+studentid)
+      // const courseid = '5fd45523feb2286945101382';
       fetch(`/students/${studentid}`, {
         method: 'GET'
       })
@@ -163,9 +169,11 @@ class EnrollCourses extends Component {
   }
 
 
-  RemoveStudentCourse() {
-    const studentid = '5fd42e98feb2286945101368';
-    const courseid = '5fd45523feb2286945101382';
+  RemoveStudentCourse(courseid) {
+    const studentid = '5fd97cfa2e2da92eb49db7f2';
+    // const studentid = localStorage.getItem("roleid");
+    console.log("studentID fetched from roleID is "+studentid)
+    // const courseid = '5fd45523feb2286945101382';
 
     fetch(`/students/${studentid}`, {
       method: 'GET'
@@ -238,18 +246,20 @@ class EnrollCourses extends Component {
   }
 
 
-  handleEnroll(name,e){
-      console.log("e is "+e)
-      this.updateStudentCourseList();
+  handleEnroll(name,courseID){
+      console.log("courseID is "+courseID)
+      this.updateStudentCourseList(courseID);
+      this.props.history.push(`/dashboard`);
       if(this.state.additionSuccess){
         this.props.history.push(`/dashboard`);
       }
 
   }
 
-  handleRemoveCourses(name,e){
-    console.log("e is "+e)
-    this.RemoveStudentCourse();
+  handleRemoveCourses(name,courseID){
+    console.log("courseID is "+courseID)
+    this.RemoveStudentCourse(courseID);
+    this.props.history.push(`/dashboard`);
     if(this.state.removeSuccess){
       this.props.history.push(`/dashboard`);
     }
@@ -258,30 +268,49 @@ class EnrollCourses extends Component {
 
   render(){
       
-      if (this.state.error) {
-        return <div>Error: {this.state.error.message}</div>;
-      } else if (!(this.state.allCoursesLoaded || this.state.currentCourseLoaded)) {
-      return <div>Loading...</div>;
-      } else {
+      // if (false) {
+      //   return <div>Error: {this.state.error.message}</div>;
+      // } else if (!(this.state.allCoursesLoaded || this.state.currentCourseLoaded)) {
+      // return <Redirect to="/dashboard" />
+      // <div>Loading...</div>;
+      // } else {
           let currentCourseList = this.state.currentCourseListNames
           let allCourseList = this.state.allCourseList
           let newAllCourseList = this.state.newAllCourseList
-          if(currentCourseList.length>= 2){
-              return <div>Credit hour limit exceeded
-                  {/* <Redirect to="/dashboard" /> */}
-              </div>;
+          newAllCourseList = newAllCourseList.filter((item, i, ar) => ar.indexOf(item) === i);
+          if(currentCourseList.length> 2){
+            alert("You cannot enroll for more courses");
+            window.location = '/dashboard';
+              // return <div>
+              //     {/* <div class="alert alert-primary" role="alert">
+              //     Credit hour limit exceeded!! <a href="/dashboard" class="alert-link"></a>. OK, return back to Dashboard
+              //   </div> */}
+                
+              //   {/* <Redirect to="/dashboard" /> */}
+              // </div>;
+          }
+          if(currentCourseList.length == 2){
+            alert("You are already enrolled for 2 courses, Kindly remove a course to add another");
           }
           if(currentCourseList.length == 0){
             let isEnrolled = false;
             let stringop = "Not enrolled with any course currently"
           }
         return(
-            <div>
+          <>
+          <NavBar />
+          <Navbar className="sidebar">
+                <Navbar.Collapse>
+                  <Sidebar />
+                </Navbar.Collapse>
+          </Navbar>
+          <div className="allChildren">
+          <div>
                 <h3>Current Courses are </h3>
             <div>
             <ul>
                 {currentCourseList.map((courseObj,index) =>{
-                        return <li key={index}>{courseObj.coursename}</li>
+                        return <li key={index}>{courseObj.coursename} <button  onClick={() => this.handleRemoveCourses('/enrollCourses', courseObj.id)}>Remove</button></li>
                 } 
                 )}
             </ul>
@@ -289,7 +318,7 @@ class EnrollCourses extends Component {
                 
                 <br>
                 </br>
-                <h3>All Courses are </h3>
+                {/* <h3>All Courses are </h3>
                 <div>
                 <ul>
                     {allCourseList.map((courseObj,index) =>{
@@ -298,82 +327,26 @@ class EnrollCourses extends Component {
                         
                     )}
                 </ul>
-                </div>
-                <h3>New Courses without enrolled courses</h3>
+                </div> */}
+                <h3>New Available Courses</h3>
                 <div>
                 <ul>
                     {newAllCourseList.map((courseObj,index) =>{
-                        return <li key={index}>{courseObj.coursename}</li>
+                        return <li key={index}>{courseObj.coursename}<button  onClick={(e) => this.handleEnroll('/enrollCourses', courseObj.id)}>Enroll</button></li>
                     }
                         
                     )}
                 </ul>
                 </div>
-                <div  onClick={(e) => this.handleEnroll('/enrollCourses', e)}>Enroll</div>
-                <div  onClick={(e) => this.handleRemoveCourses('/enrollCourses', e)}>Remove</div>
-            
-            
-              {/* {!this.state.additionSuccess ? (
-              <div className="alert alert-danger" role="alert">
-              Enrollment failed
+                
             </div>
-            ) : (
-              ''
-            )}
-            {!this.state.removeSuccess ? (
-              <div className="alert alert-danger" role="alert">
-              Remove failed
-            </div>
-            ) : (
-              ''
-            )} */}
-             {/* <div>
-                 <h3>Current Courses are </h3>
-             </div>
-               <Table responsive striped condensed hover>
-              <thead>
-                <tr>
-                  <th> </th>
-                  <th> Course Name </th>
-                  <th> Action </th>
-                  <th> </th>
-                </tr>
-              </thead>
-          <tbody>
-          {currentCourseList.map((c) => {
-            return <tr>
-              <td>{c.coursename} </td>
-              <td> <button type="button" className="btn btn-danger" onClick={(e) => this.handleRemoveCourses('/enrollCourses', e)}>Remove Course</button></td>
-            </tr>
-          })}
-        </tbody>
-        </Table>
 
-        <div>
-                 <h3>Available Courses </h3>
-             </div>
-               <Table responsive striped condensed hover>
-              <thead>
-                <tr>
-                  <th> </th>
-                  <th> Course Name </th>
-                  <th> Action </th>
-                  <th> </th>
-                </tr>
-              </thead>
-          <tbody>
-          {newAllCourseList.map((c) => {
-            return <tr>
-              <td>{c.coursename} </td>
-              <td> <button type="button" className="btn btn-success" onClick={(e) => this.handleEnroll('/enrollCourses', e)}>Remove Course</button></td>
-            </tr>
-          })}
-        </tbody>
-        </Table> */}
-            </div>
+          </div>
+           
+            </>
         
         )
-      }
+      // }
   }
 
 

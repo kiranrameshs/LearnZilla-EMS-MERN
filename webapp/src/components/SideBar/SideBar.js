@@ -25,7 +25,11 @@ class Sidebar extends Component {
       // {name: "All Users", url: "/all-users", role: 1},
       // {name: "My Courses", url: "/dashboard", role: 0},
       // {name: "My Profile", url: "/profile", role: 0},EvaluateStudFinalGrade
+      {name: "Home", url: "/dashboard", role: 2},
+      {name: "Home", url: "/dashboard", role: 1},
+      {name: "Home", url: "/dashboard", role: 3},
       {name: "Create Course", url: "/courses/create", role: 1},
+      {name: "Enroll Course", url: "/enrollcourses", role: 2},
       {name: "Evaluate Student Final Grade", url: "/students/finalgrade", role: 1},
       {name: "Edit Teacher ", url: "/teachers/edit", role: 1},
       {name: "Create User", url: "/register", role: 1},
@@ -35,6 +39,8 @@ class Sidebar extends Component {
       {name: "Grade Assignment", url: "/students/edit", role: 3},
       {name: "Grade Course", url: "/students/grade", role: 3},
       {name: "View Grades", url: "/viewGrades", role: 3},
+      {name: "Grades", url: "/grades", role: 2}
+     
     ]}
 
     this.logout = this.logout.bind(this);
@@ -70,7 +76,7 @@ generateLinks(menuItems){
         role = "Admin"
     } else {
       userState = this.props.auth.user
-      role = this.props.auth.user.role
+      role = this.props.auth.user.role; //JSON.parse(localStorage.getItem("user").role); 
     //  console.log(userState);
     }
 

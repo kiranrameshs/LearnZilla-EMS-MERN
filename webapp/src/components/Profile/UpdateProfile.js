@@ -24,6 +24,7 @@ class Profile extends Component {
 		let id = JSON.parse(localStorage.getItem("user")).id;
 		//calling API to update
 		this.props.updateUser(id, data);
+		window.location = ('/dashboard');
         
     }
 

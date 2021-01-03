@@ -17,7 +17,7 @@ class ViewGrades extends Component {
 
 }
 componentDidMount() {
-   this.props.getCoursesGrades(localStorage.getItem("roleid"));
+   //this.props.getCoursesGrades(localStorage.getItem("roleid"));
    
 }
 
@@ -88,6 +88,20 @@ render() {
     }
     
     
+homeWorks= [
+      {
+        "id":"5fd97cfa2e2da92eb4786g89",
+        "studentFinalScore":"90",
+        "studentName": "student1"
+      },
+      {
+       "id":" 5fd97cfa2e2da92eb49db7f1",
+       "studentFinalScore":"0",
+       "studentName": "student2"
+     }
+    ]
+    data.scores = homeWorks.filter(x=>x.id != "").map( (x)=>{ return x.studentFinalScore});
+data.categories = homeWorks.filter(x=>x.id != "").map( (x)=>{ return x.studentName});
     return (
       <>
         <NavBar />

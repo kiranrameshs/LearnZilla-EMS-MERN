@@ -814,6 +814,13 @@ a {
   border: solid 1px black;
   text-align: center; }
 
+.courseCard {
+  background-color: darkgrey; }
+
+.crsDesc {
+  text-align: center;
+  color: darkgrey !important; }
+
 .navBar {
   list-style: none;
   display: flex;

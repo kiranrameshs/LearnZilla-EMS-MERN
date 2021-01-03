@@ -19,7 +19,7 @@ import GradeCourse from './Grades/GradeCourse';
 import TeacherViewGrades from './Teachers/ViewGrades';
 import EvaluateStudFinalGrade from './Grades/EvaluateStudFinalGrade';
 import EnrollCourses from './Courses/EnrollCourses';
-import Deregister from './Authentication/Deregister';
+import DeregisterTeacher from './Authentication/DeregisterTeacher';
 
 
 

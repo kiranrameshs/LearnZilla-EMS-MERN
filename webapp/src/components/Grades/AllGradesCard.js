@@ -36,13 +36,13 @@ class AllGradesCard extends Component {
           console.log("props is "+this.props);
           let perClass = "c100 p25 ";
           let cardClass = "project ";
-          if(c.coursefinalscrore >= 90){
+          if(c.coursefinalscore >= 90){
             perClass += "dark green";
             cardClass += "project-success";
           }
-          else if(c.coursefinalscrore <= 80){
+          else{
             perClass += "dark orange";
-            cardClass += "project-info";
+            cardClass += "project-warning";
           }
          
           //render each grade card
@@ -55,7 +55,7 @@ class AllGradesCard extends Component {
               <div className="project-content">
                 <h3 className="lead">
                   <div className={perClass}>
-                    <span>{c.coursefinalscrore}</span>
+                    <span>{c.coursefinalscore}</span>
                     <div className="slice">
                       <div className="bar"></div>
                       <div className="fill"></div>

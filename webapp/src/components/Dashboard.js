@@ -4,7 +4,7 @@ import CourseContainer from './CourseContainer'
 import './../styles/Modules/CourseCards.scss'
 import { Navbar,Nav, NavItem } from 'react-bootstrap' ;
 import Sidebar from './SideBar/SideBar';
-import './SideBar/SideBar.scss';
+//import './SideBar/SideBar.scss';
 import { connect } from 'react-redux';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 
@@ -67,19 +67,12 @@ class Dashboard extends React.Component {
 
     render(){
     
-      // let courses = this.props.courses.courses!==undefined? this.props.courses.courses: this.props.courses
-      
-      // const courseList = courses.map((c, i ) =>{
-      //   return (
-      //     <>
-      //     <CourseContainer key={i} courseID={c} >
-      //     </CourseContainer>
-      //        {/* <CourseContainer key={i} courseID={c} >
-      //        </CourseContainer> */}
-      //        </>
-      //     )});
-        
-      let courses = this.props.grades;// [];// this.getAllCourseDetails(this.props.grades);
+      let courses = this.props.grades;
+      if(JSON.parse(localStorage.getItem("user")).role === "Teacher"){
+        courses = [
+
+        ];
+      }
       let courseList  = <div></div>;
       if(courses.length !== 0){
            courseList = courses.map((c, i) => {
@@ -92,6 +85,7 @@ class Dashboard extends React.Component {
           });
       }
       
+
         return (
         <>
         <NavBar />
@@ -101,7 +95,7 @@ class Dashboard extends React.Component {
               </Navbar.Collapse>
         </Navbar>
         <h1>Dashboard</h1>
-        <div className="gridOf4">
+        <div className="allChildren">
         <ul>
             {courseList}
         </ul>

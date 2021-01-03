@@ -39,7 +39,7 @@ class Register extends Component {
 
     if (Object.keys(newProps.auth).length > 0 ) {
       //alert(newProps.auth);
-      this.props.history.push('/dashboard')
+      window.location = '/dashboard';
     }
   }
 

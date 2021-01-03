@@ -73,7 +73,7 @@ class CreateAssignments extends Component {
     if (newProps.errorMesage == undefined) {
         this.props.removeError()
     } else {
-      alert("Redirect to Dashboard");
+      //alert("Redirect to Dashboard");
       this.props.history.push('/dashboard')
     }
   }

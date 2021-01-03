@@ -21,7 +21,29 @@ class CourseAssignScores extends Component {
 }
 
   componentDidMount() {
-    let assigns = this.props.courseAssignScores; //["5fd97f752e2da92eb49db7f4", "5fd9972ba4f11ed95cc1c108"]//this.props.courseAssigns;
+    let assigns = [];
+    // if(localStorage.getItem("roleid") === "5fd980fe2e2da92eb49db7f7"){
+    //   assigns = [
+    //     "5fd981a32e2da92eb49db7f8"
+    // ]
+
+    // }
+    // else{
+    //   assigns =  [
+    //     "5fd97f752e2da92eb49db7f4",
+    //     "5fd9972ba4f11ed95cc1c108",
+    //     "5fda7039dd9d461d18cc6a62",
+    //     "5fda71194006ba2cb4254e3a"
+    // ];
+    // }
+
+    assigns =  [
+      "5fd97f752e2da92eb49db7f4",
+      "5fd9972ba4f11ed95cc1c108",
+      "5fda7039dd9d461d18cc6a62",
+      "5fda71194006ba2cb4254e3a"
+  ];
+    //let /this.props.courseAssigns;
     if(assigns){
       assigns = assigns.filter(x=>x.id != "");
       assigns.map((aID)=>{
@@ -123,7 +145,7 @@ downloadCSV(csv, filename) {
             <thead>
               <tr>
                 <th> </th>
-                <th> Home Work </th>
+                <th> Assignment </th>
                 <th> Submitted On </th>
                 <th> Score  </th>
                 <th> </th>
@@ -137,7 +159,7 @@ downloadCSV(csv, filename) {
                   <td> {c.assignmentenddate}</td>
                   <td> {c.assignmentscrore}</td>
                   <td> <Button data-toggle="tooltip" data-toggle="modal" data-target="#feedbackModal" data-placement="bottom" title="See FeedBack"><span class="glyphicon glyphicon-comment"></span></Button> 
-                       <FeedBack />
+                       <FeedBack feedback={c.feedback}/>
                       
                   </td>
                 </tr>
